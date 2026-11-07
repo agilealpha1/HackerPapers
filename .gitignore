@@ -1,0 +1,26 @@
+# leftovers and downloads
+_to_delete/
+*.zip
+hackertube-data.zip
+
+# large / raw / re-fetchable data
+hn_algolia/
+data/hackertube/
+data/labels/batches/
+data/meta/embeddings.npy
+data/meta/embedding_ids.json
+data/paths/*/judge_todo.jsonl
+
+# build output (rebuild with pipeline/make_static.py; deploy site_dist/ only)
+site_dist/
+site/data/
+*.tmp
+
+# python / os
+__pycache__/
+*.pyc
+.DS_Store
+
+# local staging for publishing
+_build/
+deploy/update.log

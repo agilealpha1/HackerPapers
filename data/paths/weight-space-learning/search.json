@@ -1,0 +1,82 @@
+{
+ "topic": "Weight-space learning: LLMs and networks that read, write or generate neural network weights",
+ "seeds": {
+  "arxiv:1609.09106": {
+   "title": "HyperNetworks",
+   "hn_mentions": 3,
+   "hn_people": 3,
+   "raw_hits": 3,
+   "threads": [
+    "Astra can read and write weights to improve Qwen",
+    "Direct initialization of transformers using larger pretrained ones",
+    "Learning to Learn in TensorFlow"
+   ]
+  },
+  "arxiv:2301.12780": {
+   "title": "Equivariant Architectures for Learning in Deep Weight Spaces",
+   "hn_mentions": 0,
+   "hn_people": 0,
+   "raw_hits": 0,
+   "threads": []
+  },
+  "arxiv:2302.14040": {
+   "title": "Permutation Equivariant Neural Functionals",
+   "hn_mentions": 0,
+   "hn_people": 0,
+   "raw_hits": 0,
+   "threads": []
+  },
+  "arxiv:2312.04501": {
+   "title": "Graph Metanetworks for Processing Diverse Neural Architectures",
+   "hn_mentions": 0,
+   "hn_people": 0,
+   "raw_hits": 0,
+   "threads": []
+  },
+  "arxiv:2402.13144": {
+   "title": "Neural Network Diffusion",
+   "hn_mentions": 2,
+   "hn_people": 2,
+   "raw_hits": 4,
+   "threads": [
+    "Neural Network Diffusion",
+    "The Era of 1-bit LLMs: ternary parameters for cost-effective computing"
+   ]
+  },
+  "arxiv:2506.06105": {
+   "title": "Text-to-LoRA: Instant Transformer Adaption",
+   "hn_mentions": 3,
+   "hn_people": 3,
+   "raw_hits": 3,
+   "threads": [
+    "Text-to-LoRA: Hypernetwork that generates task-specific LLM adapters (LoRAs)",
+    "Text-to-LoRA: Instant Transformer Adaption"
+   ]
+  },
+  "arxiv:2506.16406": {
+   "title": "Drag-and-Drop LLMs: Zero-Shot Prompt-to-Weights",
+   "hn_mentions": 0,
+   "hn_people": 0,
+   "raw_hits": 0,
+   "threads": []
+  },
+  "arxiv:2603.10090": {
+   "title": "A Survey of Weight Space Learning: Understanding, Representation, and Generation",
+   "hn_mentions": 2,
+   "hn_people": 2,
+   "raw_hits": 2,
+   "threads": [
+    "Astra can read and write weights to improve Qwen"
+   ]
+  }
+ },
+ "when": "2026-11-07 00:14 UTC",
+ "candidates": 285,
+ "by_source": {
+  "s2": 199,
+  "thread": 34,
+  "kw": 48,
+  "kept": 46,
+  "emb": 50
+ }
+}

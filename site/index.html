@@ -1,0 +1,914 @@
+<title>HackerPapers</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a reading-room index. Sticky search bar, left shelf of feeds/topics, one dense column of
+   paper entries set like a bibliography; HN praise shown as highlighter marks on the page. */
+:root {
+  --paper: #f7f8fa;
+  --surface: #ffffff;
+  --ink: #17192b;
+  --ink-2: #4a4e66;
+  --ink-3: #7c8099;
+  --rule: #dfe2ea;
+  --accent: #2b47c6;
+  --accent-soft: #e7ebfb;
+  --mark: #fff0a3;
+  --mark-ink: #3b3300;
+  --good: #1d7a4a;
+  --warn: #a4511b;
+  --bad: #b42335;
+  --focus: #2b47c6;
+  --f-display: "Literata", "Iowan Old Style", Georgia, serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --s-1: 12px; --s0: 14px; --s1: 15.5px; --s2: 18px; --s3: 22px; --s4: 30px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #12131c; --surface: #1a1c28; --ink: #e8e9f2; --ink-2: #b3b6cc; --ink-3: #80849e; --rule: #2c2f40;
+    --accent: #93a6ff; --accent-soft: #232a4d; --mark: rgba(255, 214, 80, .20); --mark-ink: #fbe7a1;
+    --good: #5fd39a; --warn: #f0a46b; --bad: #ff7d8d; --focus: #93a6ff; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #12131c; --surface: #1a1c28; --ink: #e8e9f2; --ink-2: #b3b6cc; --ink-3: #80849e; --rule: #2c2f40;
+  --accent: #93a6ff; --accent-soft: #232a4d; --mark: rgba(255, 214, 80, .20); --mark-ink: #fbe7a1;
+  --good: #5fd39a; --warn: #f0a46b; --bad: #ff7d8d; --focus: #93a6ff; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { background: var(--paper); color: var(--ink); font: 400 var(--s0)/1.55 var(--f-body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--surface); }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+.mono { font-family: var(--f-mono); font-size: .92em; }
+.muted { color: var(--ink-3); }
+
+/* top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); border-bottom: 1px solid var(--rule);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.bar-in { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: 16px; padding-block: 10px; }
+.brand { display: flex; align-items: baseline; gap: 8px; text-decoration: none; white-space: nowrap; }
+.brand b { font: 600 var(--s2)/1 var(--f-display); letter-spacing: -.01em; }
+.brand span { font: 500 11px/1 var(--f-mono); color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; }
+.search { flex: 1; min-width: 0; position: relative; }
+.search input { width: 100%; padding: 8px 12px 8px 34px; border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); }
+.search input:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+.search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--ink-3); }
+.kbd-hint { border: 1px solid var(--rule); background: var(--paper); border-radius: 6px; padding: 5px 9px; cursor: pointer; white-space: nowrap; font-size: var(--s-1); color: var(--ink-2); }
+.theme-btn { border: 1px solid var(--rule); background: var(--paper); border-radius: 6px; padding: 5px 8px; cursor: pointer; color: var(--ink-2); line-height: 0; }
+
+/* shell */
+.shell { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 36px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 22px 60px; }
+nav.shelf { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px); align-self: start; max-height: calc(100vh - 90px); overflow: auto; display: grid; gap: 18px; font-size: var(--s0); }
+.shelf h4 { margin: 0 0 4px; font: 500 11px/1.2 var(--f-mono); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); }
+.shelf a { display: flex; justify-content: space-between; gap: 8px; padding: 4px 8px; margin-inline: -8px; border-radius: 6px; text-decoration: none; color: var(--ink-2); }
+.shelf a:hover { background: var(--accent-soft); color: var(--ink); }
+.shelf a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.shelf a .n { font: 400 var(--s-1)/1.6 var(--f-mono); color: var(--ink-3); }
+main { min-width: 0; }
+
+/* headings */
+.head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 10px 20px; margin-bottom: 14px; }
+.head h1 { margin: 0; font: 600 var(--s4)/1.15 var(--f-display); letter-spacing: -.015em; text-wrap: balance; }
+.head p { margin: 6px 0 0; color: var(--ink-2); max-width: 62ch; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 6px; }
+.tabs a { text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-2); background: var(--surface); font-size: var(--s0); }
+.tabs a[aria-current="page"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.toolbar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; color: var(--ink-3); font-size: var(--s-1); padding-block: 8px; border-bottom: 1px solid var(--rule); }
+.toolbar label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+.pills { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.pill { font: inherit; font-size: 12px; color: var(--ink-2); background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+.pill[aria-pressed="true"] { color: var(--surface); background: var(--accent); border-color: var(--accent); }
+.xport { display: grid; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.xport .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.xport textarea { width: 100%; min-height: 160px; font: 12px/1.45 var(--f-mono); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 10px; box-sizing: border-box; }
+.stage-h { margin: 22px 0 4px; font: 600 var(--s1)/1.3 var(--f-display); }
+.stage-h small { display: block; font: 400 var(--s0)/1.4 var(--f-body, inherit); color: var(--ink-3); margin-top: 2px; }
+
+/* paper entry */
+ol.list { list-style: none; margin: 0; padding: 0; }
+.entry { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 14px; padding: 16px 10px; margin-inline: -10px; border-bottom: 1px solid var(--rule); border-radius: 8px; position: relative; }
+.entry.sel { background: var(--surface); box-shadow: inset 3px 0 0 var(--accent), 0 0 0 1px var(--rule); }
+.entry.isread .t a { color: var(--ink-3); }
+.rank { text-align: right; padding-top: 3px; }
+.rank b { display: block; font: 500 var(--s1)/1.2 var(--f-mono); color: var(--ink-3); }
+.rank small { display: block; font: 400 10.5px/1.3 var(--f-mono); color: var(--ink-3); margin-top: 4px; }
+.t { margin: 0; font: 600 var(--s2)/1.3 var(--f-display); letter-spacing: -.005em; text-wrap: balance; }
+.t a { text-decoration: none; }
+.t a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.meta { margin-top: 4px; color: var(--ink-3); font-size: var(--s-1); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.meta .id { font-family: var(--f-mono); }
+.tl { margin: 6px 0 0; color: var(--ink-2); max-width: 74ch; }
+mark.q { background: var(--mark); color: var(--mark-ink); padding: 1px 3px; border-radius: 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.qline { margin: 8px 0 0; max-width: 74ch; font-size: var(--s0); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; align-items: center; }
+.chip { font-size: 12px; text-decoration: none; padding: 2px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+.badge { font: 500 10.5px/1.6 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; padding: 1px 6px; border-radius: 4px; border: 1px solid var(--rule); color: var(--ink-2); }
+.badge.code { color: var(--good); border-color: color-mix(in srgb, var(--good) 40%, transparent); }
+.badge.lvl-beginner { color: var(--good); }
+.badge.lvl-advanced { color: var(--warn); }
+.acts { display: flex; gap: 6px; margin-left: auto; }
+.ib { border: 1px solid var(--rule); background: var(--surface); border-radius: 6px; padding: 3px 8px; cursor: pointer; font-size: 12px; color: var(--ink-2); text-decoration: none; display: inline-flex; gap: 5px; align-items: center; }
+.ib:hover { border-color: var(--ink-3); color: var(--ink); }
+.ib[aria-pressed="true"] { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.badge.lasting { color: var(--good); border-color: color-mix(in srgb, var(--good) 40%, transparent); }
+.badge.spike { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
+.badge.auth { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.badge.deb { color: var(--bad); border-color: color-mix(in srgb, var(--bad) 40%, transparent); }
+.debate { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.debate h3 { margin: 0 0 8px; font: 500 11px/1.2 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; }
+.debate .for h3 { color: var(--good); } .debate .against h3 { color: var(--bad); }
+.debate ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.debate li { font-size: var(--s0); border-left: 2px solid var(--rule); padding-left: 10px; overflow-wrap: anywhere; }
+.debate .for li { border-color: color-mix(in srgb, var(--good) 50%, transparent); }
+.debate .against li { border-color: color-mix(in srgb, var(--bad) 50%, transparent); }
+.debate small { display: block; color: var(--ink-3); font-size: 12px; margin-top: 3px; }
+.chart { width: 100%; max-width: 560px; height: auto; display: block; }
+.chart .b-all { fill: var(--rule); } .chart .b-pos { fill: var(--good); } .chart .b-crit { fill: var(--bad); }
+.chart text { fill: var(--ink-3); font: 10px var(--f-mono); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--ink-3); margin: 6px 0 12px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+.thennow { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+.thennow div { font-size: var(--s0); } .thennow b { display: block; font: 500 11px/1.4 var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 4px; }
+.author-box { border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); background: var(--accent-soft); border-radius: 8px; padding: 12px 14px; display: grid; gap: 10px; }
+.author-box p { margin: 0; overflow-wrap: anywhere; white-space: pre-line; }
+.paths { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.pathcard { display: block; text-decoration: none; border: 1px solid var(--rule); background: var(--surface); border-radius: 10px; padding: 14px 16px; }
+.pathcard:hover { border-color: var(--accent); }
+.pathcard h3 { margin: 0 0 6px; font: 600 var(--s2)/1.25 var(--f-display); }
+.pathcard p { margin: 0 0 8px; color: var(--ink-2); font-size: var(--s0); }
+.pathcard small { color: var(--ink-3); font-size: 12px; }
+ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 4px; }
+ol.steps > li { counter-increment: step; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+ol.steps > li::before { content: attr(data-n); font: 500 var(--s2)/1.3 var(--f-mono); color: var(--accent); text-align: right; }
+ol.steps .done { color: var(--good); font-size: 12px; }
+.pick { display: inline-block; font: 600 11px/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 3px 6px; }
+.pathcard .pick { margin-bottom: 8px; }
+.ask { display: flex; gap: 8px; margin: 8px 0 10px; flex-wrap: wrap; }
+.ask input { flex: 1; min-width: 0; padding: 11px 14px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); font-size: var(--s1); }
+.examples { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.examples button { border: 1px dashed var(--rule); background: transparent; padding: 4px 10px; border-radius: 999px; cursor: pointer; color: var(--ink-2); font-size: 13px; }
+.answer { border-bottom: 1px solid var(--rule); padding: 14px 0; display: grid; gap: 5px; }
+.answer .t { font-size: var(--s2); }
+@media (max-width: 640px) { .debate, .thennow { grid-template-columns: minmax(0, 1fr); } }
+.reason { margin: 7px 0 0; font-size: 12px; color: var(--accent); }
+.reason::before { content: "↳ "; color: var(--ink-3); }
+.more { display: block; margin: 18px auto 0; padding: 9px 18px; border: 1px solid var(--rule); background: var(--surface); border-radius: 8px; cursor: pointer; }
+.empty { padding: 40px 0; color: var(--ink-2); max-width: 60ch; }
+.empty h2 { font: 600 var(--s3)/1.25 var(--f-display); color: var(--ink); margin: 0 0 6px; }
+
+/* paper page */
+.crumb { font-size: var(--s-1); color: var(--ink-3); margin-bottom: 10px; }
+.crumb a { color: var(--ink-2); }
+.ptitle { font: 600 clamp(24px, 3.4vw, 36px)/1.15 var(--f-display); letter-spacing: -.02em; margin: 0; text-wrap: balance; max-width: 30ch; }
+.pauthors { margin-top: 10px; color: var(--ink-2); max-width: 80ch; }
+.pbar { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 4px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 7px; border: 1px solid var(--rule); background: var(--surface); text-decoration: none; cursor: pointer; font-weight: 500; font-size: var(--s0); }
+.btn.primary { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.btn[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.pgrid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 36px; margin-top: 22px; }
+.sec { margin-bottom: 30px; }
+.sec > h2 { font: 500 11px/1.2 var(--f-mono); letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
+.lede { font: 400 var(--s2)/1.55 var(--f-display); margin: 0; max-width: 64ch; }
+.why { font-size: var(--s1); margin: 0; max-width: 66ch; }
+.say { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.say li { display: grid; gap: 5px; }
+.say .who { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; font-size: var(--s-1); color: var(--ink-3); }
+.say .who a { color: var(--ink-2); }
+.say blockquote { margin: 0; padding-left: 12px; border-left: 2px solid var(--rule); color: var(--ink); max-width: 72ch; white-space: pre-line; overflow-wrap: anywhere; }
+.pill { font: 500 10.5px/1.6 var(--f-mono); text-transform: uppercase; letter-spacing: .04em; padding: 0 6px; border-radius: 4px; }
+.pill.strong_rec { background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+.pill.rec { background: color-mix(in srgb, var(--good) 10%, transparent); color: var(--good); }
+.pill.reference { background: var(--accent-soft); color: var(--accent); }
+.pill.critical { background: color-mix(in srgb, var(--bad) 14%, transparent); color: var(--bad); }
+.pill.author { background: color-mix(in srgb, var(--warn) 14%, transparent); color: var(--warn); }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; margin: 0; font-size: var(--s0); }
+.facts dt { color: var(--ink-3); }
+.facts dd { margin: 0; font-family: var(--f-mono); font-size: 13px; min-width: 0; overflow-wrap: anywhere; }
+.mini { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.mini a { text-decoration: none; font: 500 var(--s0)/1.35 var(--f-display); }
+.mini a:hover { text-decoration: underline; }
+.mini small { display: block; color: var(--ink-3); font-size: 12px; margin-top: 2px; }
+.abs { color: var(--ink-2); max-width: 72ch; margin: 0; }
+details summary { cursor: pointer; color: var(--accent); }
+.disc { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: var(--s0); }
+
+/* topics overview */
+.areas { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 26px 30px; }
+.areas h3 { margin: 0 0 8px; font: 600 var(--s1)/1.3 var(--f-display); }
+.areas ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.areas a { display: flex; justify-content: space-between; text-decoration: none; color: var(--ink-2); padding: 2px 0; border-bottom: 1px dotted var(--rule); }
+.areas a:hover { color: var(--accent); }
+.areas .n { font: 400 12px/1.8 var(--f-mono); color: var(--ink-3); }
+.pick { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 20px; }
+.pick button { border: 1px solid var(--rule); background: var(--surface); padding: 5px 11px; border-radius: 999px; cursor: pointer; font-size: var(--s0); }
+.pick button[aria-pressed="true"] { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.prose { max-width: 68ch; }
+.prose h2 { font: 600 var(--s3)/1.3 var(--f-display); margin: 26px 0 8px; }
+.prose p, .prose li { color: var(--ink-2); }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 26px; margin: 8px 0 0; padding: 0; list-style: none; }
+.stats b { display: block; font: 500 var(--s3)/1.2 var(--f-mono); color: var(--ink); font-variant-numeric: tabular-nums; }
+.stats span { font-size: var(--s-1); color: var(--ink-3); }
+
+/* overlay + toast */
+dialog { border: 1px solid var(--rule); border-radius: 12px; background: var(--surface); color: var(--ink); padding: 22px 26px; max-width: min(440px, calc(100vw - 32px)); }
+dialog::backdrop { background: rgba(10, 12, 25, .35); }
+dialog h2 { margin: 0 0 12px; font: 600 var(--s3)/1.2 var(--f-display); }
+.keys { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 0; }
+kbd { font: 500 12px/1 var(--f-mono); border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 5px; padding: 3px 6px; background: var(--paper); }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 8px 14px; border-radius: 8px; font-size: var(--s0); z-index: 40; }
+.loading { padding: 60px 0; color: var(--ink-3); }
+footer { color: var(--ink-3); font-size: var(--s-1); margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--rule); max-width: 80ch; }
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); gap: 10px; padding-block: 12px 50px; }
+  nav.shelf { position: static; max-height: none; display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; border-bottom: 1px solid var(--rule); scrollbar-width: none; }
+  nav.shelf section { display: contents; }
+  nav.shelf h4, nav.shelf .topics-short { display: none; }
+  nav.shelf a { white-space: nowrap; margin: 0; padding: 5px 10px; border: 1px solid var(--rule); border-radius: 999px; }
+  nav.shelf a .n { display: none; }
+  .pgrid { grid-template-columns: minmax(0, 1fr); }
+  .kbd-hint { display: none; }
+  .tabs { display: none; }
+  .brand span { display: none; }
+}
+@media (max-width: 520px) {
+  .entry { grid-template-columns: 40px minmax(0, 1fr); gap: 10px; }
+  .tl { display: none; }
+  .acts { margin-left: 0; width: 100%; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .entry { transition: background-color .12s ease; }
+}
+</style>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="brand" href="#top"><b>HackerPapers</b><span>AI papers HN recommends</span></a>
+    <div class="search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search papers" autocomplete="off" aria-label="Search papers">
+    </div>
+    <button class="kbd-hint" id="helpBtn" type="button" aria-label="Keyboard shortcuts"><kbd>?</kbd> Shortcuts</button>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch light or dark theme">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="shelf" id="shelf" aria-label="Sections"></nav>
+  <main id="main"><div class="loading">Loading the reading list…</div></main>
+</div>
+
+<dialog id="help">
+  <h2>Keyboard shortcuts</h2>
+  <dl class="keys">
+    <dt><kbd>j</kbd> <kbd>k</kbd></dt><dd>Next / previous paper</dd>
+    <dt><kbd>Enter</kbd></dt><dd>Open the paper page</dd>
+    <dt><kbd>o</kbd></dt><dd>Open the PDF</dd>
+    <dt><kbd>s</kbd></dt><dd>Save to reading list</dd>
+    <dt><kbd>r</kbd></dt><dd>Mark as read</dd>
+    <dt><kbd>/</kbd></dt><dd>Search</dd>
+    <dt><kbd>g</kbd> then <kbd>h</kbd> <kbd>f</kbd> <kbd>l</kbd> <kbd>t</kbd> <kbd>p</kbd> <kbd>a</kbd></dt><dd>Go to Home, For You, Reading list, Topics, Paths, Ask</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Back to the list</dd>
+  </dl>
+  <form method="dialog" style="margin-top:16px;text-align:right"><button class="btn" id="helpClose">Close</button></form>
+</dialog>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(() => {
+'use strict';
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmt = n => Number(n).toLocaleString('en-US');
+const short = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M' : n >= 1e4 ? Math.round(n / 1e3) + 'k' : n >= 1e3 ? (n / 1e3).toFixed(1).replace(/\.0$/, '') + 'k' : String(n);
+
+// ---------- per-viewer storage (all local; wrapped because storage can be unavailable)
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('hp:' + k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v) { try { localStorage.setItem('hp:' + k, JSON.stringify(v)); } catch {} },
+};
+const saved = store.get('saved', {});   // id -> time saved
+const read = store.get('read', {});     // id -> time read
+const likes = store.get('topics', []);  // topic ids picked for For You
+let hideRead = store.get('hideRead', false);
+const persist = () => { store.set('saved', saved); store.set('read', read); store.set('topics', likes); store.set('hideRead', hideRead); };
+
+// ---------- theme
+const themeBtn = $('#themeBtn');
+const applyTheme = t => { if (t) document.documentElement.setAttribute('data-theme', t); else document.documentElement.removeAttribute('data-theme'); };
+applyTheme(store.get('theme', null));
+themeBtn.addEventListener('click', () => {
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+    (!document.documentElement.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
+  const t = dark ? 'light' : 'dark'; applyTheme(t); store.set('theme', t);
+});
+
+// ---------- data
+let P = [], BY = {}, BYSLUG = {}, POS = {}, TAX = null, TOPIC = {}, STATS = {};
+let REASON = {};   // id -> why this paper is in the current list (For You, search)
+let ALL = [];      // every paper in index.json, including path-only ones (P is the feed set)
+let LOPT = Object.assign({ sort: 'best', code: false, beginner: false, lasting: false }, store.get('lopt', {}));
+const setTitle = t => { document.title = t ? `${t} · HackerPapers` : 'HackerPapers: AI papers HN recommends'; };
+let EMB = null;    // null = not loaded, false = unavailable, else {dim, v: Int8Array}
+async function loadEmb() {
+  if (EMB !== null) return EMB;
+  EMB = false;
+  try {
+    const j = await fetch('data/emb.json').then(r => { if (!r.ok) throw 0; return r.json(); });
+    const bin = atob(j.b64), v = new Int8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) v[i] = (bin.charCodeAt(i) << 24) >> 24;
+    EMB = { dim: j.dim, v };
+  } catch { EMB = false; }
+  return EMB;
+}
+const dotRow = (vec, j) => { const d = EMB.dim, o = j * d; let s = 0; for (let k = 0; k < d; k++) s += vec[k] * EMB.v[o + k]; return s; };
+const row = i => EMB.v.subarray(i * EMB.dim, (i + 1) * EMB.dim);
+const cosIJ = (i, j) => dotRow(row(i), j) / 16129;
+const shardCache = {};
+async function loadShard(n) {
+  if (!shardCache[n]) shardCache[n] = fetch(`data/p/${n}.json`).then(r => r.json());
+  return shardCache[n];
+}
+
+// ---------- links for each source
+function links(p) {
+  const id = p.id, [src, rest] = [id.slice(0, id.indexOf(':')), id.slice(id.indexOf(':') + 1)];
+  if (src === 'arxiv') return { page: `https://arxiv.org/abs/${rest}`, pdf: `https://arxiv.org/pdf/${rest}`, label: `arXiv:${rest}` };
+  if (src === 'openreview') return { page: `https://openreview.net/forum?id=${encodeURIComponent(rest)}`, pdf: `https://openreview.net/pdf?id=${encodeURIComponent(rest)}`, label: 'OpenReview' };
+  if (src === 'acl') return { page: `https://aclanthology.org/${rest}/`, pdf: `https://aclanthology.org/${rest}.pdf`, label: `ACL ${rest}` };
+  if (src === 'pmlr') { const [v, k] = rest.split('/'); return { page: `https://proceedings.mlr.press/${v}/${k}.html`, pdf: `https://proceedings.mlr.press/${v}/${k}/${k}.pdf`, label: `PMLR ${v}` }; }
+  const u = p.url && /^https:\/\/(papers\.nips\.cc|proceedings\.neurips\.cc)\//.test(p.url.replace(/^http:/, 'https:')) ? p.url.replace(/^http:/, 'https:') : null;
+  return { page: u, pdf: u, label: 'NeurIPS' };
+}
+const safeCode = u => /^https:\/\/(github\.com|gitlab\.com)\/[\w.-]+\/[\w.-]+$/.test(u) ? u : null;
+
+// ---------- routing (#name only)
+const TABS = [
+  ['top', 'Top papers', 'Ranked by how many HN people recommended each paper, across how many months, how strongly, and how recently.'],
+  ['classics', 'All-time classics', 'Papers from three or more years ago that HN still recommends month after month.'],
+  ['trending', 'Trending this year', 'Papers HN has recommended in the last twelve months, ranked by recent recommendations.'],
+  ['code', 'Has code', 'Papers with a code repository linked from the paper itself or posted alongside it on HN.'],
+  ['beginner', 'Beginner-friendly', 'Surveys, tutorials and papers HN commenters describe as accessible or a good place to start.'],
+  ['lasting', 'Lasting favorites', 'Recommended on HN in at least four different months, spread over three or more years. The opposite of a one-week spike.'],
+  ['authors', 'From the authors', 'Papers whose authors joined the HN discussion to explain, answer questions or defend the work.'],
+  ['debated', 'Most debated', 'Papers HN recommends and argues with: at least two recommendations and two pieces of pushback.'],
+];
+let PATHS = [];
+let view = { name: 'top' }, list = [], sel = -1, shown = 50, gPending = false;
+
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  if (!h || TABS.some(t => t[0] === h)) view = { name: h || 'top' };
+  else if (h.startsWith('paper-')) view = { name: 'paper', slug: h.slice(6) };
+  else if (h.startsWith('topic-')) view = { name: 'topic', id: h.slice(6) };
+  else if (h.startsWith('path-')) view = { name: 'path', id: h.slice(5) };
+  else if (['foryou', 'reading', 'topics', 'search', 'about', 'done', 'paths', 'ask'].includes(h)) view = { name: h };
+  else view = { name: 'top' };
+  if (view.name !== 'search' && view.name !== 'paper') $('#q').value = '';
+  shown = 50; render(); window.scrollTo(0, 0);
+}
+window.addEventListener('hashchange', route);
+const go = name => { if (location.hash.slice(1) === name) route(); else location.hash = name; };
+
+// ---------- shelf (left nav)
+function shelf() {
+  const cur = view.name === 'topic' ? 'topic-' + view.id : view.name === 'path' ? 'paths' : view.name;
+  const a = (h, label, n) => `<a href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${esc(label)}${n != null ? `<span class="n">${fmt(n)}</span>` : ''}</a>`;
+  const counts = { top: P.length, classics: P.filter(p => p.classic).length, trending: P.filter(p => p.trending).length, code: P.filter(p => p.code).length, beginner: P.filter(p => p.level === 'beginner').length, lasting: P.filter(p => p.lasting === 'lasting').length, debated: P.filter(p => p.deb).length, authors: P.filter(p => p.auth).length };
+  const tops = TAX.areas.flatMap(ar => ar.topics).sort((x, y) => y.n - x.n).slice(0, 10);
+  $('#shelf').innerHTML = `
+    <section><h4>Feeds</h4>${TABS.map(t => a(t[0], t[1], counts[t[0]])).join('')}</section>
+    <section><h4>Explore</h4>${a('paths', 'Reading paths', PATHS.length)}${a('ask', 'Ask the papers')}</section>
+    <section><h4>Yours</h4>${a('foryou', 'For You')}${a('reading', 'Reading list', Object.keys(saved).length)}${a('done', 'Read', Object.keys(read).length)}</section>
+    <section><h4>Topics</h4><div class="topics-short">${tops.map(t => a('topic-' + t.id, t.name, t.n)).join('')}</div>${a('topics', 'All topics')}</section>
+    <section><h4>Project</h4>${a('about', 'About the data')}</section>`;
+}
+
+// ---------- list rendering
+function entry(p, i) {
+  const L = links(p), isSaved = !!saved[p.id], isRead = !!read[p.id];
+  const topics = p.topics.map(t => TOPIC[t] ? `<a class="chip" href="#topic-${t}">${esc(TOPIC[t].name)}</a>` : '').join('');
+  return `<li class="entry${i === sel ? ' sel' : ''}${isRead ? ' isread' : ''}" data-i="${i}" data-id="${esc(p.id)}">
+    <div class="rank"><b>${i + 1}</b><small>${p.pos} recs</small></div>
+    <div>
+      <h3 class="t"><a href="#paper-${p.slug}">${esc(p.title)}</a></h3>
+      <div class="meta"><span>${esc(p.au)}</span><span>${p.year}</span><span class="id">${esc(L.label)}</span>
+        <span>${p.users} HN people · ${p.months} month${p.months === 1 ? '' : 's'}${p.points ? ` · top post ${fmt(p.points)} pts` : ''}${p.cites ? ` · ${short(p.cites)} citations` : ''}</span></div>
+      ${p.q ? `<p class="qline"><mark class="q">“${esc(p.q)}”</mark></p>` : (p.tl ? `<p class="tl">${esc(p.tl)}${p.tl.length >= 220 ? '…' : ''}</p>` : '')}
+      ${REASON[p.id] ? `<p class="reason">${esc(REASON[p.id])}</p>` : ''}
+      <div class="chips">${topics}
+        ${p.code ? '<span class="badge code">Code</span>' : ''}
+        ${p.lasting === 'lasting' ? '<span class="badge lasting" title="HN keeps recommending it across years, or it is persistent on HN and highly cited">Lasting</span>' : p.lasting === 'spike' ? '<span class="badge spike" title="Most HN attention came in one burst, with little academic uptake">Spike</span>' : ''}
+        ${p.auth ? '<span class="badge auth" title="An author discussed it on HN">Author on HN</span>' : ''}
+        ${p.deb ? '<span class="badge deb" title="Recommended and contested on HN">Debated</span>' : ''}
+        ${p.level !== 'intermediate' ? `<span class="badge lvl-${p.level}">${p.level === 'beginner' ? 'Beginner' : 'Advanced'}</span>` : ''}
+        <span class="acts">
+          ${L.pdf ? `<a class="ib" href="${esc(L.pdf)}" target="_blank" rel="noopener">PDF</a>` : ''}
+          <button class="ib" type="button" data-act="save" aria-pressed="${isSaved}">${isSaved ? 'Saved' : 'Save'}</button>
+          <button class="ib" type="button" data-act="read" aria-pressed="${isRead}">${isRead ? 'Read' : 'Mark read'}</button>
+        </span>
+      </div>
+    </div></li>`;
+}
+
+const SORTS = [['best', 'Best'], ['new', 'Newest'], ['recs', 'Most recs'], ['cites', 'Citations']];
+const FILTERS = [['code', 'Has code'], ['beginner', 'Beginner'], ['lasting', 'Lasting']];
+function applyOpts(items, bestLabel) {
+  let out = items;
+  if (LOPT.code) out = out.filter(p => p.code);
+  if (LOPT.beginner) out = out.filter(p => p.level === 'beginner');
+  if (LOPT.lasting) out = out.filter(p => p.lasting === 'lasting');
+  const by = { new: (a, b) => (b.year - a.year) || (b.last || '').localeCompare(a.last || ''), recs: (a, b) => (b.pos - a.pos) || (b.score - a.score), cites: (a, b) => ((b.cites || 0) - (a.cites || 0)) }[LOPT.sort];
+  return by ? out.slice().sort(by) : out;
+}
+function renderList(items, { title, intro, tabs = false, emptyHtml = '', opts = true, bestLabel = 'Best', extra = '' }) {
+  if (opts) items = applyOpts(items);
+  list = hideRead && view.name !== 'done' ? items.filter(p => !read[p.id]) : items;
+  if (sel >= list.length) sel = list.length - 1;
+  const tabBar = tabs ? `<nav class="tabs" aria-label="Feeds">${TABS.map(t => `<a href="#${t[0]}" ${view.name === t[0] ? 'aria-current="page"' : ''}>${t[1]}</a>`).join('')}</nav>` : '';
+  $('#main').innerHTML = `${tabBar}
+    <div class="head"><div><h1>${esc(title)}</h1>${intro ? `<p>${intro}</p>` : ''}</div></div>
+    <div class="toolbar"><span>${fmt(list.length)} paper${list.length === 1 ? '' : 's'}</span>
+      ${opts ? `<span class="pills" role="group" aria-label="Sort">${SORTS.map(([k, l]) => `<button type="button" class="pill" data-sort="${k}" aria-pressed="${LOPT.sort === k}">${k === 'best' ? bestLabel : l}</button>`).join('')}</span>
+      <span class="pills" role="group" aria-label="Filter">${FILTERS.map(([k, l]) => `<button type="button" class="pill" data-filt="${k}" aria-pressed="${!!LOPT[k]}">${l}</button>`).join('')}</span>` : ''}
+      <label><input type="checkbox" id="hideRead" ${hideRead ? 'checked' : ''}> Hide papers I've read</label>
+      <span class="muted">j/k to move · o opens the PDF · s saves</span></div>${extra}
+    ${list.length ? `<ol class="list" id="list">${list.slice(0, shown).map(entry).join('')}</ol>
+      ${list.length > shown ? `<button class="more" id="more" type="button">Show ${Math.min(50, list.length - shown)} more</button>` : ''}`
+      : `<div class="empty">${emptyHtml || '<h2>Nothing here yet</h2>'}</div>`}
+    ${footer()}`;
+  $('#hideRead').addEventListener('change', e => { hideRead = e.target.checked; persist(); render(); });
+  document.querySelectorAll('.pill[data-sort]').forEach(b => b.addEventListener('click', () => { LOPT.sort = b.dataset.sort; store.set('lopt', LOPT); sel = -1; render(); }));
+  document.querySelectorAll('.pill[data-filt]').forEach(b => b.addEventListener('click', () => { LOPT[b.dataset.filt] = !LOPT[b.dataset.filt]; store.set('lopt', LOPT); sel = -1; render(); }));
+  const more = $('#more'); if (more) more.addEventListener('click', () => { shown += 50; render(); });
+}
+
+const footer = () => `<footer>Prototype built from ${fmt(STATS.mentions_total || 0)} Hacker News mentions (data through ${esc(STATS.data_through || '')}).
+  ${STATS.labeler === 'LLM' ? 'Stances, quotes and reasons were labeled by Claude; topics come from keyword rules.' : 'Stances, quotes and topics are labeled by rules for now.'}${STATS.with_videos ? ' Talks come from <a href="https://hackertube.org" target="_blank" rel="noopener">HackerTube</a> (ODC-By).' : ''} <a href="#about">How it works</a>.</footer>`;
+
+// ---------- For You
+function forYou() {
+  const w = {}, why = {};
+  likes.forEach(t => { w[t] = (w[t] || 0) + 3; why[t] = 'follow'; });
+  const bump = (id, k) => { const p = BY[id]; if (p) p.topics.forEach((t, i) => { w[t] = (w[t] || 0) + k / (i + 1); why[t] = why[t] || 'saved'; }); };
+  Object.keys(saved).forEach(id => bump(id, 2));
+  Object.keys(read).forEach(id => bump(id, 1));
+  const prof = [...Object.keys(saved), ...Object.keys(read)].filter(id => POS[id] != null);
+  if (prof.length && EMB === null) loadEmb().then(e => { if (e && view.name === 'foryou') render(); });
+  const useEmb = !!EMB && prof.length > 0;
+  const has = Object.keys(w).length > 0;
+  const scored = [];
+  for (const p of P) {
+    if (saved[p.id] || read[p.id] || !has) continue;
+    let topicAff = 0, bestT = null, bestTv = 0;
+    p.topics.forEach((t, i) => { const v = (w[t] || 0) / (i + 1); topicAff += v; if (v > bestTv) { bestTv = v; bestT = t; } });
+    let embAff = 0, near = null;
+    if (useEmb) {
+      let best = 0;
+      for (const id of prof) { const c = cosIJ(POS[p.id], POS[id]); if (c > best) { best = c; near = id; } }
+      embAff = 8 * Math.max(0, best - 0.62);
+    }
+    const sc = topicAff + embAff + p.score * 0.12 + (p.trending ? 0.4 : 0);
+    if (topicAff + embAff < 0.5) continue;
+    const reason = embAff > topicAff * 0.6 && near ? `Similar to “${BY[near].title}”`
+      : bestT && TOPIC[bestT] ? (why[bestT] === 'follow' ? `Because you follow ${TOPIC[bestT].name}` : `Because you saved papers on ${TOPIC[bestT].name}`) : '';
+    scored.push([p, sc, reason]);
+  }
+  scored.sort((a, b) => b[1] - a[1]);
+  scored.slice(0, 300).forEach(([p, , r]) => { if (r) REASON[p.id] = r; });
+  const all = TAX.areas.flatMap(ar => ar.topics).filter(t => t.n > 0).sort((a, b) => b.n - a.n);
+  renderList(scored.slice(0, 300).map(x => x[0]), {
+    title: 'For You',
+    intro: 'Built from the topics you follow and the papers you save or mark as read, matched by topic and by meaning. It stays in this browser: there are no accounts.',
+    emptyHtml: `<h2>Pick a few topics to start</h2><p>Or save papers from any feed with <kbd>s</kbd>; this feed learns from them.</p>`,
+  });
+  const head = $('.head');
+  head.insertAdjacentHTML('afterend', `<div class="pick" id="pick">${all.slice(0, 30).map(t => `<button type="button" data-t="${t.id}" aria-pressed="${likes.includes(t.id)}">${esc(t.name)}</button>`).join('')}</div>`);
+  $('#pick').addEventListener('click', e => {
+    const b = e.target.closest('button[data-t]'); if (!b) return;
+    const t = b.dataset.t, i = likes.indexOf(t);
+    if (i >= 0) likes.splice(i, 1); else likes.push(t);
+    persist(); render();
+  });
+}
+
+// ---------- search
+const tok = s => (s || '').toLowerCase().normalize('NFKD').replace(/[^\p{L}\p{N}\s.-]/gu, ' ').split(/\s+/).filter(w => w.length > 1);
+function search(q) {
+  const qt = tok(q); const ql = q.trim().toLowerCase();
+  if (!qt.length) return [];
+  const topicHit = {};
+  TAX.areas.forEach(ar => ar.topics.forEach(t => { const n = (t.name + ' ' + t.id.replace(/-/g, ' ')).toLowerCase(); if (qt.every(w => n.includes(w)) || n.includes(ql)) topicHit[t.id] = 1; }));
+  return P.map(p => {
+    const T = p.title.toLowerCase(), A = (p.au || '').toLowerCase(), D = (p.tl + ' ' + p.q + ' ' + (p.why || '')).toLowerCase(), I = p.id.toLowerCase();
+    let s = 0, hit = 0;
+    for (const w of qt) {
+      let h = 0;
+      if (T.includes(w)) h += 5; if (A.includes(w)) h += 3; if (D.includes(w)) h += 1; if (I.includes(w)) h += 6;
+      if (p.topics.some(t => t.replace(/-/g, ' ').includes(w))) h += 2;
+      if (h) hit++; s += h;
+    }
+    if (T.includes(ql)) s += 8;
+    if (p.topics.some(t => topicHit[t])) s += 6, hit = Math.max(hit, qt.length);
+    return [p, hit >= Math.ceil(qt.length * 0.66) ? s * (1 + 0.04 * p.score) : 0];
+  }).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]).map(x => x[0]);
+}
+// loose match for when no paper has the query words: word stems, any word counts
+function searchLoose(q) {
+  const st = [...new Set(tok(q).filter(w => w.length >= 3).map(w => w.length > 6 ? w.slice(0, w.length - 2) : w.replace(/(es|s|ing|ed)$/, '')))].filter(w => w.length >= 3);
+  if (!st.length) return [];
+  return P.map(p => {
+    const T = p.title.toLowerCase(), D = (p.tl + ' ' + p.q + ' ' + (p.why || '') + ' ' + p.topics.join(' ').replace(/-/g, ' ')).toLowerCase();
+    let s = 0, hit = 0;
+    for (const w of st) { const h = (T.includes(w) ? 3 : 0) + (D.includes(w) ? 1 : 0); if (h) hit++; s += h; }
+    return [p, hit ? s * hit * (1 + 0.04 * p.score) : 0];
+  }).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]).map(x => x[0]);
+}
+function searchWithMeaning(q) {
+  let hits = search(q), loose = false;
+  if (!hits.length) { hits = searchLoose(q).slice(0, 8); loose = hits.length > 0; hits.forEach(p => REASON[p.id] = 'Partial match on your words'); }
+  if (EMB === null) { loadEmb().then(e => { if (e && ['search', 'ask'].includes(view.name)) render(); }); return hits; }
+  if (!EMB || !hits.length) return hits;
+  const top = hits.slice(0, 3), c = new Float32Array(EMB.dim);
+  top.forEach(p => { const r = row(POS[p.id]); for (let k = 0; k < EMB.dim; k++) c[k] += r[k]; });
+  let n = 0; for (let k = 0; k < EMB.dim; k++) n += c[k] * c[k]; n = Math.sqrt(n) || 1;
+  const inHits = new Set(hits.map(p => p.id));
+  const extra = P.filter(p => !inHits.has(p.id)).map(p => [p, dotRow(c, POS[p.id]) / (n * 127)])
+    .filter(x => x[1] >= (loose ? 0.82 : 0.8)).sort((a, b) => b[1] - a[1]).slice(0, 15);
+  extra.forEach(([p]) => REASON[p.id] = `Related by meaning to “${top[0].title}”`);
+  return hits.concat(extra.map(x => x[0]));
+}
+
+// ---------- paper page
+async function paperPage(slug) {
+  const p0 = BYSLUG[slug];
+  if (!p0) { $('#main').innerHTML = `<div class="empty"><h2>Paper not found</h2><p>It may have dropped out of this build. <a href="#top">Back to the top papers</a>.</p></div>`; return; }
+  list = [p0]; sel = 0;
+  $('#main').innerHTML = `<div class="loading">Loading ${esc(p0.title)}…</div>`;
+  const d = (await loadShard(p0.sh))[p0.id];
+  if (!d || view.name !== 'paper' || view.slug !== slug) return;
+  const L = links(d), isSaved = !!saved[d.id], isRead = !!read[d.id];
+  const code = (d.code || []).map(safeCode).filter(Boolean);
+  const st = d.stances || {};
+  const stanceLabel = { strong_rec: 'Strong rec', rec: 'Recommends', reference: 'Cites', critical: 'Critical', author: 'Author' };
+  const authors = d.authors.length ? esc(d.authors.join(', ')) + (d.n_authors > d.authors.length ? `, and ${d.n_authors - d.authors.length} more` : '') : '';
+  const mini = ids => ids.map(x => BY[x.id || x]).filter(Boolean).map(r => {
+    const x = (d.related || []).find(y => y.id === r.id);
+    const why = x ? (x.shared >= 2 ? `${x.shared} of the same HN people` : 'similar topic') : `${r.pos} HN recs`;
+    return `<li><a href="#paper-${r.slug}">${esc(r.title)}</a><small>${r.year} · ${why}</small></li>`;
+  }).join('');
+  const quote = d.quote ? `<p class="why"><mark class="q">“${esc(d.quote.text)}”</mark> <span class="muted">— <a href="https://news.ycombinator.com/item?id=${d.quote.hn_id}" target="_blank" rel="noopener">${esc(d.quote.author)}, ${esc(d.quote.month)}</a></span></p>` : '';
+  const topicNames = d.topics.map(t => TOPIC[t]?.name).filter(Boolean);
+  $('#main').innerHTML = `
+    <div class="crumb"><a href="#top">Papers</a>${d.topics[0] && TOPIC[d.topics[0]] ? ` / <a href="#topic-${d.topics[0]}">${esc(TOPIC[d.topics[0]].name)}</a>` : ''}</div>
+    <h1 class="ptitle">${esc(d.title)}</h1>
+    ${authors ? `<div class="pauthors">${authors}</div>` : ''}
+    <div class="pbar">
+      ${L.pdf ? `<a class="btn primary" href="${esc(L.pdf)}" target="_blank" rel="noopener">Read the PDF</a>` : ''}
+      ${L.page ? `<a class="btn" href="${esc(L.page)}" target="_blank" rel="noopener">${esc(L.label)}</a>` : ''}
+      ${code.map(u => `<a class="btn" href="${esc(u)}" target="_blank" rel="noopener">Code${d.code_src === 'hn' ? ' (linked on HN)' : d.code_src === 'author' ? ' (posted by the author)' : d.code_src === 'hf' ? ' (via Hugging Face)' : ''}</a>`).join('')}
+      <button class="btn" type="button" data-act="save" data-id="${esc(d.id)}" aria-pressed="${isSaved}">${isSaved ? 'Saved' : 'Save'}</button>
+      <button class="btn" type="button" data-act="read" data-id="${esc(d.id)}" aria-pressed="${isRead}">${isRead ? 'Read' : 'Mark as read'}</button>
+      ${document.querySelector('meta[name="hp-share"]') ? `<button class="btn" type="button" data-share="${esc(new URL('p/' + p0.slug + '/', pageUrl()).href)}">Copy share link</button>` : ''}
+    </div>
+    <div class="pgrid">
+      <div>
+        ${d.tldr ? `<section class="sec"><h2>TL;DR <span class="muted" style="text-transform:none;letter-spacing:0">(first lines of the abstract)</span></h2><p class="lede">${esc(d.tldr)}</p></section>` : ''}
+        ${d.xp ? `<section class="sec"><h2>${d.pick ? 'Editor’s pick' : 'On HN'}</h2><p class="why">${d.pick ? 'HN hasn’t linked this paper yet.' : `HN linked it ${d.n_hn} time${d.n_hn === 1 ? '' : 's'}, below the two-recommender bar for the main feeds.`} It’s here because it’s part of ${(d.paths || []).map(x => `the <a href="#path-${esc(x.id)}">${esc(x.name)}</a> reading path`).join(' and ') || 'a curated reading path'}.</p></section>` : `<section class="sec"><h2>Why HN recommends it</h2>
+          <p class="why">${d.pos} HN people recommended it${d.strong ? `, ${d.strong} of them strongly` : ''}, across ${d.months} month${d.months === 1 ? '' : 's'} (${esc(d.first)} to ${esc(d.last)})${topicNames.length ? `. Usually comes up in threads on ${esc(topicNames.slice(0, 2).join(' and ').toLowerCase())}` : ''}.</p>
+          ${d.quote?.why ? `<p class="why"><strong>${esc(d.quote.why)}</strong></p>` : ''}
+          ${quote}
+        </section>`}
+        ${(d.authors_hn || []).length ? `<section class="sec"><h2>The author on HN</h2><div class="author-box">${d.authors_hn.map(x => `<div>
+          <div class="muted" style="font-size:12px;margin-bottom:4px"><a href="https://news.ycombinator.com/item?id=${x.id}" target="_blank" rel="noopener">${esc(x.a)}</a> · ${esc(x.mo)} · <a href="https://news.ycombinator.com/threads?id=${encodeURIComponent(x.a)}" target="_blank" rel="noopener">their HN comments</a></div>
+          <p>${esc(x.t)}</p></div>`).join('')}</div></section>` : ''}
+        ${(d.pushback || []).length ? `<section class="sec"><h2>The debate</h2><div class="debate">
+          <div class="for"><h3>For · ${d.pos}</h3><ul>${d.mentions.filter(m => m.st === 'strong_rec' || m.st === 'rec').slice(0, 3).map(m =>
+            `<li>${esc(m.t.length > 260 ? m.t.slice(0, 260) + '…' : m.t)}<small><a href="https://news.ycombinator.com/item?id=${m.id}" target="_blank" rel="noopener">${esc(m.a)}</a> · ${esc(m.mo)}</small></li>`).join('') || '<li class="muted">Recommended through submissions only.</li>'}</ul></div>
+          <div class="against"><h3>Against · ${d.pushback.length}</h3><ul>${d.pushback.map(m =>
+            `<li>${esc(m.q || (m.t.length > 260 ? m.t.slice(0, 260) + '…' : m.t))}<small><a href="https://news.ycombinator.com/item?id=${m.id}" target="_blank" rel="noopener">${esc(m.a)}</a> · ${esc(m.mo)}</small></li>`).join('')}</ul></div>
+        </div></section>` : ''}
+        ${(d.timeline || []).length > 1 ? `<section class="sec"><h2>HN over time${d.lasting === 'lasting' ? ' · lasting' : d.lasting === 'spike' ? ' · one spike' : ''}</h2>${chart(d.timeline)}
+          <div class="legend"><span><i style="background:var(--good)"></i>recommendations</span><span><i style="background:var(--bad)"></i>pushback</span><span><i style="background:var(--rule)"></i>all mentions</span></div>
+          ${d.then || d.now ? `<div class="thennow">${d.then ? `<div><b>Then · ${esc(d.then.mo)}</b>“${esc(d.then.q)}” <a class="muted" href="https://news.ycombinator.com/item?id=${d.then.id}" target="_blank" rel="noopener">${esc(d.then.a)}</a></div>` : '<div></div>'}
+            ${d.now ? `<div><b>Later · ${esc(d.now.mo)}</b>“${esc(d.now.q)}” <a class="muted" href="https://news.ycombinator.com/item?id=${d.now.id}" target="_blank" rel="noopener">${esc(d.now.a)}</a></div>` : ''}</div>` : ''}
+        </section>` : ''}
+        ${d.pick ? '' : `<section class="sec"><h2>What HN said · ${d.mentions.length} of ${Object.values(st).reduce((a, b) => a + b, 0)} mentions</h2>
+          ${d.mentions.length ? `<ul class="say">${d.mentions.map(m => `<li>
+            <div class="who"><span class="pill ${m.st}">${stanceLabel[m.st] || m.st}</span>
+              <a href="https://news.ycombinator.com/item?id=${m.id}" target="_blank" rel="noopener">${esc(m.a)}</a><span>${esc(m.mo)}</span>
+              ${m.stt ? `<span>in “${esc(m.stt)}”</span>` : ''}</div>
+            <blockquote>${esc(m.t)}</blockquote></li>`).join('')}</ul>` : '<p class="muted">Only submissions so far: no comments link this paper.</p>'}
+        </section>`}
+        ${d.abstract ? `<section class="sec"><h2>Abstract</h2><details><summary>Show the full abstract</summary><p class="abs">${esc(d.abstract)}</p></details></section>` : ''}
+      </div>
+      <aside>
+        <section class="sec"><h2>At a glance</h2><dl class="facts">
+          <dt>Published</dt><dd>${esc(d.published || d.year)}</dd>
+          <dt>Category</dt><dd>${esc((d.cats || []).join(' '))}</dd>
+          ${d.venue ? `<dt>Venue</dt><dd>${esc(d.venue)}</dd>` : ''}
+          ${d.cites != null ? `<dt>Citations</dt><dd>${d.s2_url && /^https:\/\/www\.semanticscholar\.org\//.test(d.s2_url) ? `<a href="${esc(d.s2_url)}" target="_blank" rel="noopener">${fmt(d.cites)}</a>` : fmt(d.cites)}${d.infl ? ` (${fmt(d.infl)} influential)` : ''}${d.cites_per_year != null ? ` · ${fmt(d.cites_per_year)}/yr` : ''}</dd>` : ''}
+          <dt>Level</dt><dd>${esc(d.level)}</dd>
+          <dt>HN people</dt><dd>${d.users}</dd>
+          <dt>Top post</dt><dd>${d.points ? fmt(d.points) + ' points' : 'none'}</dd>
+          <dt>Score</dt><dd>${d.score.toFixed(1)}</dd>
+        </dl>
+        <div class="chips">${d.topics.map(t => TOPIC[t] ? `<a class="chip" href="#topic-${t}">${esc(TOPIC[t].name)}</a>` : '').join('')}</div></section>
+        ${d.hf && (d.hf.page || d.hf.models.length || d.hf.datasets.length || d.hf.spaces.length) ? `<section class="sec"><h2>On Hugging Face</h2>
+          ${d.hf.page && d.id.startsWith('arxiv:') ? `<p style="margin:0 0 8px"><a href="https://huggingface.co/papers/${esc(d.id.slice(6))}" target="_blank" rel="noopener">Paper page on Hugging Face</a></p>` : ''}
+          ${(d.hf.models.length || d.hf.datasets.length || d.hf.spaces.length) ? `<p class="muted" style="margin:0 0 6px;font-size:12px">Most-downloaded repos that cite this paper</p><ul class="disc">${
+          [['models', ''], ['datasets', 'datasets/'], ['spaces', 'spaces/']].flatMap(([k, pre]) => d.hf[k].filter(x => /^[\w.-]+\/[\w.-]+$/.test(x.id)).slice(0, 3).map(x =>
+            `<li><span class="muted">${k.slice(0, -1)}</span> <a href="https://huggingface.co/${pre}${esc(x.id)}" target="_blank" rel="noopener">${esc(x.id)}</a></li>`)).join('')}</ul>` : ''}</section>` : ''}
+        ${(d.paths || []).length ? `<section class="sec"><h2>Reading paths</h2><ul class="disc">${d.paths.map(x => `<li><a href="#path-${esc(x.id)}">${esc(x.name)}</a> <span class="muted">· step ${x.step} of ${x.of}</span></li>`).join('')}</ul></section>` : ''}
+        ${(d.videos || []).length ? `<section class="sec"><h2>Talks HN recommends</h2><ul class="mini">${d.videos.filter(v => /^[\w-]{11}$/.test(v.vid)).map(v => `<li><a href="https://www.youtube.com/watch?v=${v.vid}" target="_blank" rel="noopener">${esc(v.title)}</a><small>${{ about: 'On this paper or its idea', together: 'Linked with it in the same HN comment', related: 'Related talk' }[v.kind] || 'Related talk'} · ${esc(v.channel || '')} · via <a href="https://hackertube.org/watch/${v.vid}" target="_blank" rel="noopener">HackerTube</a></small></li>`).join('')}</ul></section>` : ''}
+        ${d.prereqs?.length ? `<section class="sec"><h2>Read first</h2><ul class="mini">${mini(d.prereqs)}</ul></section>` : ''}
+        ${d.related?.length ? `<section class="sec"><h2>Related</h2><ul class="mini">${mini(d.related)}</ul></section>` : ''}
+        ${d.stories?.length ? `<section class="sec"><h2>HN threads</h2><ul class="disc">${d.stories.map(s => `<li><a href="https://news.ycombinator.com/item?id=${s.id}" target="_blank" rel="noopener">${esc(s.mo)}</a> · ${fmt(s.pts)} pts · ${fmt(s.c)} comments</li>`).join('')}</ul></section>` : ''}
+      </aside>
+    </div>${footer()}`;
+}
+
+// ---------- topics overview, about
+function topicsPage() {
+  $('#main').innerHTML = `<div class="head"><div><h1>Topics</h1><p>${TAX.areas.reduce((s, a) => s + a.topics.length, 0)} topics in ${TAX.areas.length} areas. Each paper has one to three.</p></div></div>
+    <div class="areas">${TAX.areas.map(ar => `<section><h3>${esc(ar.name)}</h3><ul>${ar.topics.map(t => `<li><a href="#topic-${t.id}">${esc(t.name)}<span class="n">${fmt(t.n)}</span></a></li>`).join('')}</ul></section>`).join('')}</div>${footer()}`;
+}
+function aboutPage() {
+  const s = STATS, sc = s.stance_counts || {};
+  $('#main').innerHTML = `<div class="prose">
+    <div class="head"><div><h1>About the data</h1><p>The AI papers Hacker News keeps telling each other to read.</p></div></div>
+    <ul class="stats"><li><b>${fmt(s.papers)}</b><span>papers</span></li><li><b>${fmt(s.mentions_total)}</b><span>HN mentions read</span></li>
+      <li><b>${fmt(s.hn_users)}</b><span>HN people</span></li><li><b>${fmt(s.with_code)}</b><span>with code</span></li></ul>
+    <h2>How it's made</h2>
+    <p>Every Hacker News story and comment that links arXiv, OpenReview, the ACL Anthology, NeurIPS or PMLR was pulled from the HN Algolia API. Links are normalized to one ID per paper, and arXiv supplies titles, authors, abstracts and categories. Only papers in AI categories (cs.AI, cs.LG, cs.CL, cs.CV, cs.NE, cs.MA, stat.ML) and ML venues are kept.</p>
+    <p>Each comment is labeled as a strong recommendation, a recommendation, a neutral citation, criticism, or an author promoting their own paper. A paper needs at least two different people recommending it. ${s.labeler === 'LLM' ? 'Claude read each comment and labeled its stance, picked a verbatim quote, and wrote a one-line reason; a small remainder still uses phrase rules.' : 'In this prototype the labels come from phrase rules and a sentiment model.'} ${fmt((sc.strong_rec || 0) + (sc.rec || 0))} of ${fmt(s.mentions_total)} mentions are recommendations.</p>
+    <h2>Ranking</h2>
+    <p>The score adds up, on log scales: distinct people recommending the paper, all distinct people mentioning it, distinct months with a recommendation, the top HN post's points, strong recommendations and Semantic Scholar citations, minus criticism. A recency boost favors papers HN is still talking about. Related papers combine shared HN recommenders with ${esc(s.embeddings || 'text')} similarity.</p>
+    <h2>What stays in your browser</h2>
+    <p>Saved papers, papers you've read, and your For You topics live only in this browser's storage. There are no accounts.</p>
+    <p class="muted">Built ${esc(s.built)} · data through ${esc(s.data_through)} · labels: ${esc(s.labeler)}.</p></div>`;
+}
+
+// ---------- HN-over-time chart (inline SVG, colors from theme tokens)
+function chart(tl) {
+  const W = 560, H = 120, pad = 18, n = tl.length, bw = Math.max(4, Math.min(28, (W - 20) / n - 4));
+  const max = Math.max(...tl.map(r => r[3]), 1), sx = i => 10 + i * ((W - 20) / n), sy = v => (H - pad) * (v / max);
+  const every = n > 12 ? 2 : 1;
+  return `<svg class="chart" viewBox="0 0 ${W} ${H + 4}" role="img" aria-label="HN mentions per year">${tl.map((r, i) => {
+    const [y, pos, crit, all] = r, x = sx(i);
+    return `<rect class="b-all" x="${x}" y="${H - pad - sy(all)}" width="${bw}" height="${sy(all)}"/>
+      <rect class="b-pos" x="${x}" y="${H - pad - sy(pos)}" width="${bw}" height="${sy(pos)}"/>
+      <rect class="b-crit" x="${x}" y="${H - pad - sy(pos) - sy(crit)}" width="${bw}" height="${sy(crit)}"/>
+      ${i % every === 0 ? `<text x="${x + bw / 2}" y="${H + 2}" text-anchor="middle">${String(y).slice(2)}</text>` : ''}
+      <title>${y}: ${all} mentions, ${pos} recommendations, ${crit} pushback</title>`;
+  }).join('')}<text x="${W - 4}" y="10" text-anchor="end">max ${max}/yr</text></svg>`;
+}
+
+function pathsPage() {
+  $('#main').innerHTML = `<div class="head"><div><h1>Reading paths</h1><p>Short tracks through the papers HN recommends, oldest first, so each one builds on the last.</p></div></div>
+    <div class="paths">${PATHS.map(t => { const done = t.steps.filter(id => read[id]).length, ys = t.steps.map(id => BY[id]?.year).filter(Boolean);
+      return `<a class="pathcard" href="#path-${esc(t.id)}">${t.curated ? '<span class="pick">Curated</span>' : ''}<h3>${esc(t.name)}</h3><p>${esc(t.blurb)}</p>
+      <small>${t.steps.length} papers · ${ys.length ? Math.min(...ys) + '–' + Math.max(...ys) : ''}${done ? ` · ${done} read` : ''}</small></a>`; }).join('')}</div>${footer()}`;
+}
+let pathAll = {};   // path id -> showing every step (else only the key ones)
+function pathPage(id) {
+  const t = PATHS.find(x => x.id === id);
+  if (!t) { $('#main').innerHTML = `<div class="empty"><h2>Path not found</h2><p><a href="#paths">See all reading paths</a>.</p></div>`; return; }
+  const info = t.info || {}, all = t.steps.map(x => BY[x]).filter(Boolean);
+  const nOf = Object.fromEntries(all.map((p, i) => [p.id, i + 1]));
+  const hasCore = all.some(p => info[p.id]?.core) && all.length > 15, full = !hasCore || pathAll[id];
+  list = full ? all : all.filter(p => info[p.id]?.core); sel = -1;
+  const step = p => { const f = info[p.id], hn = f ? (f.hn ? `${f.hn} HN mention${f.hn === 1 ? '' : 's'}${f.people > 1 ? ` by ${f.people} people` : ''}` : 'Not on HN yet') : `${p.pos} HN recs`, why = f?.why || p.why;
+    return `<li data-n="${nOf[p.id]}"><div><h3 class="t"><a href="#paper-${p.slug}">${esc(p.title)}</a></h3>
+      <div class="meta">${f?.pick ? `<span class="pick">Editor’s pick</span>` : ''}<span>${esc(p.au)}</span><span>${p.year}</span><span>${hn}</span>${read[p.id] ? '<span class="done">✓ read</span>' : ''}</div>
+      ${why ? `<p class="tl">${esc(why)}</p>` : p.q ? `<p class="qline"><mark class="q">“${esc(p.q)}”</mark></p>` : ''}</div></li>`; };
+  let body;
+  if (t.stages) {
+    body = t.stages.map((g, k) => { const ps = list.filter(p => (info[p.id]?.stage ?? t.stages.length - 1) === k), tot = all.filter(p => (info[p.id]?.stage ?? t.stages.length - 1) === k).length;
+      return ps.length ? `<h2 class="stage-h">${k + 1}. ${esc(g.name)} <span class="muted" style="font-weight:400;font-size:var(--s0)">· ${full ? tot : `${ps.length} of ${tot}`} papers</span>${g.blurb ? `<small>${esc(g.blurb)}</small>` : ''}</h2><ol class="steps">${ps.map(step).join('')}</ol>` : ''; }).join('');
+  } else body = `<ol class="steps">${list.map(step).join('')}</ol>`;
+  const done = all.filter(p => read[p.id]).length;
+  $('#main').innerHTML = `<div class="crumb"><a href="#paths">Reading paths</a></div>
+    <div class="head"><div><h1>${esc(t.name)}</h1><p>${esc(t.blurb)}</p>${t.curated ? `<p class="muted" style="font-size:var(--s0)">A curated path${t.stages ? ` in ${t.stages.length} stages` : ''}: in each ${t.stages ? 'stage' : 'path'}, papers HN has discussed come first, oldest to newest, then editor's picks that HN hasn't linked yet.${t.updated ? ` Updated ${esc(t.updated)}.` : ''}${done ? ` You've read ${done} of ${all.length}.` : ''}</p>` : ''}</div></div>
+    ${hasCore ? `<div class="toolbar"><span>${full ? `All ${all.length} papers` : `The ${list.length} key papers: the seeds and the most discussed on HN`}</span><button class="pill" type="button" id="pathAll" aria-pressed="${!!full}">${full ? `Show the key ${all.filter(p => info[p.id]?.core).length}` : `Show all ${all.length}`}</button></div>` : ''}
+    ${body}${footer()}`;
+  const b = $('#pathAll'); if (b) b.addEventListener('click', () => { pathAll[id] = !full; render(); });
+}
+
+// ---------- reading list export / import (the list lives in localStorage only)
+const xportBar = () => `<div class="xport" id="xport"><div class="row">
+    <button class="btn" type="button" data-x="md">Copy as Markdown</button><button class="btn" type="button" data-x="bib">BibTeX</button>
+    <button class="btn" type="button" data-x="json">Export</button><button class="btn" type="button" data-x="paste">Import</button>
+    <label class="btn" style="cursor:pointer">Import a file<input type="file" id="ximpf" accept="application/json,.json" hidden></label>
+    <span class="muted" id="xmsg"></span></div>
+    <div id="xout" hidden><textarea id="xta" spellcheck="false" aria-label="Export or import text"></textarea>
+    <div class="row"><button class="btn primary" type="button" id="xcopy">Copy</button><button class="btn" type="button" id="xdl">Download</button><button class="btn primary" type="button" id="ximp" hidden>Import these</button></div></div></div>`;
+const pageUrl = () => location.href.split('#')[0];
+function bibKey(p, d) {
+  const last = ((d?.authors || [])[0] || p.au || 'anon').split(/\s+/).pop().toLowerCase().replace(/[^a-z]/g, '') || 'anon';
+  const w = (p.title.toLowerCase().match(/[a-z0-9]{4,}/) || ['paper'])[0];
+  return `${last}${p.year}${w}`;
+}
+async function exportText(kind, items) {
+  if (kind === 'json') return JSON.stringify({ app: 'hackerpapers', v: 1, exported: new Date().toISOString(), saved, read, topics: likes }, null, 1);
+  if (kind === 'md') return items.map(p => { const L = links(p); return `- [${p.title}](${L.page || pageUrl() + '#paper-' + p.slug}) — ${p.au}, ${p.year}${p.pos ? ` · ${p.pos} HN recs` : ''} · [HackerPapers](${pageUrl()}#paper-${p.slug})`; }).join('\n');
+  const out = [];
+  for (const p of items) {
+    const d = (await loadShard(p.sh))[p.id] || {}, [src, rest] = p.id.split(':');
+    const f = { title: `{${p.title}}`, author: (d.authors || [p.au]).join(' and '), year: p.year };
+    if (src === 'arxiv') Object.assign(f, { eprint: rest, archivePrefix: 'arXiv', primaryClass: (d.cats || [])[0] || '', url: `https://arxiv.org/abs/${rest}` });
+    else if (links(p).page) f.url = links(p).page;
+    if (d.venue) f.note = d.venue;
+    out.push(`@misc{${bibKey(p, d)},\n${Object.entries(f).filter(([, v]) => v).map(([k, v]) => `  ${k} = {${String(v).replace(/[{}]/g, m => m === '{' && k === 'title' ? m : '')}}`).join(',\n')}\n}`);
+  }
+  return out.join('\n\n');
+}
+function importText(txt) {
+  let d; try { d = JSON.parse(txt); } catch { return 'That isn’t a HackerPapers export (not JSON).'; }
+  if (!d || typeof d !== 'object' || (!d.saved && !d.read)) return 'That isn’t a HackerPapers export.';
+  let n = 0;
+  for (const [k, m] of [['saved', saved], ['read', read]]) for (const [id, ts] of Object.entries(d[k] || {})) {
+    if (!BY[id] || typeof ts !== 'number') continue;
+    if (!m[id]) n++;
+    m[id] = m[id] ? Math.min(m[id], ts) : ts;
+  }
+  for (const t of d.topics || []) if (TOPIC[t] && !likes.includes(t)) likes.push(t);
+  persist(); render(); toast(`Imported: ${n} new`);
+  return '';
+}
+function wireXport() {
+  const box = $('#xport'); if (!box) return;
+  const ta = $('#xta'), out = $('#xout'), msg = $('#xmsg');
+  let kind = 'json';
+  box.addEventListener('click', async e => {
+    const b = e.target.closest('[data-x]'); if (!b) return;
+    kind = b.dataset.x; out.hidden = false; $('#ximp').hidden = kind !== 'paste'; $('#xcopy').hidden = $('#xdl').hidden = kind === 'paste';
+    if (kind === 'paste') { ta.value = ''; ta.placeholder = 'Paste an export here'; ta.focus(); msg.textContent = ''; return; }
+    msg.textContent = 'Preparing…'; ta.value = await exportText(kind, list); msg.textContent = kind === 'json' ? 'Your reading list, read marks and topics.' : `${list.length} paper${list.length === 1 ? '' : 's'}.`;
+    ta.select();
+  });
+  $('#xcopy').addEventListener('click', () => { ta.select(); (navigator.clipboard?.writeText(ta.value) || Promise.reject()).then(() => toast('Copied'), () => { try { document.execCommand('copy'); toast('Copied'); } catch { toast('Select the text and copy it'); } }); });
+  $('#xdl').addEventListener('click', () => { const ext = { json: 'json', md: 'md', bib: 'bib' }[kind]; const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([ta.value], { type: 'text/plain' })); a.download = `hackerpapers-${view.name === 'done' ? 'read' : 'reading-list'}.${ext}`; document.body.append(a); a.click(); a.remove(); });
+  $('#ximp').addEventListener('click', () => { const e = importText(ta.value); if (e) msg.textContent = e; });
+  $('#ximpf').addEventListener('change', e => { const f = e.target.files[0]; if (!f) return; f.text().then(t => { const er = importText(t); if (er) $('#xmsg').textContent = er; }); });
+}
+
+const ASK_STOP = new Set('what whats what\'s which who is are the a an best good great paper papers on about for of to in read reading recommend recommended should i me my do does how explain explains introduction intro start starting beginner understand learn learning there any some most classic classics hn like know want give show find'.split(' '));
+function askPage() {
+  const ex = ['What is the best paper on long context?', 'Where should I start with diffusion models?', 'Which papers explain RLHF?', 'Best paper on mixture of experts', 'What do I read to understand interpretability?'];
+  const qv = store.get('askq', '');
+  $('#main').innerHTML = `<div class="head"><div><h1>Ask the papers</h1><p>Ask a question; the answers are papers HN people recommended, with what they said.</p></div></div>
+    <form class="ask" id="askf"><input id="askq" type="text" placeholder="What is the best paper on…" value="${esc(qv)}" aria-label="Your question"><button class="btn primary" type="submit">Ask</button></form>
+    <div class="examples">${ex.map(e => `<button type="button" data-q="${esc(e)}">${esc(e)}</button>`).join('')}</div>
+    <div id="answers"></div>${footer()}`;
+  const run = async q => {
+    store.set('askq', q);
+    const terms = tok(q).filter(w => !ASK_STOP.has(w)).join(' ');
+    if (!terms) { $('#answers').innerHTML = '<p class="muted">Add a topic to your question, for example “long context” or “RLHF”.</p>'; return; }
+    await loadEmb();
+    REASON = {};
+    const res = searchWithMeaning(terms).slice(0, 6);
+    $('#answers').innerHTML = res.length ? `<p class="muted">Searching for “${esc(terms)}”. ${res.length} HN-backed pick${res.length === 1 ? '' : 's'}, best first:</p>` + res.map((p, i) => `<div class="answer">
+      <h3 class="t">${i + 1}. <a href="#paper-${p.slug}">${esc(p.title)}</a></h3>
+      <div class="meta"><span>${esc(p.au)}</span><span>${p.year}</span><span>${p.pos} HN recommendations</span>${p.cites ? `<span>${short(p.cites)} citations</span>` : ''}</div>
+      ${p.why ? `<p class="why"><strong>${esc(p.why)}</strong></p>` : ''}${p.q ? `<p class="qline"><mark class="q">“${esc(p.q)}”</mark></p>` : ''}
+      ${REASON[p.id] ? `<p class="reason">${esc(REASON[p.id])}</p>` : ''}</div>`).join('')
+      : `<div class="empty"><h2>No HN-backed picks for that yet</h2><p>Try different words, or browse <a href="#topics">topics</a>.</p></div>`;
+  };
+  $('#askf').addEventListener('submit', e => { e.preventDefault(); run($('#askq').value.trim()); });
+  $('.examples').addEventListener('click', e => { const b = e.target.closest('button[data-q]'); if (b) { $('#askq').value = b.dataset.q; run(b.dataset.q); } });
+  if (qv) run(qv);
+}
+
+// ---------- main render
+function render() {
+  if (!TAX) return;
+  shelf();
+  REASON = {};
+  const q = $('#q').value.trim();
+  if (view.name === 'search' && !q) { view = { name: 'top' }; }
+  const vt = { topics: 'Topics', about: 'About the data', paths: 'Reading paths', ask: 'Ask the papers', foryou: 'For You', reading: 'Reading list', done: 'Read' }[view.name];
+  setTitle(view.name === 'paper' ? BYSLUG[view.slug]?.title : view.name === 'topic' ? TOPIC[view.id]?.name : view.name === 'path' ? PATHS.find(x => x.id === view.id)?.name
+    : view.name === 'search' ? `Search: ${q}` : vt || (TABS.find(x => x[0] === view.name) || TABS[0])[1]);
+  switch (view.name) {
+    case 'paper': return paperPage(view.slug);
+    case 'topics': return topicsPage();
+    case 'about': return aboutPage();
+    case 'paths': return pathsPage();
+    case 'path': return pathPage(view.id);
+    case 'ask': return askPage();
+    case 'foryou': return forYou();
+    case 'reading': { renderList(ALL.filter(p => saved[p.id]).sort((a, b) => saved[b.id] - saved[a.id]), { title: 'Reading list', intro: 'Papers you saved, newest first. Press s on any paper to add it. Your list lives only in this browser: export it to keep a copy or move it to another device.', emptyHtml: '<h2>Your reading list is empty</h2><p>Press <kbd>s</kbd> on a paper, or use its Save button. Have an export? Use Import above.</p>', opts: false, extra: xportBar() }); return wireXport(); }
+    case 'done': { renderList(ALL.filter(p => read[p.id]).sort((a, b) => read[b.id] - read[a.id]), { title: 'Read', intro: 'Papers you marked as read.', emptyHtml: '<h2>Nothing marked as read</h2><p>Press <kbd>r</kbd> on a paper when you finish it.</p>', opts: false, extra: xportBar() }); return wireXport(); }
+    case 'topic': {
+      const t = TOPIC[view.id];
+      if (!t) return renderList([], { title: 'Unknown topic' });
+      return renderList(P.filter(p => p.topics.includes(view.id)), { title: t.name, intro: `${esc(t.area_name)} · ranked by HN recommendations.` });
+    }
+    case 'search': return renderList(searchWithMeaning(q), { title: `Results for “${q}”`, bestLabel: 'Relevance', emptyHtml: `<h2>No papers match “${esc(q)}”</h2><p>Try a topic like <a href="#topic-diffusion">diffusion</a> or an author's surname.</p>` });
+    default: {
+      const t = TABS.find(x => x[0] === view.name) || TABS[0];
+      let items = P;
+      if (t[0] === 'classics') items = P.filter(p => p.classic).sort((a, b) => b.base - a.base);
+      if (t[0] === 'trending') items = P.filter(p => p.trending).sort((a, b) => b.trend - a.trend);
+      if (t[0] === 'code') items = P.filter(p => p.code);
+      if (t[0] === 'beginner') items = P.filter(p => p.level === 'beginner');
+      if (t[0] === 'lasting') items = P.filter(p => p.lasting === 'lasting').sort((a, b) => b.base - a.base);
+      if (t[0] === 'authors') items = P.filter(p => p.auth);
+      if (t[0] === 'debated') items = P.filter(p => p.deb).sort((a, b) => (b.crit + b.pos) - (a.crit + a.pos));
+      return renderList(items, { title: t[1], intro: t[2], tabs: true });
+    }
+  }
+}
+
+// ---------- actions
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, 1600); }
+function toggle(kind, id) {
+  const m = kind === 'save' ? saved : read;
+  if (m[id]) delete m[id]; else m[id] = Date.now();
+  persist();
+  const p = BY[id];
+  toast(kind === 'save' ? (m[id] ? 'Saved to your reading list' : 'Removed from your reading list') : (m[id] ? 'Marked as read' : 'Marked as unread'));
+  if (view.name === 'paper') return paperPage(view.slug);
+  const keep = sel; render(); sel = keep; highlight(false);
+}
+document.addEventListener('click', e => {
+  const sh = e.target.closest('[data-share]');
+  if (sh) { (navigator.clipboard?.writeText(sh.dataset.share) || Promise.reject()).then(() => toast('Link copied'), () => toast(sh.dataset.share)); return; }
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  const li = b.closest('.entry'); const id = b.dataset.id || li?.dataset.id;
+  if (li) sel = +li.dataset.i;
+  toggle(b.dataset.act, id);
+});
+
+function highlight(scroll = true) {
+  document.querySelectorAll('.entry.sel').forEach(el => el.classList.remove('sel'));
+  const el = document.querySelector(`.entry[data-i="${sel}"]`);
+  if (el) { el.classList.add('sel'); if (scroll) el.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }
+}
+function move(d) {
+  if (view.name === 'paper' || !list.length) return;
+  sel = Math.max(0, Math.min(list.length - 1, sel + d));
+  if (sel >= shown) { shown = sel + 25; render(); }
+  highlight();
+}
+const current = () => (view.name === 'paper' ? BYSLUG[view.slug] : list[sel]);
+
+// ---------- keyboard
+const help = $('#help');
+$('#helpBtn').addEventListener('click', () => help.showModal());
+document.addEventListener('keydown', e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName);
+  if (typing) { if (e.key === 'Escape') document.activeElement.blur(); return; }
+  if (help.open) return;
+  if (gPending) {
+    gPending = false;
+    const dest = { h: 'top', f: 'foryou', l: 'reading', t: 'topics', p: 'paths', a: 'ask' }[e.key];
+    if (dest) { e.preventDefault(); go(dest); }
+    return;
+  }
+  const k = e.key;
+  if (k === 'j') { e.preventDefault(); move(1); }
+  else if (k === 'k') { e.preventDefault(); move(-1); }
+  else if (k === 'Enter' && view.name !== 'paper' && list[sel]) { e.preventDefault(); go('paper-' + list[sel].slug); }
+  else if (k === 'o') { const p = current(); const u = p && links(p).pdf; if (u) window.open(u, '_blank', 'noopener'); }
+  else if (k === 's') { const p = current(); if (p) toggle('save', p.id); }
+  else if (k === 'r') { const p = current(); if (p) toggle('read', p.id); }
+  else if (k === '/') { e.preventDefault(); $('#q').focus(); $('#q').select(); }
+  else if (k === '?') { help.showModal(); }
+  else if (k === 'g') { gPending = true; setTimeout(() => gPending = false, 1200); }
+  else if (k === 'Escape' && view.name === 'paper') { history.length > 1 ? history.back() : go('top'); }
+});
+let qTimer;
+$('#q').addEventListener('input', () => {
+  clearTimeout(qTimer);
+  qTimer = setTimeout(() => {
+    sel = -1; shown = 50;
+    if ($('#q').value.trim()) { if (location.hash !== '#search') { history.replaceState(null, '', '#search'); } view = { name: 'search' }; render(); }
+    else go('top');
+  }, 140);
+});
+$('#q').addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); $('#q').blur(); sel = 0; highlight(); } });
+
+// ---------- boot
+Promise.all(['data/index.json', 'data/taxonomy.json', 'data/stats.json'].map(u => fetch(u).then(r => { if (!r.ok) throw new Error(u); return r.json(); })))
+  .then(([idx, tax, stats]) => {
+    ALL = idx; P = idx.filter(p => !p.xp); TAX = tax; STATS = stats;   // xp: kept only for curated reading paths
+    fetch('data/paths.json').then(r => r.ok ? r.json() : []).catch(() => []).then(x => { PATHS = x || []; if (TAX) shelf(); if (['paths', 'path'].includes(view.name)) render(); });
+    idx.forEach((p, i) => { BY[p.id] = p; BYSLUG[p.slug] = p; POS[p.id] = i; });
+    tax.areas.forEach(a => a.topics.forEach(t => TOPIC[t.id] = { ...t, area_name: a.name }));
+    route();
+  })
+  .catch(err => { $('#main').innerHTML = `<div class="empty"><h2>The paper data didn't load</h2><p>Reload the page. If you opened the file directly from disk, serve the folder instead (for example <span class="mono">python3 -m http.server</span>).</p><p class="muted mono">${esc(err.message)}</p></div>`; });
+})();
+</script>

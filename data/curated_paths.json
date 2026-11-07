@@ -1,0 +1,450 @@
+[
+ {
+  "id": "weight-space-learning",
+  "name": "Weight-space learning",
+  "blurb": "LLMs and networks that read, write or generate neural network weights",
+  "topic": "Weight-space learning: LLMs and networks that read, write or generate neural network weights",
+  "seeds": [
+   "1609.09106",
+   "2301.12780",
+   "2302.14040",
+   "2312.04501",
+   "2402.13144",
+   "2506.06105",
+   "2506.16406",
+   "2603.10090"
+  ],
+  "keywords": [
+   "hypernetwork",
+   "weight space",
+   "neural functional",
+   "metanetwork",
+   "parameter generation",
+   "generate weights",
+   "LoRA generation",
+   "model zoo",
+   "weights as input",
+   "weight editing"
+  ],
+  "updated": "2026-11-07",
+  "steps": [
+   {
+    "id": "arxiv:1606.02580",
+    "hn": 2,
+    "people": 2,
+    "why": "A pattern-producing network generates a CNN’s weights",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:1609.09106",
+    "hn": 3,
+    "people": 3,
+    "seed": true,
+    "core": true,
+    "stage": 0
+   },
+   {
+    "id": "arxiv:1703.00837",
+    "hn": 2,
+    "people": 2,
+    "why": "Meta-learner generates fast weights for a base network",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:1708.05344",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetwork generates weights to rank architectures in one shot",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:1803.05859",
+    "hn": 2,
+    "people": 2,
+    "why": "A network that learns to output its own weights",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2102.11174",
+    "hn": 11,
+    "people": 9,
+    "why": "Fast weight programmers: one network writes another’s weights",
+    "core": true,
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2201.04182",
+    "hn": 1,
+    "people": 1,
+    "why": "Transformer generates the weights of a CNN for few-shot tasks",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2204.11674",
+    "hn": 1,
+    "people": 1,
+    "why": "Neural cellular automata grow the weights of a policy network",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2301.04584",
+    "hn": 1,
+    "people": 1,
+    "why": "Transformer generates and updates weights for continual few-shot learning",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2306.06955",
+    "hn": 1,
+    "people": 1,
+    "why": "Review of hypernetworks, networks that generate other networks’ weights",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2310.17075",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetwork generates NeRF weights from text",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2312.03051",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetworks generate families of interpretable networks",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2405.07883",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetwork generates embeddings for a new tokenizer zero-shot",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2412.16777",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetwork generates image-encoder weights from text inputs",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2509.04606",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetwork generates projector weights for new modalities",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2604.02051",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetwork generates per-step LoRA weights for a recursive transformer",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:1606.04474",
+    "hn": 18,
+    "people": 18,
+    "why": "Learned optimizer: an LSTM writes another network’s weight updates",
+    "core": true,
+    "stage": 1
+   },
+   {
+    "id": "arxiv:2106.00958",
+    "hn": 1,
+    "people": 1,
+    "why": "Learned optimizer: a network that writes another network’s updates",
+    "stage": 1
+   },
+   {
+    "id": "arxiv:2211.09760",
+    "hn": 1,
+    "people": 1,
+    "why": "Large-scale learned optimizer that writes weight updates",
+    "stage": 1
+   },
+   {
+    "id": "arxiv:2504.15399",
+    "hn": 1,
+    "people": 1,
+    "why": "Uses parameter symmetries to improve learned optimizers",
+    "stage": 1
+   },
+   {
+    "id": "arxiv:2002.11448",
+    "hn": 1,
+    "people": 1,
+    "why": "Predicts a network’s accuracy from its weights alone, using a model zoo",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2201.12204",
+    "hn": 1,
+    "people": 1,
+    "why": "Treats each data point as network weights and learns on them",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2209.04836",
+    "hn": 3,
+    "people": 3,
+    "why": "Aligns and merges models by permuting weights in weight space",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2211.08403",
+    "hn": 1,
+    "people": 1,
+    "why": "Fixes permutation-aligned weight interpolation between models",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2302.04863",
+    "hn": 2,
+    "people": 2,
+    "why": "Studies fine-tuned LLMs as points and regions in weight space",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2402.05232",
+    "hn": 1,
+    "people": 1,
+    "why": "Neural functionals that take the weights of arbitrary architectures as input",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2409.19310",
+    "hn": 1,
+    "people": 1,
+    "why": "Reads model weights to detect hidden malware",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2506.13018",
+    "hn": 2,
+    "people": 2,
+    "why": "Parameter-space symmetries, the core structure weight-space models exploit",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2512.05117",
+    "hn": 4,
+    "people": 4,
+    "why": "Finds shared low-rank subspaces across many trained models’ weights",
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2603.10090",
+    "hn": 2,
+    "people": 2,
+    "seed": true,
+    "core": true,
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2301.12780",
+    "hn": 0,
+    "people": 0,
+    "pick": true,
+    "seed": true,
+    "core": true,
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2302.14040",
+    "hn": 0,
+    "people": 0,
+    "pick": true,
+    "seed": true,
+    "core": true,
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2312.04501",
+    "hn": 0,
+    "people": 0,
+    "pick": true,
+    "seed": true,
+    "core": true,
+    "stage": 2
+   },
+   {
+    "id": "arxiv:2203.05482",
+    "hn": 4,
+    "people": 3,
+    "why": "Averages weights of fine-tuned models into one better model",
+    "stage": 3,
+    "core": true
+   },
+   {
+    "id": "arxiv:2212.04089",
+    "hn": 3,
+    "people": 3,
+    "why": "Edits models by adding and subtracting task vectors in weight space",
+    "stage": 3
+   },
+   {
+    "id": "arxiv:2307.13269",
+    "hn": 1,
+    "people": 1,
+    "why": "Composes LoRA modules by combining their weights for new tasks",
+    "stage": 3
+   },
+   {
+    "id": "arxiv:2310.16218",
+    "hn": 2,
+    "people": 2,
+    "why": "Survey of editing LLM knowledge by changing weights directly",
+    "stage": 3
+   },
+   {
+    "id": "arxiv:2311.03099",
+    "hn": 2,
+    "people": 2,
+    "why": "Merges fine-tuned models by dropping and rescaling weight deltas",
+    "stage": 3
+   },
+   {
+    "id": "arxiv:2312.09299",
+    "hn": 1,
+    "people": 1,
+    "why": "Initializes small transformers by selecting weights from larger ones",
+    "stage": 3
+   },
+   {
+    "id": "arxiv:2403.13187",
+    "hn": 2,
+    "people": 2,
+    "why": "Searches weight-space merging recipes for combining models",
+    "stage": 3
+   },
+   {
+    "id": "arxiv:2403.19522",
+    "hn": 2,
+    "people": 1,
+    "why": "Merges a few fine-tuned models by weight averaging guided by geometry",
+    "stage": 3
+   },
+   {
+    "id": "arxiv:2110.13100",
+    "hn": 4,
+    "people": 4,
+    "why": "Graph hypernetwork predicts parameters for unseen architectures",
+    "core": true,
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2209.12892",
+    "hn": 1,
+    "people": 1,
+    "why": "Diffusion model trained on checkpoints generates network parameters",
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2301.05062",
+    "hn": 5,
+    "people": 5,
+    "why": "Compiles programs directly into transformer weights",
+    "core": true,
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2402.12408",
+    "hn": 1,
+    "people": 1,
+    "why": "An LLM generates tailored model weights from user needs",
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2402.13144",
+    "hn": 2,
+    "people": 2,
+    "seed": true,
+    "core": true,
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2402.18153",
+    "hn": 2,
+    "people": 2,
+    "why": "Generates neural network weights with a diffusion model",
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2505.12470",
+    "hn": 1,
+    "people": 1,
+    "why": "An LLM generates neural network parameters directly",
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2506.06105",
+    "hn": 3,
+    "people": 3,
+    "seed": true,
+    "core": true,
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2506.10943",
+    "hn": 3,
+    "people": 3,
+    "why": "An LLM writes its own fine-tuning updates to change its weights",
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2602.15902",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetwork turns a document into LoRA weights in one pass",
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2607.02512",
+    "hn": 1,
+    "people": 1,
+    "why": "Compiles natural-language specs into compact model weights",
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2609.18842",
+    "hn": 1,
+    "people": 1,
+    "why": "Hypernetwork generates LLM weight updates from live data",
+    "stage": 4
+   },
+   {
+    "id": "arxiv:2506.16406",
+    "hn": 0,
+    "people": 0,
+    "pick": true,
+    "seed": true,
+    "core": true,
+    "stage": 4
+   }
+  ],
+  "stages": [
+   {
+    "name": "Networks that write networks",
+    "blurb": "Hypernetworks and fast weights: one network outputs another's weights."
+   },
+   {
+    "name": "Learned optimizers",
+    "blurb": "Networks that write another network's weight updates."
+   },
+   {
+    "name": "Weights as data",
+    "blurb": "Reading trained weights: symmetries, neural functionals, and what weights reveal."
+   },
+   {
+    "name": "Merging and editing in weight space",
+    "blurb": "Averaging, adding and editing weights to combine or change models."
+   },
+   {
+    "name": "Generating weights",
+    "blurb": "Diffusion models, LLMs and hypernetworks that produce whole models or LoRAs on demand."
+   }
+  ]
+ }
+]

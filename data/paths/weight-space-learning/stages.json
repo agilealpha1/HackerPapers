@@ -1,0 +1,12 @@
+{"stages": [
+ {"name": "Networks that write networks", "blurb": "Hypernetworks and fast weights: one network outputs another's weights.",
+  "ids": ["1606.02580", "1609.09106", "1703.00837", "1708.05344", "1803.05859", "2102.11174", "2201.04182", "2204.11674", "2301.04584", "2306.06955", "2312.03051", "2310.17075", "2405.07883", "2412.16777", "2509.04606", "2604.02051"]},
+ {"name": "Learned optimizers", "blurb": "Networks that write another network's weight updates.",
+  "ids": ["1606.04474", "2106.00958", "2211.09760", "2504.15399"]},
+ {"name": "Weights as data", "blurb": "Reading trained weights: symmetries, neural functionals, and what weights reveal.",
+  "ids": ["2002.11448", "2201.12204", "2209.04836", "2211.08403", "2302.04863", "2402.05232", "2506.13018", "2512.05117", "2409.19310", "2603.10090", "2301.12780", "2302.14040", "2312.04501"]},
+ {"name": "Merging and editing in weight space", "blurb": "Averaging, adding and editing weights to combine or change models.",
+  "ids": ["2203.05482", "2212.04089", "2311.03099", "2403.13187", "2403.19522", "2307.13269", "2310.16218", "2312.09299"]},
+ {"name": "Generating weights", "blurb": "Diffusion models, LLMs and hypernetworks that produce whole models or LoRAs on demand.",
+  "ids": ["2110.13100", "2209.12892", "2301.05062", "2402.13144", "2402.18153", "2402.12408", "2505.12470", "2506.06105", "2506.10943", "2506.16406", "2602.15902", "2607.02512", "2609.18842"]}
+]}

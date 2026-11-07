@@ -1,0 +1,321 @@
+{"id": "arxiv:2402.18153", "on_topic": true, "reason": "Generates neural network weights with a diffusion model", "judge": "claude (Cowork)"}
+{"id": "arxiv:2302.04863", "on_topic": true, "reason": "Studies fine-tuned LLMs as points and regions in weight space", "judge": "claude (Cowork)"}
+{"id": "arxiv:2005.14165", "on_topic": false, "reason": "GPT-3 scaling and in-context learning, not weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2110.13100", "on_topic": true, "reason": "Graph hypernetwork predicts parameters for unseen architectures", "judge": "claude (Cowork)"}
+{"id": "arxiv:2301.05062", "on_topic": true, "reason": "Compiles programs directly into transformer weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2106.09685", "on_topic": false, "reason": "Parameter-efficient fine-tuning method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2112.10752", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2208.11970", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2210.03142", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2204.03458", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2105.05233", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2405.00732", "on_topic": false, "reason": "About training or serving LoRA adapters, not generating or reading weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2506.13018", "on_topic": true, "reason": "Parameter-space symmetries, the core structure weight-space models exploit", "judge": "claude (Cowork)"}
+{"id": "arxiv:2304.08466", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2206.02262", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2301.13188", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2512.05117", "on_topic": true, "reason": "Finds shared low-rank subspaces across many trained models’ weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2407.15811", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2307.01952", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2302.05543", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2212.09748", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2406.07524", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2403.18103", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2208.09392", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2510.21890", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2506.10943", "on_topic": true, "reason": "An LLM writes its own fine-tuning updates to change its weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2508.09834", "on_topic": false, "reason": "General survey or theory outside weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.16825", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2409.17171", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2511.03276", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2507.15857", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2311.03285", "on_topic": false, "reason": "About training or serving LoRA adapters, not generating or reading weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.02557", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2006.11239", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2303.01469", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2106.10165", "on_topic": false, "reason": "General survey or theory outside weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2305.09515", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2403.12015", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2303.18223", "on_topic": false, "reason": "General survey or theory outside weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2311.18828", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2204.02849", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2112.04426", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2307.08621", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1909.08053", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2210.08726", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2402.17113", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2404.05961", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2306.11695", "on_topic": false, "reason": "Weight quantization or pruning for efficiency, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:2412.20292", "on_topic": false, "reason": "Diffusion model for images, video or text, not for network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2401.02412", "on_topic": false, "reason": "Composes LLMs through cross-attention, not weight generation", "judge": "claude (Cowork)"}
+{"id": "arxiv:1506.00019", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1910.10683", "on_topic": false, "reason": "Main contribution is outside reading, writing or generating network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2605.27734", "on_topic": false, "reason": "Sample-complexity theory of latent training", "judge": "claude (Cowork)"}
+{"id": "arxiv:2309.10668", "on_topic": false, "reason": "Language modeling as compression", "judge": "claude (Cowork)"}
+{"id": "arxiv:2209.04836", "on_topic": true, "reason": "Aligns and merges models by permuting weights in weight space", "judge": "claude (Cowork)"}
+{"id": "arxiv:1906.04358", "on_topic": false, "reason": "Searches architectures that work without weight training", "judge": "claude (Cowork)"}
+{"id": "arxiv:1703.00837", "on_topic": true, "reason": "Meta-learner generates fast weights for a base network", "judge": "claude (Cowork)"}
+{"id": "arxiv:1611.02167", "on_topic": false, "reason": "Searches architectures, not weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1912.02757", "on_topic": false, "reason": "Loss-landscape analysis of training, not models that read or write weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.11453", "on_topic": false, "reason": "Weight quantization or pruning for efficiency, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:1611.01578", "on_topic": false, "reason": "Searches architectures, not weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1502.01852", "on_topic": false, "reason": "Activation and initialization for CNNs", "judge": "claude (Cowork)"}
+{"id": "arxiv:2505.23735", "on_topic": false, "reason": "Test-time memory for sequence models, not weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2212.07677", "on_topic": false, "reason": "Explains in-context learning as gradient descent", "judge": "claude (Cowork)"}
+{"id": "arxiv:2102.11174", "on_topic": true, "reason": "Fast weight programmers: one network writes another’s weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1712.09913", "on_topic": false, "reason": "Loss-landscape analysis of training, not models that read or write weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2212.04089", "on_topic": true, "reason": "Edits models by adding and subtracting task vectors in weight space", "judge": "claude (Cowork)"}
+{"id": "arxiv:2305.11169", "on_topic": false, "reason": "Probes program semantics in LMs", "judge": "claude (Cowork)"}
+{"id": "arxiv:1606.01981", "on_topic": false, "reason": "Weight quantization or pruning for efficiency, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:1606.04474", "on_topic": true, "reason": "Learned optimizer: an LSTM writes another network’s weight updates", "judge": "claude (Cowork)"}
+{"id": "arxiv:2504.13173", "on_topic": false, "reason": "Test-time memory for sequence models, not weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2306.04050", "on_topic": false, "reason": "Text compression with LLMs", "judge": "claude (Cowork)"}
+{"id": "arxiv:1606.06160", "on_topic": false, "reason": "Weight quantization or pruning for efficiency, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:2305.13072", "on_topic": false, "reason": "Applies a hypernetwork to tabular interpretability; weights are a means, not the subject", "judge": "claude (Cowork)"}
+{"id": "arxiv:2501.00663", "on_topic": false, "reason": "Test-time memory for sequence models, not weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2605.23904", "on_topic": false, "reason": "Agent skill optimization, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1611.05763", "on_topic": false, "reason": "Meta reinforcement learning, not weight generation", "judge": "claude (Cowork)"}
+{"id": "arxiv:2402.17764", "on_topic": false, "reason": "Weight quantization or pruning for efficiency, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:1602.02830", "on_topic": false, "reason": "Weight quantization or pruning for efficiency, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:1802.10026", "on_topic": false, "reason": "Loss-landscape analysis of training, not models that read or write weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2006.09661", "on_topic": false, "reason": "Periodic activations for implicit representations; hypernetworks only a side experiment", "judge": "claude (Cowork)"}
+{"id": "arxiv:2512.17075", "on_topic": false, "reason": "Training-data watermarking", "judge": "claude (Cowork)"}
+{"id": "arxiv:1611.02779", "on_topic": false, "reason": "Meta reinforcement learning, not weight generation", "judge": "claude (Cowork)"}
+{"id": "arxiv:1712.06567", "on_topic": false, "reason": "Evolves weights with a genetic algorithm, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:2406.11717", "on_topic": false, "reason": "Interpretability of refusal; weight edit is a minor application", "judge": "claude (Cowork)"}
+{"id": "arxiv:2312.09299", "on_topic": true, "reason": "Initializes small transformers by selecting weights from larger ones", "judge": "claude (Cowork)"}
+{"id": "arxiv:1708.05344", "on_topic": true, "reason": "Hypernetwork generates weights to rank architectures in one shot", "judge": "claude (Cowork)"}
+{"id": "arxiv:2312.03051", "on_topic": true, "reason": "Hypernetworks generate families of interpretable networks", "judge": "claude (Cowork)"}
+{"id": "arxiv:2606.26913", "on_topic": false, "reason": "Applies a hypernetwork to texture compression; graphics application", "judge": "claude (Cowork)"}
+{"id": "arxiv:2306.06955", "on_topic": true, "reason": "Review of hypernetworks, networks that generate other networks’ weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2402.05232", "on_topic": true, "reason": "Neural functionals that take the weights of arbitrary architectures as input", "judge": "claude (Cowork)"}
+{"id": "arxiv:2412.16777", "on_topic": true, "reason": "Hypernetwork generates image-encoder weights from text inputs", "judge": "claude (Cowork)"}
+{"id": "arxiv:2505.12470", "on_topic": true, "reason": "An LLM generates neural network parameters directly", "judge": "claude (Cowork)"}
+{"id": "arxiv:2210.07558", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2602.15902", "on_topic": true, "reason": "Hypernetwork turns a document into LoRA weights in one pass", "judge": "claude (Cowork)"}
+{"id": "arxiv:2603.01097", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1810.00826", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2609.18842", "on_topic": true, "reason": "Hypernetwork generates LLM weight updates from live data", "judge": "claude (Cowork)"}
+{"id": "arxiv:2109.01652", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2209.12892", "on_topic": true, "reason": "Diffusion model trained on checkpoints generates network parameters", "judge": "claude (Cowork)"}
+{"id": "arxiv:2202.02701", "on_topic": false, "reason": "Hypernetwork-generated kernels as a medical-imaging layer; application, not weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2408.13296", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2501.16673", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2311.03099", "on_topic": true, "reason": "Merges fine-tuned models by dropping and rescaling weight deltas", "judge": "claude (Cowork)"}
+{"id": "arxiv:2401.02038", "on_topic": false, "reason": "Survey outside weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2403.03507", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2211.01786", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1812.08434", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2502.09992", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2405.12130", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2305.02301", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2404.06395", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2312.13558", "on_topic": false, "reason": "Rank reduction of layers to improve reasoning; compression-style intervention", "judge": "claude (Cowork)"}
+{"id": "arxiv:2502.05795", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2405.15012", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2410.10714", "on_topic": false, "reason": "Weight compression for efficiency", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.06927", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2401.01335", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2102.07350", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1901.00596", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:1710.10903", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2304.08467", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2402.09353", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2402.12408", "on_topic": true, "reason": "An LLM generates tailored model weights from user needs", "judge": "claude (Cowork)"}
+{"id": "arxiv:1803.01271", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:1703.06114", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2402.12354", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1802.03690", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2010.02502", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2405.07883", "on_topic": true, "reason": "Hypernetwork generates embeddings for a new tokenizer zero-shot", "judge": "claude (Cowork)"}
+{"id": "arxiv:2201.04182", "on_topic": true, "reason": "Transformer generates the weights of a CNN for few-shot tasks", "judge": "claude (Cowork)"}
+{"id": "arxiv:2301.04584", "on_topic": true, "reason": "Transformer generates and updates weights for continual few-shot learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.16218", "on_topic": true, "reason": "Survey of editing LLM knowledge by changing weights directly", "judge": "claude (Cowork)"}
+{"id": "arxiv:2205.11487", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1607.03474", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2410.22911", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1705.03122", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.08866", "on_topic": false, "reason": "Task-complexity generalization in transformers", "judge": "claude (Cowork)"}
+{"id": "arxiv:2002.11448", "on_topic": true, "reason": "Predicts a network’s accuracy from its weights alone, using a model zoo", "judge": "claude (Cowork)"}
+{"id": "arxiv:1806.01261", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2106.00958", "on_topic": true, "reason": "Learned optimizer: a network that writes another network’s updates", "judge": "claude (Cowork)"}
+{"id": "arxiv:2004.05439", "on_topic": false, "reason": "Survey outside weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:1706.03762", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2212.10560", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1901.02860", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2605.11887", "on_topic": false, "reason": "General LLM release", "judge": "claude (Cowork)"}
+{"id": "arxiv:2509.04606", "on_topic": true, "reason": "Hypernetwork generates projector weights for new modalities", "judge": "claude (Cowork)"}
+{"id": "arxiv:1602.07576", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:1910.13461", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1802.08219", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:1904.01569", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1907.05600", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2408.00118", "on_topic": false, "reason": "General LLM release", "judge": "claude (Cowork)"}
+{"id": "arxiv:1808.04444", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2207.02505", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2102.08602", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2403.02241", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2206.00927", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2112.10741", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2407.21783", "on_topic": false, "reason": "General LLM release", "judge": "claude (Cowork)"}
+{"id": "arxiv:2403.13187", "on_topic": true, "reason": "Searches weight-space merging recipes for combining models", "judge": "claude (Cowork)"}
+{"id": "arxiv:1703.03400", "on_topic": false, "reason": "Meta-learns an initialization; standard meta-learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2306.08568", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2203.05482", "on_topic": true, "reason": "Averages weights of fine-tuned models into one better model", "judge": "claude (Cowork)"}
+{"id": "arxiv:2504.15399", "on_topic": true, "reason": "Uses parameter symmetries to improve learned optimizers", "judge": "claude (Cowork)"}
+{"id": "arxiv:2208.01626", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2108.07732", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1608.06993", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1606.02580", "on_topic": true, "reason": "A pattern-producing network generates a CNN’s weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1312.4400", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.17075", "on_topic": true, "reason": "Hypernetwork generates NeRF weights from text", "judge": "claude (Cowork)"}
+{"id": "arxiv:2111.11426", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1810.01075", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1507.01526", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2303.10475", "on_topic": false, "reason": "Survey outside weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2012.14905", "on_topic": false, "reason": "Meta-learns a learning rule inside network state, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:1806.07366", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2506.21797", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1608.05343", "on_topic": false, "reason": "Predicts gradients to decouple training, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:1702.02390", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1707.07012", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2507.07207", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1609.07959", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1605.07146", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1409.1556", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2006.16627", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1609.08144", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1412.6550", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1711.06721", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2306.04766", "on_topic": false, "reason": "Tabular learning with a knowledge graph; weight inference is a means", "judge": "claude (Cowork)"}
+{"id": "arxiv:2105.13626", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2312.00752", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1409.4842", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1610.10099", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1809.11096", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1503.03585", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2209.14981", "on_topic": false, "reason": "Checkpoint averaging as a training speedup", "judge": "claude (Cowork)"}
+{"id": "arxiv:2104.13478", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:2211.09760", "on_topic": true, "reason": "Large-scale learned optimizer that writes weight updates", "judge": "claude (Cowork)"}
+{"id": "arxiv:2403.07974", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:1511.05946", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1507.06228", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1907.05019", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2103.00020", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1802.03268", "on_topic": false, "reason": "Architecture search, not weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1512.03385", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1608.02908", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2112.09992", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:1906.00446", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.06825", "on_topic": false, "reason": "General LLM release", "judge": "claude (Cowork)"}
+{"id": "arxiv:1609.01704", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1703.04933", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1810.04805", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2501.09194", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2408.06793", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1904.04971", "on_topic": false, "reason": "Input-conditioned convolution for efficient inference", "judge": "claude (Cowork)"}
+{"id": "arxiv:2102.07074", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2604.02051", "on_topic": true, "reason": "Hypernetwork generates per-step LoRA weights for a recursive transformer", "judge": "claude (Cowork)"}
+{"id": "arxiv:1705.08480", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1412.6980", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2211.08403", "on_topic": true, "reason": "Fixes permutation-aligned weight interpolation between models", "judge": "claude (Cowork)"}
+{"id": "arxiv:1803.05859", "on_topic": true, "reason": "A network that learns to output its own weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2110.14168", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:1806.09055", "on_topic": false, "reason": "Architecture search, not weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1603.05027", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2006.07464", "on_topic": false, "reason": "Exploration in RL with hypermodels; uncertainty, not weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2210.08772", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1912.01703", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2308.03281", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1502.03167", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1603.04467", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2204.11674", "on_topic": true, "reason": "Neural cellular automata grow the weights of a policy network", "judge": "claude (Cowork)"}
+{"id": "arxiv:1703.08864", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1908.10084", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2305.01210", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:2204.06125", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1611.07004", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2303.05511", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1807.04640", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1704.03477", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1701.08718", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1308.0850", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2201.12204", "on_topic": true, "reason": "Treats each data point as network weights and learns on them", "judge": "claude (Cowork)"}
+{"id": "arxiv:1810.00113", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2109.10686", "on_topic": false, "reason": "Fine-tuning or adapter training method, not models that read or generate weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2412.15115", "on_topic": false, "reason": "General LLM release", "judge": "claude (Cowork)"}
+{"id": "arxiv:1607.06450", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1803.03635", "on_topic": false, "reason": "Sparse subnetworks at initialization; pruning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2006.05964", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1712.07316", "on_topic": false, "reason": "Architecture search, not weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1603.09382", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1804.00779", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1609.00222", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1905.07830", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:1803.10122", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2006.10739", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2002.05709", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1801.10130", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:1803.08494", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1803.03764", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2607.02512", "on_topic": true, "reason": "Compiles natural-language specs into compact model weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2201.03545", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1505.04597", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1612.00593", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:1410.8516", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2103.03874", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:2107.03374", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:1506.02142", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1912.13200", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1902.08438", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1506.01497", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1812.02822", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2307.08197", "on_topic": false, "reason": "Grows network structure developmentally; architecture growth, not weight-space learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2010.11929", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1412.7149", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2405.07551", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:2201.11903", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1906.01618", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1901.05103", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1708.07747", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1711.10370", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1704.01212", "on_topic": false, "reason": "Graph or equivariant architecture background, not weight-space learning itself", "judge": "claude (Cowork)"}
+{"id": "arxiv:1904.09535", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2303.08774", "on_topic": false, "reason": "General LLM release", "judge": "claude (Cowork)"}
+{"id": "arxiv:1505.05770", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2002.06440", "on_topic": false, "reason": "Federated learning method; neuron matching is a means", "judge": "claude (Cowork)"}
+{"id": "arxiv:2003.08165", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2502.13923", "on_topic": false, "reason": "General LLM release", "judge": "claude (Cowork)"}
+{"id": "arxiv:1912.01513", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1812.09113", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1511.07289", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1405.0312", "on_topic": false, "reason": "Benchmark or dataset", "judge": "claude (Cowork)"}
+{"id": "arxiv:1906.04908", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:1207.0580", "on_topic": false, "reason": "Cited background; main contribution is outside reading, writing or generating weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2410.24223", "on_topic": false, "reason": "Generative or representation model for data, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2307.13269", "on_topic": true, "reason": "Composes LoRA modules by combining their weights for new tasks", "judge": "claude (Cowork)"}
+{"id": "arxiv:2410.10254", "on_topic": false, "reason": "Linearizes LLM attention for efficiency", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.10647", "on_topic": false, "reason": "Video diffusion survey, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2202.00512", "on_topic": false, "reason": "Diffusion sampling distillation, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2206.00364", "on_topic": false, "reason": "Diffusion model design, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2205.05638", "on_topic": false, "reason": "Parameter-efficient fine-tuning method", "judge": "claude (Cowork)"}
+{"id": "arxiv:2305.16938", "on_topic": false, "reason": "Compares fine-tuning and in-context learning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2501.01423", "on_topic": false, "reason": "Latent diffusion tokenizer design, not network weights", "judge": "claude (Cowork)"}
+{"id": "arxiv:2412.09722", "on_topic": false, "reason": "Prompt optimization with small models", "judge": "claude (Cowork)"}
+{"id": "arxiv:2502.14502", "on_topic": false, "reason": "Knowledge capacity of LoRA fine-tuning", "judge": "claude (Cowork)"}
+{"id": "arxiv:2203.06904", "on_topic": false, "reason": "Parameter-efficient fine-tuning study", "judge": "claude (Cowork)"}
+{"id": "arxiv:2304.14402", "on_topic": false, "reason": "Distilled small LMs", "judge": "claude (Cowork)"}
+{"id": "arxiv:2504.06225", "on_topic": false, "reason": "Adapts decoder LLMs into encoder-decoder models", "judge": "claude (Cowork)"}
+{"id": "arxiv:2305.11627", "on_topic": false, "reason": "Structural pruning for efficiency", "judge": "claude (Cowork)"}
+{"id": "arxiv:2605.12484", "on_topic": false, "reason": "Continual learning in LLMs, not weights as data", "judge": "claude (Cowork)"}
+{"id": "arxiv:2305.11186", "on_topic": false, "reason": "Compression plus prompting for efficiency", "judge": "claude (Cowork)"}
+{"id": "arxiv:2310.17157", "on_topic": false, "reason": "Contextual sparsity for inference speed", "judge": "claude (Cowork)"}
+{"id": "arxiv:2403.19522", "on_topic": true, "reason": "Merges a few fine-tuned models by weight averaging guided by geometry", "judge": "claude (Cowork)"}
+{"id": "arxiv:2410.21265", "on_topic": false, "reason": "Optimizer theory via modular norms", "judge": "claude (Cowork)"}
+{"id": "arxiv:2503.20083", "on_topic": false, "reason": "Cross-tokenizer distillation", "judge": "claude (Cowork)"}
+{"id": "arxiv:2608.18093", "on_topic": false, "reason": "Refusal and abliteration; weight edit is an attack being mitigated", "judge": "claude (Cowork)"}
+{"id": "arxiv:2405.14813", "on_topic": false, "reason": "Optimizer scaling via modular norm", "judge": "claude (Cowork)"}
+{"id": "arxiv:1611.06310", "on_topic": false, "reason": "Loss-surface local minima theory", "judge": "claude (Cowork)"}
+{"id": "arxiv:1807.08912", "on_topic": false, "reason": "Meta-learned priors for Bayesian regression", "judge": "claude (Cowork)"}
+{"id": "arxiv:2409.19310", "on_topic": true, "reason": "Reads model weights to detect hidden malware", "judge": "claude (Cowork)"}
+{"id": "arxiv:2401.03244", "on_topic": false, "reason": "AI for operations research survey", "judge": "claude (Cowork)"}
