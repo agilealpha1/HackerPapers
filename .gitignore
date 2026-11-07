@@ -5,6 +5,7 @@ hackertube-data.zip
 
 # large / raw / re-fetchable data
 hn_algolia/
+hn_algolia_inc/
 data/hackertube/
 data/labels/batches/
 data/meta/embeddings.npy

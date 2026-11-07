@@ -53,7 +53,10 @@ def main():
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument('--refresh', action='store_true', help='re-fetch counts for arXiv/ACL papers already in s2.jsonl')
+    ap.add_argument('--max-seconds', type=int, default=0, help='stop cleanly after this many seconds (0 = no limit)')
     a = ap.parse_args()
+    t0 = time.time()
+    timed_out = lambda: bool(a.max_seconds and time.time() - t0 >= a.max_seconds)
     meta = {}
     for l in open(os.path.join(ROOT, 'data', 'meta', 'arxiv.jsonl'), encoding='utf-8'):
         m = json.loads(l); meta[m['paper_id']] = m
@@ -63,23 +66,27 @@ def main():
     if os.path.exists(OUT):
         done = {json.loads(l)['paper_id'] for l in open(OUT, encoding='utf-8')}
     todo = [p for p in papers if p['paper_id'] not in done]
-    if a.refresh:
+    if a.refresh and os.path.exists(OUT):
         old = {}
         for l in open(OUT, encoding='utf-8'):
             r = json.loads(l); old[r['paper_id']] = r
         ids = [p['paper_id'] for p in papers if p['source'] in ('arxiv', 'acl') and old.get(p['paper_id'], {}).get('s2_id')]
         print(f'refresh: {len(ids)} papers already on Semantic Scholar', flush=True)
-        for i in range(0, len(ids), 500 if KEY else 100):
-            chunk = ids[i:i + (500 if KEY else 100)]
-            s2ids = [('ArXiv:' + x[6:]) if x.startswith('arxiv:') else ('ACL:' + x[4:]) for x in chunk]
-            for pid, p in zip(chunk, req(f'{API}/paper/batch?fields={FIELDS}', {'ids': s2ids}) or []):
-                if p:
-                    old[pid] = row(pid, p)
-            time.sleep(1.1 if KEY else 6.0)
-        with open(OUT + '.tmp', 'w', encoding='utf-8') as f:
-            for r in old.values():
-                f.write(json.dumps(r, ensure_ascii=False) + '\n')
-        os.replace(OUT + '.tmp', OUT)
+        try:
+            for i in range(0, len(ids), 500 if KEY else 100):
+                if timed_out():
+                    print('  time budget reached during refresh; saving progress', flush=True); break
+                chunk = ids[i:i + (500 if KEY else 100)]
+                s2ids = [('ArXiv:' + x[6:]) if x.startswith('arxiv:') else ('ACL:' + x[4:]) for x in chunk]
+                for pid, p in zip(chunk, req(f'{API}/paper/batch?fields={FIELDS}', {'ids': s2ids}) or []):
+                    if p:
+                        old[pid] = row(pid, p)
+                time.sleep(1.1 if KEY else 6.0)
+        finally:
+            with open(OUT + '.tmp', 'w', encoding='utf-8') as f:
+                for r in old.values():
+                    f.write(json.dumps(r, ensure_ascii=False) + '\n')
+            os.replace(OUT + '.tmp', OUT)
         done = set(old)
     batch_ids = [p['paper_id'] for p in todo if p['source'] in ('arxiv', 'acl')]
     title_ids = [p for p in todo if p['source'] not in ('arxiv', 'acl')]
@@ -88,6 +95,8 @@ def main():
     with open(OUT, 'a', encoding='utf-8') as f:
         step = 500 if KEY else 100
         for i in range(0, len(batch_ids), step):
+            if timed_out():
+                print('  time budget reached; resuming remaining batch items next run', flush=True); break
             ids = batch_ids[i:i + step]
             s2ids = [('ArXiv:' + x[6:]) if x.startswith('arxiv:') else ('ACL:' + x[4:]) for x in ids]
             res = req(f'{API}/paper/batch?fields={FIELDS}', {'ids': s2ids}) or []
@@ -97,6 +106,8 @@ def main():
             print(f'  batch {i + len(ids)}/{len(batch_ids)}', flush=True)
             time.sleep(pause)
         for j, p in enumerate(title_ids):
+            if timed_out():
+                print('  time budget reached; resuming remaining title items next run', flush=True); break
             title = (p.get('top_story_title') or '').split(' [')[0].strip()
             r = req(f'{API}/paper/search/match?query={urllib.parse.quote(title)}&fields={FIELDS}') if len(title) > 15 else None
             hit = (r or {}).get('data', [None])[0] if r else None

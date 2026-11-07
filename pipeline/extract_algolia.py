@@ -22,11 +22,26 @@ ap = argparse.ArgumentParser()
 ap.add_argument('--in', dest='inp', default=os.path.join(ROOT, 'hn_algolia'))
 ap.add_argument('--out', default=os.path.join(ROOT, 'data', 'step1'))
 ap.add_argument('--min-own-chars', type=int, default=100)
+ap.add_argument('--merge', action='store_true', help='merge incremental hits into existing mentions.jsonl / thread_comments.jsonl')
 a = ap.parse_args()
 os.makedirs(a.out, exist_ok=True)
 
 A_TAG = re.compile(r'<a\s[^>]*href="([^"]*)"[^>]*>.*?</a>', re.I | re.S)
 TAG = re.compile(r'<[^>]+>')
+GH = re.compile(r'https?://(?:www\.)?(github\.com|gitlab\.com)/([A-Za-z0-9_.-]+)/([A-Za-z0-9_.-]+)', re.I)
+GH_SKIP = {'features', 'topics', 'about', 'orgs', 'sponsors', 'marketplace', 'settings', 'pulls', 'issues', 'search'}
+
+
+def gh_links(text):
+    out = []
+    for host, owner, repo in GH.findall(text or ''):
+        repo = re.sub(r'\.git$', '', repo).rstrip('.')
+        if owner.lower() in GH_SKIP or not repo:
+            continue
+        u = f'https://{host.lower()}/{owner}/{repo}'
+        if u not in out:
+            out.append(u)
+    return out
 
 
 def plain(htm):
@@ -71,54 +86,97 @@ def read(name):
 stories, comments, threads = read('stories.jsonl'), read('comments.jsonl'), read('threads.jsonl')
 print(f'hits: {len(stories)} stories, {len(comments)} comments, {len(threads)} thread comments')
 
-mentions = []
-story_paper = {}                         # story id -> paper id (story URL is a paper)
+mentions_path = os.path.join(a.out, 'mentions.jsonl')
+threads_path = os.path.join(a.out, 'thread_comments.jsonl')
+stats_path = os.path.join(a.out, 'stats.json')
+old_mentions = [json.loads(l) for l in open(mentions_path, encoding='utf-8') if l.strip()] if (a.merge and os.path.exists(mentions_path)) else []
+old_threads = [json.loads(l) for l in open(threads_path, encoding='utf-8') if l.strip()] if (a.merge and os.path.exists(threads_path)) else []
+old_stats = json.load(open(stats_path, encoding='utf-8')) if (a.merge and os.path.exists(stats_path)) else {}
+
+new_mentions = []
+story_paper = {int(m['hn_id']): m['paper_id'] for m in old_mentions if m['kind'] == 'submission'}  # story id -> paper id
+fetched_stories, fetched_comments = set(), set()
 for s in stories:
     sid = int(s['objectID'])
     if not s.get('author'):
         continue
+    fetched_stories.add(sid)
+    story_paper.pop(sid, None)
     for pid, src, raw in extract(s.get('url') or ''):
         story_paper[sid] = pid
-        mentions.append(dict(hn_id=sid, kind='submission', paper_id=pid, source=src, author=s['author'],
-                             time=s['created_at_i'], month=month(s['created_at_i']), story_id=sid,
-                             story_title=s.get('title'), points=s.get('points'), num_comments=s.get('num_comments'),
-                             own_chars=None, substantive=False, raw_url=raw, text=None))
+        new_mentions.append(dict(hn_id=sid, kind='submission', paper_id=pid, source=src, author=s['author'],
+                                 time=s['created_at_i'], month=month(s['created_at_i']), story_id=sid,
+                                 story_title=s.get('title'), points=s.get('points'), num_comments=s.get('num_comments'),
+                                 own_chars=None, substantive=False, raw_url=raw, text=None))
         break
     if s.get('story_text'):
         txt = plain(s['story_text'])
+        gh = gh_links(txt)
         for pid, src, raw in extract(txt):
             mt, own = mask(txt, pid)
-            mentions.append(dict(hn_id=sid, kind='story_text', paper_id=pid, source=src, author=s['author'],
-                                 time=s['created_at_i'], month=month(s['created_at_i']), story_id=sid,
-                                 story_title=s.get('title'), points=s.get('points'), num_comments=s.get('num_comments'),
-                                 own_chars=own, substantive=own >= a.min_own_chars, raw_url=raw, text=mt[:1500]))
+            row = dict(hn_id=sid, kind='story_text', paper_id=pid, source=src, author=s['author'],
+                       time=s['created_at_i'], month=month(s['created_at_i']), story_id=sid,
+                       story_title=s.get('title'), points=s.get('points'), num_comments=s.get('num_comments'),
+                       own_chars=own, substantive=own >= a.min_own_chars, raw_url=raw, text=mt[:1500])
+            if gh:
+                row['gh'] = gh
+            new_mentions.append(row)
 
 for c in comments:
     if not c.get('author') or not c.get('comment_text'):
         continue
+    cid = int(c['objectID'])
+    fetched_comments.add(cid)
     txt = plain(c['comment_text'])
+    gh = gh_links(txt)
     for pid, src, raw in extract(txt):
         mt, own = mask(txt, pid)
-        mentions.append(dict(hn_id=int(c['objectID']), kind='comment', paper_id=pid, source=src, author=c['author'],
-                             time=c['created_at_i'], month=month(c['created_at_i']), story_id=c.get('story_id'),
-                             story_title=c.get('story_title'), points=None, num_comments=None,
-                             own_chars=own, substantive=own >= a.min_own_chars, raw_url=raw, text=mt[:1500]))
+        row = dict(hn_id=cid, kind='comment', paper_id=pid, source=src, author=c['author'],
+                   time=c['created_at_i'], month=month(c['created_at_i']), story_id=c.get('story_id'),
+                   story_title=c.get('story_title'), points=None, num_comments=None,
+                   own_chars=own, substantive=own >= a.min_own_chars, raw_url=raw, text=mt[:1500])
+        if gh:
+            row['gh'] = gh
+        new_mentions.append(row)
 
-with open(os.path.join(a.out, 'mentions.jsonl'), 'w', encoding='utf-8') as f:
+if a.merge and old_mentions:
+    new_by_key = {(m['hn_id'], m['kind'], m['paper_id']): m for m in new_mentions}
+    mentions, emitted = [], set()
+    for m in old_mentions:
+        k = (m['hn_id'], m['kind'], m['paper_id'])
+        refetched = (m['hn_id'] in fetched_stories and m['kind'] in ('submission', 'story_text')) or (
+            m['hn_id'] in fetched_comments and m['kind'] == 'comment')
+        if k in new_by_key:
+            mentions.append(new_by_key[k]); emitted.add(k)
+        elif not refetched:
+            mentions.append(m); emitted.add(k)
+    for m in new_mentions:
+        k = (m['hn_id'], m['kind'], m['paper_id'])
+        if k not in emitted:
+            mentions.append(m); emitted.add(k)
+else:
+    mentions = new_mentions
+
+with open(mentions_path, 'w', encoding='utf-8') as f:
     for m in mentions:
         f.write(json.dumps(m, ensure_ascii=False) + '\n')
 
 # discussion under paper submissions (no link needed) -> candidates for stance labeling in step 2
-thread_rows = []
+new_threads = []
 for t in threads:
     pid = story_paper.get(int(t['story_id']))
     if pid and t.get('author') and t.get('comment_text'):
         txt, own = mask(plain(t['comment_text']), pid)
-        thread_rows.append(dict(hn_id=int(t['objectID']), paper_id=pid, story_id=int(t['story_id']), depth=t.get('depth'),
+        new_threads.append(dict(hn_id=int(t['objectID']), paper_id=pid, story_id=int(t['story_id']), depth=t.get('depth'),
                                 author=t['author'], time=t['created_at_i'], month=month(t['created_at_i']),
                                 own_chars=own, substantive=own >= a.min_own_chars, text=txt[:1500]))
+if a.merge and old_threads:
+    new_t_by_id = {r['hn_id']: r for r in new_threads}
+    thread_rows = [new_t_by_id.pop(r['hn_id'], r) for r in old_threads] + list(new_t_by_id.values())
+else:
+    thread_rows = new_threads
 if thread_rows:
-    with open(os.path.join(a.out, 'thread_comments.jsonl'), 'w', encoding='utf-8') as f:
+    with open(threads_path, 'w', encoding='utf-8') as f:
         for r in thread_rows:
             f.write(json.dumps(r, ensure_ascii=False) + '\n')
 
@@ -177,8 +235,12 @@ def by_src(pred):
 
 ge2 = lambda r: r['n_users'] >= 2
 ge2s = lambda r: r['n_substantive_users'] >= 2
+prev_max_time = max((m['time'] for m in old_mentions), default=0)
+hits_stories = (old_stats.get('hits_stories', 0) + sum(1 for s in stories if int(s.get('created_at_i') or 0) > prev_max_time)) if (a.merge and old_stats) else len(stories)
+hits_comments = (old_stats.get('hits_comments', 0) + sum(1 for c in comments if int(c.get('created_at_i') or 0) > prev_max_time)) if (a.merge and old_stats) else len(comments)
+hits_threads = len(thread_rows) if (a.merge and old_stats) else len(threads)
 stats = dict(
-    hits_stories=len(stories), hits_comments=len(comments), hits_thread_comments=len(threads),
+    hits_stories=hits_stories, hits_comments=hits_comments, hits_thread_comments=hits_threads,
     mentions=len(mentions), mentions_by_kind={k: sum(1 for m in mentions if m['kind'] == k) for k in ('submission', 'story_text', 'comment')},
     substantive_comment_mentions=sum(1 for m in mentions if m['substantive']),
     unique_papers=len(rows), unique_papers_by_source=by_src(lambda r: True),

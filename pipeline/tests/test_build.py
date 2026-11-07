@@ -233,5 +233,70 @@ class MakePathArgs(unittest.TestCase):
         self.assertNotIn('not arXiv ids', r.stderr)
 
 
+class ExtractMergeTests(unittest.TestCase):
+    """Incremental cloud merge mode in extract_algolia.py (no full hn_algolia archive needed)."""
+
+    def test_incremental_merge_and_gh_links(self):
+        tmp = tempfile.mkdtemp(prefix='hp_merge_')
+        try:
+            inp1, inp2, out = [os.path.join(tmp, x) for x in ('in1', 'in2', 'step1')]
+            os.makedirs(inp1); os.makedirs(inp2)
+            # Batch 1: initial crawl with one submission (10 pts) and one comment linking two papers + GitHub
+            with open(os.path.join(inp1, 'stories.jsonl'), 'w') as f:
+                f.write(json.dumps(dict(objectID='100', author='alice', created_at_i=ts(2026, 1, 5),
+                                        title='Attention Networks', url='https://arxiv.org/abs/1706.03762',
+                                        points=10, num_comments=2, story_text=None)) + '\n')
+            with open(os.path.join(inp1, 'comments.jsonl'), 'w') as f:
+                f.write(json.dumps(dict(objectID='200', author='bob', created_at_i=ts(2026, 1, 6), story_id=100,
+                                        story_title='Attention Networks',
+                                        comment_text='Author here, our paper https://arxiv.org/abs/1706.03762 and '
+                                                     'https://arxiv.org/abs/2001.00001 with code at '
+                                                     '<a href="https://github.com/org/attn-net">repo</a>.' + LONG)) + '\n')
+            r1 = subprocess.run([sys.executable, os.path.join(PIPE, 'extract_algolia.py'), '--in', inp1, '--out', out],
+                                capture_output=True, text=True)
+            self.assertEqual(r1.returncode, 0, r1.stderr)
+
+            # Batch 2 (incremental): story 100 gained points (10 -> 85), comment 200 edited (dropped 2001.00001),
+            # new comment 201 added, and thread comment 300 arrived under historical story 100
+            with open(os.path.join(inp2, 'stories.jsonl'), 'w') as f:
+                f.write(json.dumps(dict(objectID='100', author='alice', created_at_i=ts(2026, 1, 5),
+                                        title='Attention Networks', url='https://arxiv.org/abs/1706.03762',
+                                        points=85, num_comments=12, story_text=None)) + '\n')
+            with open(os.path.join(inp2, 'comments.jsonl'), 'w') as f:
+                f.write(json.dumps(dict(objectID='200', author='bob', created_at_i=ts(2026, 1, 6), story_id=100,
+                                        story_title='Attention Networks',
+                                        comment_text='Author here, our paper https://arxiv.org/abs/1706.03762 with code at '
+                                                     '<a href="https://github.com/org/attn-net">repo</a>.' + LONG)) + '\n')
+                f.write(json.dumps(dict(objectID='201', author='carol', created_at_i=ts(2026, 1, 12), story_id=100,
+                                        story_title='Attention Networks',
+                                        comment_text='Must read: https://arxiv.org/abs/1706.03762' + LONG)) + '\n')
+            with open(os.path.join(inp2, 'threads.jsonl'), 'w') as f:
+                f.write(json.dumps(dict(objectID='300', author='dave', created_at_i=ts(2026, 1, 13),
+                                        story_id=100, depth=1, comment_text='Great discussion.' + LONG)) + '\n')
+            r2 = subprocess.run([sys.executable, os.path.join(PIPE, 'extract_algolia.py'), '--in', inp2, '--out', out, '--merge'],
+                                capture_output=True, text=True)
+            self.assertEqual(r2.returncode, 0, r2.stderr)
+
+            with open(os.path.join(out, 'mentions.jsonl'), encoding='utf-8') as f:
+                ms = [json.loads(l) for l in f]
+            keys = [(m['hn_id'], m['kind'], m['paper_id']) for m in ms]
+            self.assertEqual(keys, [
+                (100, 'submission', 'arxiv:1706.03762'),
+                (200, 'comment', 'arxiv:1706.03762'),
+                (201, 'comment', 'arxiv:1706.03762'),
+            ])
+            self.assertEqual(ms[0]['points'], 85, 're-fetched story updates points in place')
+            self.assertEqual(ms[1].get('gh'), ['https://github.com/org/attn-net'], 'GitHub link preserved in mentions.jsonl')
+            with open(os.path.join(out, 'thread_comments.jsonl'), encoding='utf-8') as f:
+                ts_rows = [json.loads(l) for l in f]
+            self.assertEqual(len(ts_rows), 1)
+            self.assertEqual(ts_rows[0]['paper_id'], 'arxiv:1706.03762')
+            st = jload(os.path.join(out, 'stats.json'))
+            self.assertEqual(st['hits_stories'], 1)
+            self.assertEqual(st['hits_comments'], 2)
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+
 if __name__ == '__main__':
     unittest.main()

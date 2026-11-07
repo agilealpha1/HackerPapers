@@ -374,7 +374,7 @@ for pid, ms in by_paper.items():
     if not code:
         for m in ms:
             if is_author_comment(m):
-                g = gh_links(raw_text.get(m['hn_id'], ''))
+                g = m.get('gh') or gh_links(raw_text.get(m['hn_id'], ''))
                 if g:
                     code, code_src = g[:1], 'author'; break
     aid0 = pid.split(':', 1)[1]
@@ -385,7 +385,7 @@ for pid, ms in by_paper.items():
     if not code:
         cnt = collections.Counter()
         for m in ms:
-            for u in gh_links(raw_text.get(m['hn_id'], '')):
+            for u in (m.get('gh') or gh_links(raw_text.get(m['hn_id'], ''))):
                 cnt[u] += 1
         # an HN-posted repo counts only if its name matches the paper (title word or arXiv id)
         tw = {w for w in re.findall(r'[a-z0-9]{4,}', (md.get('title') or '').lower())} - {'with', 'from', 'that', 'this', 'learning', 'neural', 'model', 'models', 'language', 'large', 'networks', 'deep', 'towards', 'using', 'via'}

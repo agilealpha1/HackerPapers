@@ -4,10 +4,19 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Every Monday at 03:17 UTC: pull new HN mentions, enrich papers, commit data/, and deploy Pages
+    - cron: "17 3 * * 1"
   workflow_dispatch:
+    inputs:
+      refresh_data:
+        description: "Fetch latest HN mentions and paper metadata before deploying"
+        required: false
+        default: true
+        type: boolean
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -38,6 +47,30 @@ jobs:
         run: |
           python pipeline/test_normalize.py
           python -m unittest discover -s pipeline/tests
+
+      - name: Refresh HN mentions and paper metadata
+        if: github.event_name == 'schedule' || inputs.refresh_data == true
+        env:
+          HP_BASE_URL: "https://agilealpha1.github.io/HackerPapers/"
+          S2_API_KEY: ${{ secrets.S2_API_KEY }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          bash deploy/cloud_update.sh
+
+      - name: Commit updated data to main
+        if: github.event_name == 'schedule' || inputs.refresh_data == true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "chore(data): automated weekly HN and paper refresh"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
 
       - name: Cache paper embeddings
         uses: actions/cache@v4

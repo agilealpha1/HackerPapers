@@ -37,7 +37,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--top', type=int, default=2000)
     ap.add_argument('--sleep', type=float, default=0.4)
+    ap.add_argument('--max-seconds', type=int, default=0, help='stop cleanly after this many seconds (0 = no limit)')
     a = ap.parse_args()
+    t0 = time.time()
     idx = json.load(open(os.path.join(ROOT, 'site', 'data', 'index.json'), encoding='utf-8'))
     ids = [r['id'] for r in idx if r['id'].startswith('arxiv:') and r['year'] >= 2016][:a.top]
     done = set()
@@ -47,6 +49,8 @@ def main():
     print(f'{len(ids)} arXiv papers from 2016+; {len(todo)} to fetch (~{len(todo) * 4 * a.sleep / 60:.0f} min)', flush=True)
     with open(OUT, 'a', encoding='utf-8') as f:
         for n, pid in enumerate(todo):
+            if a.max_seconds and time.time() - t0 >= a.max_seconds:
+                print('  time budget reached; resuming remaining HF items next run', flush=True); break
             aid = pid[6:]
             pj = get(f'{API}/papers/{aid}')
             rec = dict(paper_id=pid, hf_paper=pj is not None, github=(pj or {}).get('githubRepo'),
