@@ -64,6 +64,7 @@ Every paper opens a dedicated reading-room page with:
 We are turning the highest-signal papers on HackerPapers into concise visual breakdowns on YouTube. Papers with a published episode display a **`Video`** button right beside **`PDF`** on every feed card and paper page.
 
 - **Episode #1:** [*Attention Is All You Need* (Vaswani et al., 2017)](https://www.youtube.com/watch?v=C4qyRfgRFvA) · [View on HackerPapers](https://agilealpha1.github.io/HackerPapers/#paper-arxiv-1706-03762)
+- **Episode #2:** [*Language Models are Few-Shot Learners* (Brown et al., 2020)](https://www.youtube.com/watch?v=YB6aS_srUrA) · [View on HackerPapers](https://agilealpha1.github.io/HackerPapers/#paper-arxiv-2005-14165)
 
 ---
 
