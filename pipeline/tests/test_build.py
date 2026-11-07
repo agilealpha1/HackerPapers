@@ -124,6 +124,7 @@ class BuildFixture(unittest.TestCase):
             dict(id='arxiv:2001.00001', hn=6, core=True, stage=0), dict(id='arxiv:2004.00004', hn=1, why='below the bar', stage=0),
             dict(id='arxiv:2008.00008', hn=0, pick=True, stage=1)], stages=[dict(name='One'), dict(name='Two')])],
             os.path.join(R, 'data/curated_paths.json'))
+        jdump({'2001.00001': 'https://www.youtube.com/watch?v=C4qyRfgRFvA'}, os.path.join(R, 'data/paper_videos.json'))
         out = os.path.join(R, 'site/data')
         r = subprocess.run([sys.executable, os.path.join(PIPE, 'build_site_data.py'), '--root', R, '--out', out],
                            capture_output=True, text=True, env=dict(os.environ, **cls.ENV))
@@ -192,6 +193,11 @@ class BuildFixture(unittest.TestCase):
         self.assertIn(row, self.words['language'])
         self.assertNotIn('lasting', self.words, 'words used by one paper only are left out')
         self.assertNotIn('the', self.words)
+
+    def test_paper_videos(self):
+        self.assertEqual(self.by['arxiv:2001.00001'].get('yt'), 'C4qyRfgRFvA')
+        self.assertEqual(self.shard['arxiv:2001.00001'].get('yt'), 'C4qyRfgRFvA')
+        self.assertNotIn('yt', self.by['arxiv:2002.00002'])
 
     def test_schema(self):
         need = {'id', 'title', 'year', 'topics', 'level', 'users', 'pos', 'score', 'slug', 'sh', 'au', 'code', 'lasting', 'deb', 'auth'}

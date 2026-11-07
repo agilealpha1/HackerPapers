@@ -351,6 +351,7 @@ function links(p) {
   return { page: u, pdf: u, label: 'NeurIPS' };
 }
 const safeCode = u => /^https:\/\/(github\.com|gitlab\.com)\/[\w.-]+\/[\w.-]+$/.test(u) ? u : null;
+const ytUrl = p => p?.yt && /^[\w-]{11}$/.test(p.yt) ? `https://www.youtube.com/watch?v=${p.yt}` : null;
 
 // ---------- routing (#name only)
 const TABS = [
@@ -414,6 +415,7 @@ function entry(p, i) {
         ${p.deb ? '<span class="badge deb" title="Recommended and contested on HN">Debated</span>' : ''}
         ${p.level !== 'intermediate' ? `<span class="badge lvl-${p.level}">${p.level === 'beginner' ? 'Beginner' : 'Advanced'}</span>` : ''}
         <span class="acts">
+          ${ytUrl(p) ? `<a class="ib" href="${esc(ytUrl(p))}" target="_blank" rel="noopener">Video</a>` : ''}
           ${L.pdf ? `<a class="ib" href="${esc(L.pdf)}" target="_blank" rel="noopener">PDF</a>` : ''}
           <button class="ib" type="button" data-act="save" aria-pressed="${isSaved}">${isSaved ? 'Saved' : 'Save'}</button>
           <button class="ib" type="button" data-act="read" aria-pressed="${isRead}">${isRead ? 'Read' : 'Mark read'}</button>
@@ -600,6 +602,7 @@ async function paperPage(slug) {
     <h1 class="ptitle">${esc(d.title)}</h1>
     ${authors ? `<div class="pauthors">${authors}</div>` : ''}
     <div class="pbar">
+      ${ytUrl(d) ? `<a class="btn" href="${esc(ytUrl(d))}" target="_blank" rel="noopener">Video</a>` : ''}
       ${L.pdf ? `<a class="btn primary" href="${esc(L.pdf)}" target="_blank" rel="noopener">Read the PDF</a>` : ''}
       ${L.page ? `<a class="btn" href="${esc(L.page)}" target="_blank" rel="noopener">${esc(L.label)}</a>` : ''}
       ${code.map(u => `<a class="btn" href="${esc(u)}" target="_blank" rel="noopener">Code${d.code_src === 'hn' ? ' (linked on HN)' : d.code_src === 'author' ? ' (posted by the author)' : d.code_src === 'hf' ? ' (via Hugging Face)' : ''}</a>`).join('')}

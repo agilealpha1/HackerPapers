@@ -321,6 +321,18 @@ CUR_P = os.path.join(ROOT, 'data', 'curated_paths.json')
 CURATED = json.load(open(CUR_P, encoding='utf-8')) if os.path.exists(CUR_P) else []
 CUR_IDS = {s['id'] for c in CURATED for s in c['steps']}
 
+# channel videos per paper (data/paper_videos.json: {"arxiv:1706.03762": "https://www.youtube.com/watch?v=..." or 11-char id})
+YT_RE = re.compile(r'(?:youtu\.be/|youtube\.com/(?:watch\?[^"\s]*v=|shorts/|embed/))([A-Za-z0-9_-]{11})|^([A-Za-z0-9_-]{11})$')
+PAPER_YT = {}
+_pvp = os.path.join(ROOT, 'data', 'paper_videos.json')
+if os.path.exists(_pvp):
+    with open(_pvp, encoding='utf-8') as _f:
+        for _k, _v in json.load(_f).items():
+            _pid = _k.strip() if ':' in _k else f'arxiv:{_k.strip()}'
+            _m = YT_RE.search(str(_v or '').strip())
+            if _m:
+                PAPER_YT[_pid] = _m.group(1) or _m.group(2)
+
 # ---------------------------------------------------------------- per-paper records
 papers = []
 for pid, ms in by_paper.items():
@@ -687,9 +699,13 @@ light_keys = ['id', 'title', 'year', 'topics', 'level', 'users', 'pos', 'strong'
               'classic', 'trending', 'first', 'last']
 index = []
 for p in papers:
+    if p['id'] in PAPER_YT:
+        p['yt'] = PAPER_YT[p['id']]
     r = {k: p[k] for k in light_keys}
     r['au'] = (p['authors'][0] + (' et al.' if p['n_authors'] > 1 else '')) if p['authors'] else ''
     r['code'] = bool(p['code'])
+    if p.get('yt'):
+        r['yt'] = p['yt']
     r['q'] = p['quote']['text'] if p['quote'] else ''
     if p['quote'] and p['quote'].get('why'):
         r['why'] = p['quote']['why']
