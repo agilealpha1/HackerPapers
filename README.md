@@ -4,6 +4,8 @@
 
 HackerPapers turns years of Hacker News discussions into a way to discover, compare, and keep track of AI research.
 
+Live site: [https://agilealpha1.github.io/HackerPapers/](https://agilealpha1.github.io/HackerPapers/)
+
 ## Explore
 
 - Browse highly recommended papers, classics, recent discussions, papers with code, and more.
