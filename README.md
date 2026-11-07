@@ -1,7 +1,7 @@
 # HackerPapers
 
 The AI research papers Hacker News keeps recommending, with what HN actually said about them.
-It's a static site: JSON data plus one HTML page, with no server and no accounts. Prototype v0.8.
+It's a static site: JSON data plus one HTML page, with no server and no accounts. Prototype v1.1.
 
 ## What the site has
 
@@ -73,7 +73,32 @@ citations of the seeds, and papers linked in the same HN threads as a seed. It a
 (`fetch_algolia.py --query`). An LLM then judges each candidate on-topic or not, with a one-line reason; without
 `ANTHROPIC_API_KEY` it writes `judge_todo.jsonl` for Claude in Cowork to answer. Papers HN has discussed come first,
 oldest to newest, then seeds HN never linked, flagged as Editor's pick. Path papers below the 2-recommender bar
-stay out of the feeds, search and For You, but get their own pages.
+stay out of the feeds, search and For You, but get their own pages. Optional `data/paths/<id>/stages.json` groups a
+path into stages; the site shows the key papers (seeds, the most discussed, one per stage) with "Show all".
+Arguments are checked before anything runs (arXiv ids, keywords of 3+ characters, no placeholder topic), and a search
+with more than 1,500 candidates stops before writing anything.
+
+## Weekly job, tests and versioning
+
+`deploy/weekly_update.sh` runs, in order: the build tests; new HN items and the comment threads under new paper
+stories; arXiv metadata; embeddings for new papers only (`embed.py`; `--all` re-embeds everything); Semantic
+Scholar for new papers (and a full citation refresh in the first week of each month); Claude labels for new comments
+when `ANTHROPIC_API_KEY` is set (`label_llm.py --threads`; without a key new comments use the v0 rules); the build;
+Hugging Face links for new papers; a second build; the export, the static site and the digest. Enrichment steps may
+fail without stopping the job.
+
+Tests: `python3 -m unittest discover -s pipeline/tests -v` builds a small hand-made dataset and checks the
+recommendation bar, the AI filter, stance fallback rules, venue merging, badges, thread comments, curated paths and
+the output schema. `python3 pipeline/test_normalize.py` checks link normalization.
+
+The folder is a git repository (`git log`). Raw and re-fetchable data (`hn_algolia/`, HackerTube, embeddings) and
+build output (`site/data/`, `site_dist/`) are not tracked.
+
+## Sharing
+
+`make_static.py` writes `site_dist/p/<slug>/` and `site_dist/path/<id>/`: small pages with the paper's title and
+OpenGraph/Twitter tags, so links shared on HN, X or Slack show a preview, and that forward to the app. On the deployed
+site each paper page has a "Copy share link" button. Set `HP_BASE_URL` to the real domain before building.
 
 ## Badge and tab rules
 

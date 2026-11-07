@@ -150,6 +150,7 @@ ol.steps > li::before { content: attr(data-n); font: 500 var(--s2)/1.3 var(--f-m
 ol.steps .done { color: var(--good); font-size: 12px; }
 .pick { display: inline-block; font: 600 11px/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 3px 6px; }
 .pathcard .pick { margin-bottom: 8px; }
+.meta .pick { padding: 1px 5px; font-size: 10px; align-self: center; }
 .ask { display: flex; gap: 8px; margin: 8px 0 10px; flex-wrap: wrap; }
 .ask input { flex: 1; min-width: 0; padding: 11px 14px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); font-size: var(--s1); }
 .examples { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
@@ -453,7 +454,7 @@ function renderList(items, { title, intro, tabs = false, emptyHtml = '', opts = 
 }
 
 const footer = () => `<footer>Prototype built from ${fmt(STATS.mentions_total || 0)} Hacker News mentions (data through ${esc(STATS.data_through || '')}).
-  ${STATS.labeler === 'LLM' ? 'Stances, quotes and reasons were labeled by Claude; topics come from keyword rules.' : 'Stances, quotes and topics are labeled by rules for now.'}${STATS.with_videos ? ' Talks come from <a href="https://hackertube.org" target="_blank" rel="noopener">HackerTube</a> (ODC-By).' : ''} <a href="#about">How it works</a>.</footer>`;
+  ${STATS.labeler === 'LLM' ? 'Stances, quotes and reasons were labeled by Claude; topics come from keyword rules checked against embeddings.' : 'Stances, quotes and topics are labeled by rules for now.'}${STATS.with_videos ? ' Talks come from <a href="https://hackertube.org" target="_blank" rel="noopener">HackerTube</a> (ODC-By).' : ''} <a href="#about">How it works</a>.</footer>`;
 
 // ---------- For You
 function forYou() {
@@ -724,11 +725,11 @@ async function exportText(kind, items) {
   const out = [];
   for (const p of items) {
     const d = (await loadShard(p.sh))[p.id] || {}, [src, rest] = p.id.split(':');
-    const f = { title: `{${p.title}}`, author: (d.authors || [p.au]).join(' and '), year: p.year };
+    const f = { title: p.title, author: (d.authors || [p.au]).join(' and ') + ((d.n_authors || 0) > (d.authors || []).length ? ' and others' : ''), year: p.year };
     if (src === 'arxiv') Object.assign(f, { eprint: rest, archivePrefix: 'arXiv', primaryClass: (d.cats || [])[0] || '', url: `https://arxiv.org/abs/${rest}` });
     else if (links(p).page) f.url = links(p).page;
     if (d.venue) f.note = d.venue;
-    out.push(`@misc{${bibKey(p, d)},\n${Object.entries(f).filter(([, v]) => v).map(([k, v]) => `  ${k} = {${String(v).replace(/[{}]/g, m => m === '{' && k === 'title' ? m : '')}}`).join(',\n')}\n}`);
+    out.push(`@misc{${bibKey(p, d)},\n${Object.entries(f).filter(([, v]) => v).map(([k, v]) => { const x = String(v).replace(/[{}]/g, ''); return `  ${k} = ${k === 'title' ? `{{${x}}}` : `{${x}}`}`; }).join(',\n')}\n}`);
   }
   return out.join('\n\n');
 }
