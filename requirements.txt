@@ -1,0 +1,4 @@
+numpy>=1.24
+scikit-learn>=1.2      # TF-IDF for related papers (pipeline/fallbacks.py stands in without it)
+vaderSentiment>=3.3   # sentiment hint for unlabeled comments (fallback likewise)
+fastembed>=0.3        # embeddings: embed.py, make_path.py

@@ -61,12 +61,11 @@ def read(name):
     p = os.path.join(a.inp, name)
     if not os.path.exists(p):
         return []
-    seen, out = set(), []
+    out = {}                     # the latest copy of each item wins (re-fetches carry edits, new points and comments)
     for line in open(p, encoding='utf-8'):
         h = json.loads(line)
-        if h['objectID'] not in seen:
-            seen.add(h['objectID']); out.append(h)
-    return out
+        out[h['objectID']] = h   # a dict keeps the position of the first copy
+    return list(out.values())
 
 
 stories, comments, threads = read('stories.jsonl'), read('comments.jsonl'), read('threads.jsonl')

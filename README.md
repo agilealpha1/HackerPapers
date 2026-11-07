@@ -1,7 +1,7 @@
 # HackerPapers
 
 The AI research papers Hacker News keeps recommending, with what HN actually said about them.
-It's a static site: JSON data plus one HTML page, with no server and no accounts. Prototype v1.1.
+It's a static site: JSON data plus one HTML page, with no server and no accounts. Prototype v1.2.
 
 ## What the site has
 
@@ -15,6 +15,8 @@ It's a static site: JSON data plus one HTML page, with no server and no accounts
   - What HN said, with each comment linking to its HN thread.
   - Code, Semantic Scholar citations, Hugging Face links, talks from HackerTube, reading paths,
     "read first" papers and related papers.
+- **Search:** title, authors, TL;DR, quote and the "why" line; then partial word matches; then words in the full
+  abstracts (`site/data/words.json`, loaded only when needed); each step adds papers close in meaning.
 - **Explore:** topics (46 in 8 areas), reading paths (8 tracks, oldest first), Ask the papers, and search by
   keyword plus meaning (bge-small embeddings).
 - **Yours:** For You (topics plus similarity to saved and read papers, each with a reason), a reading list and
@@ -78,18 +80,27 @@ path into stages; the site shows the key papers (seeds, the most discussed, one 
 Arguments are checked before anything runs (arXiv ids, keywords of 3+ characters, no placeholder topic), and a search
 with more than 1,500 candidates stops before writing anything.
 
+## Setup
+
+`python3 -m pip install -r requirements.txt`. The fetch scripts need only the standard library. `build_site_data.py`
+uses scikit-learn (TF-IDF) and vaderSentiment when they are installed; without them `pipeline/fallbacks.py` stands
+in (numpy TF-IDF, a small sentiment word list), so the build and the tests still run, with slightly different counts
+(537 vs 564 papers at last check). `HP_FALLBACKS=1` forces the fallbacks.
+
 ## Weekly job, tests and versioning
 
-`deploy/weekly_update.sh` runs, in order: the build tests; new HN items and the comment threads under new paper
-stories; arXiv metadata; embeddings for new papers only (`embed.py`; `--all` re-embeds everything); Semantic
-Scholar for new papers (and a full citation refresh in the first week of each month); Claude labels for new comments
+`deploy/weekly_update.sh` runs, in order: the build tests; new HN items (`fetch_algolia.py --since`); comment
+threads (`--threads-only`: new paper stories, and threads re-fetched while the story is under 14 days old, so later
+comments are caught); arXiv metadata; Semantic Scholar for new papers (a full citation refresh in the first week of
+each month); arXiv metadata again, for venue links S2 just matched to an arXiv id; embeddings for new papers only
+(`embed.py`; `--all` re-embeds everything); Claude labels for new comments
 when `ANTHROPIC_API_KEY` is set (`label_llm.py --threads`; without a key new comments use the v0 rules); the build;
 Hugging Face links for new papers; a second build; the export, the static site and the digest. Enrichment steps may
 fail without stopping the job.
 
-Tests: `python3 -m unittest discover -s pipeline/tests -v` builds a small hand-made dataset and checks the
-recommendation bar, the AI filter, stance fallback rules, venue merging, badges, thread comments, curated paths and
-the output schema. `python3 pipeline/test_normalize.py` checks link normalization.
+Tests: `python3 -m unittest discover -s pipeline/tests -v` builds a small hand-made dataset twice (with and without
+scikit-learn/vaderSentiment) and checks the recommendation bar, the AI filter, stance fallback rules, venue merging,
+badges, thread comments, curated paths, label counts, the search word index and the output schema. `python3 pipeline/test_normalize.py` checks link normalization.
 
 The folder is a git repository (`git log`). Raw and re-fetchable data (`hn_algolia/`, HackerTube, embeddings) and
 build output (`site/data/`, `site_dist/`) are not tracked.

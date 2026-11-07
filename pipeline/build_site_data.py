@@ -20,11 +20,27 @@ import argparse, collections, hashlib, html, json, math, os, re, sys
 from datetime import datetime, timezone
 
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+# scikit-learn and vaderSentiment are optional: pipeline/fallbacks.py stands in (HP_FALLBACKS=1 forces it)
+_FORCE = os.environ.get('HP_FALLBACKS') == '1'
+try:
+    if _FORCE: raise ImportError
+    from sklearn.feature_extraction.text import TfidfVectorizer
+except ImportError:
+    TfidfVectorizer = None
+try:
+    if _FORCE: raise ImportError
+    from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+except ImportError:
+    SentimentIntensityAnalyzer = None
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from taxonomy import TOPICS, AREAS
+import fallbacks
+if TfidfVectorizer is None:
+    TfidfVectorizer = fallbacks.SimpleTfidf
+if SentimentIntensityAnalyzer is None:
+    SentimentIntensityAnalyzer = fallbacks.SimpleSentiment
+print(f'TF-IDF: {TfidfVectorizer.__module__.split(".")[0]}; sentiment: {SentimentIntensityAnalyzer.__module__.split(".")[0]}', flush=True)
 
 AI_CATS = {'cs.AI', 'cs.LG', 'cs.CL', 'cs.CV', 'cs.NE', 'cs.MA', 'stat.ML'}
 N_SHARDS = 64
@@ -107,11 +123,11 @@ def is_author_comment(m):
     return m['stance'] == 'author' and bool(AUTHOR_STRICT.search(t) or ('llm_quote' in m and SELF_ID.search(t)))
 
 
-def stance(m):
+def stance(m, allow_self=True):
     if m['kind'] == 'submission':
         return 'submit'
     t = m.get('text') or ''
-    if SELF.search(t):
+    if allow_self and SELF.search(t):       # "our paper" etc.; off for thread comments, where it is often another paper
         return 'author'
     crit, strong, rec = bool(CRIT.search(t)), bool(STRONG.search(t)), bool(REC.search(t))
     v = vader.polarity_scores(t)['compound'] if t else 0.0
@@ -136,14 +152,14 @@ for m in mentions:
     r = llm.get((m['hn_id'], m['paper_id']))
     if r:
         m['stance'] = 'reference' if r['stance'] == 'joke' else r['stance']
-        m['llm_quote'], m['why'], m['llm_easy'] = r.get('quote') or '', r.get('why') or '', bool(r.get('easy'))
+        m['llm_quote'], m['why'], m['llm_easy'], m['llm'] = r.get('quote') or '', r.get('why') or '', bool(r.get('easy')), True
 LABELER = 'LLM' if llm else 'v0 rules + VADER (LLM pass pending)'
 # comments in the HN threads under paper submissions (fetch_algolia.py --threads; no paper link needed).
 # They never count as recommendations; they feed "The author on HN" and, when Claude-labeled, "The debate".
 THREADS = jl(os.path.join(ROOT, 'data', 'step1', 'thread_comments.jsonl'))
 for t in THREADS:
     t['kind'] = 'thread'
-    t['stance'] = 'author' if AUTHOR_STRICT.search(t.get('text') or '') else stance(t)
+    t['stance'] = 'author' if AUTHOR_STRICT.search(t.get('text') or '') else stance(t, allow_self=False)
     r = llm.get((t['hn_id'], t['paper_id']))
     if r:
         t['stance'] = 'reference' if r['stance'] == 'joke' else r['stance']
@@ -512,7 +528,8 @@ print(f'topics: keyword rules + embedding check {dict(TOPIC_CHANGES)}', flush=Tr
 idx = {p['id']: i for i, p in enumerate(papers)}
 docs = [f"{p['title']} {p['title']} {p['abstract']} " + ' '.join(t.replace('-', ' ') for t in p['topics']) for p in papers]
 X = TfidfVectorizer(stop_words='english', min_df=2, max_df=0.5, ngram_range=(1, 2), sublinear_tf=True).fit_transform(docs)
-S = (X @ X.T).toarray().astype(np.float32)
+S = X @ X.T
+S = (S.toarray() if hasattr(S, 'toarray') else np.asarray(S)).astype(np.float32)
 if EMB is not None:
     rows_e = [EMB_IDS.get(p['id']) for p in papers]
     have = np.array([r is not None for r in rows_e])
@@ -716,9 +733,30 @@ stats = dict(built=datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC'),
              embeddings='bge-small-en-v1.5' if EMB is not None else 'tf-idf only', paths=len(paths), with_videos=n_vid,
              lasting=sum(p['lasting'] == 'lasting' for p in MAINP), spike=sum(p['lasting'] == 'spike' for p in MAINP),
              with_author=sum(bool(p['authors_hn']) for p in MAINP), debated=sum((len(p['pushback']) >= 2 and p['pos'] >= 2) or (len(p['pushback']) >= 1 and p['pos'] >= 3) for p in MAINP),
-             code_by_source=dict(collections.Counter(p['code_src'] for p in MAINP if p['code'])), path_only=sum(p['xp'] for p in papers), llm_labeled=sum(1 for p in MAINP for m in by_paper.get(p['id'], []) if m['kind'] != 'submission' and m.get('text') and (m['hn_id'], m['paper_id']) in llm),
+             code_by_source=dict(collections.Counter(p['code_src'] for p in MAINP if p['code'])), path_only=sum(p['xp'] for p in papers), llm_labeled=sum(1 for p in MAINP for m in by_paper.get(p['id'], []) if m['kind'] != 'submission' and m.get('text') and m.get('llm')),
              comments_with_text=sum(1 for p in MAINP for m in by_paper.get(p['id'], []) if m['kind'] != 'submission' and m.get('text')))
 json.dump(index, open(os.path.join(OUT, 'index.json'), 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+# words.json: word -> index rows whose title or full abstract uses it. The page loads it only when a search finds no
+# title/TL;DR/quote match, so concepts named in abstracts still anchor the meaning-based search.
+_W_STOP = set('this that with from have been were their which these those into than then also such more most other some only over '
+              'each both they them very what when where while about across after among based between using used uses show shows '
+              'shown paper papers propose proposed present work results result approach method methods model models task tasks'.split())
+_pmap2 = {p['id']: p for p in papers}
+postings = collections.defaultdict(list)
+for i, r in enumerate(index):
+    p = _pmap2[r['id']]
+    ws = set()
+    for w in re.findall(r'[a-z][a-z0-9-]{3,}', (p['title'] + ' ' + (p['abstract'] or '')).lower()):
+        w = w.strip('-')
+        if len(w) > 4 and w.endswith('s') and not w.endswith('ss'):
+            w = w[:-1]
+        if len(w) >= 4 and w not in _W_STOP:
+            ws.add(w)
+    for w in ws:
+        postings[w].append(i)
+words = {w: rows for w, rows in postings.items() if 2 <= len(rows) <= max(40, len(index) // 12)}
+json.dump(words, open(os.path.join(OUT, 'words.json'), 'w', encoding='utf-8'), separators=(',', ':'))
+print(f'words.json: {len(words)} words', flush=True)
 # int8 embeddings for the site papers, in index order (for For You + meaning-based search in the browser)
 if EMB is not None:
     import base64

@@ -37,7 +37,19 @@ def meta(aid, title, cats, year=2020, abstract=None):
 LONG = ' This comment is long enough to count as substantive commentary on the paper and its results in detail.'
 
 
+def jload(path):
+    with open(path, encoding='utf-8') as f:
+        return json.load(f)
+
+
+def jdump(obj, path):
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(obj, f)
+
+
 class BuildFixture(unittest.TestCase):
+    ENV = {}          # extra environment for the build (the fallback subclass sets HP_FALLBACKS=1)
+
     @classmethod
     def setUpClass(cls):
         cls.root = tempfile.mkdtemp(prefix='hp_test_')
@@ -108,23 +120,24 @@ class BuildFixture(unittest.TestCase):
         with open(os.path.join(R, 'data/meta/s2.jsonl'), 'w') as f:
             f.write(json.dumps(dict(paper_id='openreview:XYZ', s2_id='s2xyz', title='Canonical Neural Language Networks', year=2023,
                                     venue='ICLR', citations=42, influential=3, arxiv_id='2006.00006', doi=None, url='https://s2/x')) + '\n')
-        json.dump([dict(id='test-path', name='Test path', blurb='A test.', steps=[
+        jdump([dict(id='test-path', name='Test path', blurb='A test.', steps=[
             dict(id='arxiv:2001.00001', hn=6, core=True, stage=0), dict(id='arxiv:2004.00004', hn=1, why='below the bar', stage=0),
             dict(id='arxiv:2008.00008', hn=0, pick=True, stage=1)], stages=[dict(name='One'), dict(name='Two')])],
-            open(os.path.join(R, 'data/curated_paths.json'), 'w'))
+            os.path.join(R, 'data/curated_paths.json'))
         out = os.path.join(R, 'site/data')
         r = subprocess.run([sys.executable, os.path.join(PIPE, 'build_site_data.py'), '--root', R, '--out', out],
-                           capture_output=True, text=True)
+                           capture_output=True, text=True, env=dict(os.environ, **cls.ENV))
         cls.log = r.stdout + r.stderr
         if r.returncode:
             raise RuntimeError('build failed:\n' + cls.log[-3000:])
-        cls.index = json.load(open(os.path.join(out, 'index.json')))
+        cls.index = jload(os.path.join(out, 'index.json'))
         cls.by = {x['id']: x for x in cls.index}
         cls.shard = {}
         for fn in os.listdir(os.path.join(out, 'p')):
-            cls.shard.update(json.load(open(os.path.join(out, 'p', fn))))
-        cls.paths = json.load(open(os.path.join(out, 'paths.json')))
-        cls.stats = json.load(open(os.path.join(out, 'stats.json')))
+            cls.shard.update(jload(os.path.join(out, 'p', fn)))
+        cls.paths = jload(os.path.join(out, 'paths.json'))
+        cls.stats = jload(os.path.join(out, 'stats.json'))
+        cls.words = jload(os.path.join(out, 'words.json'))
 
     @classmethod
     def tearDownClass(cls):
@@ -170,6 +183,16 @@ class BuildFixture(unittest.TestCase):
         self.assertEqual(len(cp['stages']), 2)
         self.assertTrue(any(x['id'] == 'test-path' for x in self.shard['arxiv:2004.00004']['paths']))
 
+    def test_llm_labeled_counts_merged_comments(self):
+        # the NeurIPS comment (v2) is Claude-labeled and merged into paper 1: it must still count as labeled
+        self.assertEqual(self.stats['llm_labeled'], 20)   # 6 + 8 + 4 + 2; 17 if merged comments were lost
+
+    def test_words_index(self):
+        row = next(i for i, r in enumerate(self.index) if r['id'] == 'arxiv:2001.00001')
+        self.assertIn(row, self.words['language'])
+        self.assertNotIn('lasting', self.words, 'words used by one paper only are left out')
+        self.assertNotIn('the', self.words)
+
     def test_schema(self):
         need = {'id', 'title', 'year', 'topics', 'level', 'users', 'pos', 'score', 'slug', 'sh', 'au', 'code', 'lasting', 'deb', 'auth'}
         for r in self.index:
@@ -179,6 +202,14 @@ class BuildFixture(unittest.TestCase):
         for p in self.paths:
             for s in p['steps']:
                 self.assertIn(s, self.by, f'path {p["id"]} step {s} is in the index')
+
+
+class BuildFixtureFallbacks(BuildFixture):
+    """The same checks without scikit-learn and vaderSentiment (pipeline/fallbacks.py)."""
+    ENV = {'HP_FALLBACKS': '1'}
+
+    def test_fallbacks_used(self):
+        self.assertIn('TF-IDF: fallbacks; sentiment: fallbacks', self.log)
 
 
 class MakePathArgs(unittest.TestCase):

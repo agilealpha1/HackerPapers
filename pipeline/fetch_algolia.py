@@ -4,7 +4,9 @@
 Standard library only (runs on stock macOS python3). Resumable: re-run to continue.
 
   python3 pipeline/fetch_algolia.py                 # search phase (~150 requests, ~2 min)
-  python3 pipeline/fetch_algolia.py --threads       # + full comment threads of paper stories
+  python3 pipeline/fetch_algolia.py --threads-only  # only the threads (the weekly job runs this after the search)
+  python3 pipeline/fetch_algolia.py --threads       # + full comment threads of paper stories (new stories, and
+                                                    #   threads re-fetched while under --rethread-days old)
   python3 pipeline/fetch_algolia.py --query "hypernetwork" --query "weight space"
                                                     # query mode: search HN by text and append any new
                                                     # stories/comments that link a paper (then run extract_algolia.py)
@@ -30,7 +32,10 @@ ap = argparse.ArgumentParser()
 ap.add_argument('--out', default=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'hn_algolia'))
 ap.add_argument('--sleep', type=float, default=0.25)
 ap.add_argument('--threads', action='store_true', help='also fetch full threads of paper stories')
+ap.add_argument('--threads-only', action='store_true', help='skip the search phase; only fetch threads')
 ap.add_argument('--min-comments', type=int, default=1)
+ap.add_argument('--rethread-days', type=int, default=14,
+                help='re-fetch a thread whose last fetch was within this many days of the story being posted (it was still active)')
 ap.add_argument('--since', type=int, default=HN_START, help='unix time; for incremental weekly runs')
 ap.add_argument('--query', action='append', default=[], help='query mode: free-text HN search (repeatable)')
 a = ap.parse_args()
@@ -143,33 +148,34 @@ if a.query:
 
 now = (int(time.time()) // 86400 + 1) * 86400   # end of today UTC: stable window keys within a day
 t0 = time.time()
-expected = {}
-for tag, attr in QUERIES:
-    with open(os.path.join(OUT, FILES[tag]), 'a', encoding='utf-8') as sink:
-        for term in TERMS:
-            expected[f'{attr}:{term}'] = search(tag, attr, term, a.since, now, 0)['nbHits']
-            crawl(tag, attr, term, a.since, now, sink)
-            print(f'{tag:7s} {attr:12s} {term:12s} algolia={expected[f"{attr}:{term}"]:6d}', flush=True)
-# completeness check: Algolia's grand total is an estimate (exhaustiveNbHits=false) for big queries,
-# so compare against the sum of the exact per-window counts instead
-for q in expected:
-    attr, term = q.split(':')
-    expected[q] = sum(n for k, n in log.get('leaf_counts', {}).items()
-                      if k.split('|')[1] == attr and k.split('|')[2] == term and int(k.split('|')[3]) >= a.since)
-have = {}
-for tag in FILES:
-    p = os.path.join(OUT, FILES[tag])
-    if os.path.exists(p):
-        for line in open(p, encoding='utf-8'):
-            h = json.loads(line)
-            if h['created_at_i'] >= a.since:
-                have.setdefault(h['_q'], set()).add(h['objectID'])
-short = {q: n - len(have.get(q, ())) for q, n in expected.items() if len(have.get(q, ())) < n}
-log['last_check'] = {'expected': expected, 'short': short}; save_log()
-print('completeness: OK, every query fully fetched' if not short else f'completeness: SHORT {short} (re-run to retry)', flush=True)
-print(f'search phase done: {n_req} requests, {time.time()-t0:.0f}s', flush=True)
+if not a.threads_only:
+    expected = {}
+    for tag, attr in QUERIES:
+        with open(os.path.join(OUT, FILES[tag]), 'a', encoding='utf-8') as sink:
+            for term in TERMS:
+                expected[f'{attr}:{term}'] = search(tag, attr, term, a.since, now, 0)['nbHits']
+                crawl(tag, attr, term, a.since, now, sink)
+                print(f'{tag:7s} {attr:12s} {term:12s} algolia={expected[f"{attr}:{term}"]:6d}', flush=True)
+    # completeness check: Algolia's grand total is an estimate (exhaustiveNbHits=false) for big queries,
+    # so compare against the sum of the exact per-window counts instead
+    for q in expected:
+        attr, term = q.split(':')
+        expected[q] = sum(n for k, n in log.get('leaf_counts', {}).items()
+                          if k.split('|')[1] == attr and k.split('|')[2] == term and int(k.split('|')[3]) >= a.since)
+    have = {}
+    for tag in FILES:
+        p = os.path.join(OUT, FILES[tag])
+        if os.path.exists(p):
+            for line in open(p, encoding='utf-8'):
+                h = json.loads(line)
+                if h['created_at_i'] >= a.since:
+                    have.setdefault(h['_q'], set()).add(h['objectID'])
+    short = {q: n - len(have.get(q, ())) for q, n in expected.items() if len(have.get(q, ())) < n}
+    log['last_check'] = {'expected': expected, 'short': short}; save_log()
+    print('completeness: OK, every query fully fetched' if not short else f'completeness: SHORT {short} (re-run to retry)', flush=True)
+    print(f'search phase done: {n_req} requests, {time.time()-t0:.0f}s', flush=True)
 
-if a.threads:
+if a.threads or a.threads_only:
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from normalize import extract
     stories = {}
@@ -178,7 +184,12 @@ if a.threads:
         if (h.get('num_comments') or 0) >= a.min_comments and any(True for _ in extract(h.get('url') or '')):
             stories[int(h['objectID'])] = h
     tdone = set(log['threads_done'])
-    todo = [s for s in sorted(stories) if s not in tdone]
+    tat = {int(k): v for k, v in log.get('threads_at', {}).items()}     # story id -> unix time of the last thread fetch
+    young = a.rethread_days * 86400
+    # new stories, plus threads last fetched while the story was still young (more comments may have come since);
+    # a thread fetched before this rule existed (no time recorded) counts as settled
+    todo = [s for s in sorted(stories) if s not in tdone or (s in tat and tat[s] - stories[s]['created_at_i'] < young
+                                                            and time.time() - tat[s] > 86400)]
     print(f'threads: {len(stories)} paper stories with >= {a.min_comments} comments, {len(todo)} to fetch '
           f'(~{len(todo)*max(a.sleep,0.36)/60:.0f} min; Algolia allows ~10k requests/hour)', flush=True)
 
@@ -199,9 +210,9 @@ if a.threads:
             for r in rows:
                 sink.write(json.dumps(r, ensure_ascii=False) + '\n')
             sink.flush()
-            tdone.add(sid)
+            tdone.add(sid); tat[sid] = int(time.time())
             if i % 50 == 0 or i == len(todo) - 1:
-                log['threads_done'] = sorted(tdone); save_log()
+                log['threads_done'] = sorted(tdone); log['threads_at'] = {str(k): v for k, v in tat.items()}; save_log()
                 print(f'  {i+1}/{len(todo)} threads', flush=True)
-        log['threads_done'] = sorted(tdone); save_log()
+        log['threads_done'] = sorted(tdone); log['threads_at'] = {str(k): v for k, v in tat.items()}; save_log()
 print(f'all done: {n_req} requests in {time.time()-t0:.0f}s -> {OUT}')

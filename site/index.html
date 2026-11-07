@@ -83,8 +83,8 @@ main { min-width: 0; }
 .toolbar { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; color: var(--ink-3); font-size: var(--s-1); padding-block: 8px; border-bottom: 1px solid var(--rule); }
 .toolbar label { display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
 .pills { display: inline-flex; flex-wrap: wrap; gap: 4px; }
-.pill { font: inherit; font-size: 12px; color: var(--ink-2); background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
-.pill[aria-pressed="true"] { color: var(--surface); background: var(--accent); border-color: var(--accent); }
+.tpill { font: inherit; font-size: 12px; color: var(--ink-2); background: transparent; border: 1px solid var(--rule); border-radius: 999px; padding: 3px 10px; cursor: pointer; }
+.tpill[aria-pressed="true"] { color: var(--surface); background: var(--accent); border-color: var(--accent); }
 .xport { display: grid; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
 .xport .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .xport textarea { width: 100%; min-height: 160px; font: 12px/1.45 var(--f-mono); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 10px; box-sizing: border-box; }
@@ -94,7 +94,7 @@ main { min-width: 0; }
 /* paper entry */
 ol.list { list-style: none; margin: 0; padding: 0; }
 .entry { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 14px; padding: 16px 10px; margin-inline: -10px; border-bottom: 1px solid var(--rule); border-radius: 8px; position: relative; }
-.entry.sel { background: var(--surface); box-shadow: inset 3px 0 0 var(--accent), 0 0 0 1px var(--rule); }
+.entry.sel, ol.steps > li.sel { background: var(--surface); box-shadow: inset 3px 0 0 var(--accent), 0 0 0 1px var(--rule); }
 .entry.isread .t a { color: var(--ink-3); }
 .rank { text-align: right; padding-top: 3px; }
 .rank b { display: block; font: 500 var(--s1)/1.2 var(--f-mono); color: var(--ink-3); }
@@ -148,9 +148,9 @@ ol.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display
 ol.steps > li { counter-increment: step; display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
 ol.steps > li::before { content: attr(data-n); font: 500 var(--s2)/1.3 var(--f-mono); color: var(--accent); text-align: right; }
 ol.steps .done { color: var(--good); font-size: 12px; }
-.pick { display: inline-block; font: 600 11px/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 3px 6px; }
-.pathcard .pick { margin-bottom: 8px; }
-.meta .pick { padding: 1px 5px; font-size: 10px; align-self: center; }
+.bpick { display: inline-block; font: 600 11px/1 var(--f-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 3px 6px; }
+.pathcard .bpick { margin-bottom: 8px; }
+.meta .bpick { padding: 1px 5px; font-size: 10px; align-self: center; }
 .ask { display: flex; gap: 8px; margin: 8px 0 10px; flex-wrap: wrap; }
 .ask input { flex: 1; min-width: 0; padding: 11px 14px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); font-size: var(--s1); }
 .examples { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
@@ -375,6 +375,7 @@ function route() {
   else if (['foryou', 'reading', 'topics', 'search', 'about', 'done', 'paths', 'ask'].includes(h)) view = { name: h };
   else view = { name: 'top' };
   if (view.name !== 'search' && view.name !== 'paper') $('#q').value = '';
+  pathPage.last = null;
   shown = 50; render(); window.scrollTo(0, 0);
 }
 window.addEventListener('hashchange', route);
@@ -423,24 +424,27 @@ function entry(p, i) {
 
 const SORTS = [['best', 'Best'], ['new', 'Newest'], ['recs', 'Most recs'], ['cites', 'Citations']];
 const FILTERS = [['code', 'Has code'], ['beginner', 'Beginner'], ['lasting', 'Lasting']];
-function applyOpts(items, bestLabel) {
+function applyOpts(items, own) {
   let out = items;
-  if (LOPT.code) out = out.filter(p => p.code);
-  if (LOPT.beginner) out = out.filter(p => p.level === 'beginner');
-  if (LOPT.lasting) out = out.filter(p => p.lasting === 'lasting');
+  if (LOPT.code && own !== 'code') out = out.filter(p => p.code);
+  if (LOPT.beginner && own !== 'beginner') out = out.filter(p => p.level === 'beginner');
+  if (LOPT.lasting && own !== 'lasting') out = out.filter(p => p.lasting === 'lasting');
   const by = { new: (a, b) => (b.year - a.year) || (b.last || '').localeCompare(a.last || ''), recs: (a, b) => (b.pos - a.pos) || (b.score - a.score), cites: (a, b) => ((b.cites || 0) - (a.cites || 0)) }[LOPT.sort];
   return by ? out.slice().sort(by) : out;
 }
+const TAB_FILTER = { code: 'code', beginner: 'beginner', lasting: 'lasting' };   // feed tab -> the filter it already is
 function renderList(items, { title, intro, tabs = false, emptyHtml = '', opts = true, bestLabel = 'Best', extra = '' }) {
-  if (opts) items = applyOpts(items);
+  const own = TAB_FILTER[view.name], total = items.length;
+  const active = opts ? FILTERS.filter(([k]) => k !== own && LOPT[k]) : [];
+  if (opts) items = applyOpts(items, own);
   list = hideRead && view.name !== 'done' ? items.filter(p => !read[p.id]) : items;
   if (sel >= list.length) sel = list.length - 1;
   const tabBar = tabs ? `<nav class="tabs" aria-label="Feeds">${TABS.map(t => `<a href="#${t[0]}" ${view.name === t[0] ? 'aria-current="page"' : ''}>${t[1]}</a>`).join('')}</nav>` : '';
   $('#main').innerHTML = `${tabBar}
     <div class="head"><div><h1>${esc(title)}</h1>${intro ? `<p>${intro}</p>` : ''}</div></div>
-    <div class="toolbar"><span>${fmt(list.length)} paper${list.length === 1 ? '' : 's'}</span>
-      ${opts ? `<span class="pills" role="group" aria-label="Sort">${SORTS.map(([k, l]) => `<button type="button" class="pill" data-sort="${k}" aria-pressed="${LOPT.sort === k}">${k === 'best' ? bestLabel : l}</button>`).join('')}</span>
-      <span class="pills" role="group" aria-label="Filter">${FILTERS.map(([k, l]) => `<button type="button" class="pill" data-filt="${k}" aria-pressed="${!!LOPT[k]}">${l}</button>`).join('')}</span>` : ''}
+    <div class="toolbar"><span>${active.length ? `${fmt(items.length)} of ${fmt(total)} papers, filtered: ${active.map(([, l]) => l.toLowerCase()).join(', ')} <button type="button" class="tpill" id="clearFilt">Clear filters</button>` : `${fmt(list.length)} paper${list.length === 1 ? '' : 's'}`}</span>
+      ${opts ? `<span class="pills" role="group" aria-label="Sort">${SORTS.map(([k, l]) => `<button type="button" class="tpill" data-sort="${k}" aria-pressed="${LOPT.sort === k}">${k === 'best' ? bestLabel : l}</button>`).join('')}</span>
+      <span class="pills" role="group" aria-label="Filter">${FILTERS.filter(([k]) => k !== own).map(([k, l]) => `<button type="button" class="tpill" data-filt="${k}" aria-pressed="${!!LOPT[k]}">${l}</button>`).join('')}</span>` : ''}
       <label><input type="checkbox" id="hideRead" ${hideRead ? 'checked' : ''}> Hide papers I've read</label>
       <span class="muted">j/k to move · o opens the PDF · s saves</span></div>${extra}
     ${list.length ? `<ol class="list" id="list">${list.slice(0, shown).map(entry).join('')}</ol>
@@ -448,8 +452,9 @@ function renderList(items, { title, intro, tabs = false, emptyHtml = '', opts = 
       : `<div class="empty">${emptyHtml || '<h2>Nothing here yet</h2>'}</div>`}
     ${footer()}`;
   $('#hideRead').addEventListener('change', e => { hideRead = e.target.checked; persist(); render(); });
-  document.querySelectorAll('.pill[data-sort]').forEach(b => b.addEventListener('click', () => { LOPT.sort = b.dataset.sort; store.set('lopt', LOPT); sel = -1; render(); }));
-  document.querySelectorAll('.pill[data-filt]').forEach(b => b.addEventListener('click', () => { LOPT[b.dataset.filt] = !LOPT[b.dataset.filt]; store.set('lopt', LOPT); sel = -1; render(); }));
+  document.querySelectorAll('.tpill[data-sort]').forEach(b => b.addEventListener('click', () => { LOPT.sort = b.dataset.sort; store.set('lopt', LOPT); sel = -1; render(); }));
+  const cf = $('#clearFilt'); if (cf) cf.addEventListener('click', () => { FILTERS.forEach(([k]) => LOPT[k] = false); store.set('lopt', LOPT); sel = -1; render(); });
+  document.querySelectorAll('.tpill[data-filt]').forEach(b => b.addEventListener('click', () => { LOPT[b.dataset.filt] = !LOPT[b.dataset.filt]; store.set('lopt', LOPT); sel = -1; render(); }));
   const more = $('#more'); if (more) more.addEventListener('click', () => { shown += 50; render(); });
 }
 
@@ -534,9 +539,30 @@ function searchLoose(q) {
     return [p, hit ? s * hit * (1 + 0.04 * p.score) : 0];
   }).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]).map(x => x[0]);
 }
+// words.json: word -> index rows whose title or full abstract uses it (built by build_site_data.py), loaded on demand
+let WORDS = null;
+async function loadWords() {
+  if (WORDS !== null) return WORDS;
+  try { const r = await fetch('data/words.json'); WORDS = r.ok ? await r.json() : false; } catch { WORDS = false; }
+  return WORDS;
+}
+const wstem = w => (w.length > 4 && w.endsWith('s') && !w.endsWith('ss') ? w.slice(0, -1) : w);
+function searchAbstracts(q) {
+  if (!WORDS) return [];
+  const ws = [...new Set(tok(q).map(wstem).filter(w => w.length >= 4 && WORDS[w]))];
+  const sc = new Map();
+  for (const w of ws) { const rows = WORDS[w], idf = Math.log(1 + ALL.length / rows.length); for (const r of rows) { const p = ALL[r]; if (p && !p.xp) sc.set(p, (sc.get(p) || 0) + idf); } }
+  const out = [...sc.entries()].sort((a, b) => (b[1] - a[1]) || (b[0].score - a[0].score)).slice(0, 8).map(x => x[0]);
+  out.forEach(p => REASON[p.id] = `Its abstract mentions ${ws.filter(w => WORDS[w].includes(POS[p.id])).map(w => `“${w}”`).join(', ')}`);
+  return out;
+}
 function searchWithMeaning(q) {
   let hits = search(q), loose = false;
   if (!hits.length) { hits = searchLoose(q).slice(0, 8); loose = hits.length > 0; hits.forEach(p => REASON[p.id] = 'Partial match on your words'); }
+  if (!hits.length) {
+    if (WORDS === null) { loadWords().then(w => { if (w && ['search', 'ask'].includes(view.name)) view.name === 'ask' ? $('#askf')?.requestSubmit() : render(); }); }
+    else { hits = searchAbstracts(q); loose = hits.length > 0; }
+  }
   if (EMB === null) { loadEmb().then(e => { if (e && ['search', 'ask'].includes(view.name)) render(); }); return hits; }
   if (!EMB || !hits.length) return hits;
   const top = hits.slice(0, 3), c = new Float32Array(EMB.dim);
@@ -677,7 +703,7 @@ function chart(tl) {
 function pathsPage() {
   $('#main').innerHTML = `<div class="head"><div><h1>Reading paths</h1><p>Short tracks through the papers HN recommends, oldest first, so each one builds on the last.</p></div></div>
     <div class="paths">${PATHS.map(t => { const done = t.steps.filter(id => read[id]).length, ys = t.steps.map(id => BY[id]?.year).filter(Boolean);
-      return `<a class="pathcard" href="#path-${esc(t.id)}">${t.curated ? '<span class="pick">Curated</span>' : ''}<h3>${esc(t.name)}</h3><p>${esc(t.blurb)}</p>
+      return `<a class="pathcard" href="#path-${esc(t.id)}">${t.curated ? '<span class="bpick">Curated</span>' : ''}<h3>${esc(t.name)}</h3><p>${esc(t.blurb)}</p>
       <small>${t.steps.length} papers · ${ys.length ? Math.min(...ys) + '–' + Math.max(...ys) : ''}${done ? ` · ${done} read` : ''}</small></a>`; }).join('')}</div>${footer()}`;
 }
 let pathAll = {};   // path id -> showing every step (else only the key ones)
@@ -687,10 +713,11 @@ function pathPage(id) {
   const info = t.info || {}, all = t.steps.map(x => BY[x]).filter(Boolean);
   const nOf = Object.fromEntries(all.map((p, i) => [p.id, i + 1]));
   const hasCore = all.some(p => info[p.id]?.core) && all.length > 15, full = !hasCore || pathAll[id];
-  list = full ? all : all.filter(p => info[p.id]?.core); sel = -1;
+  list = full ? all : all.filter(p => info[p.id]?.core);
+  if (pathPage.last !== id + full) { sel = -1; pathPage.last = id + full; }
   const step = p => { const f = info[p.id], hn = f ? (f.hn ? `${f.hn} HN mention${f.hn === 1 ? '' : 's'}${f.people > 1 ? ` by ${f.people} people` : ''}` : 'Not on HN yet') : `${p.pos} HN recs`, why = f?.why || p.why;
-    return `<li data-n="${nOf[p.id]}"><div><h3 class="t"><a href="#paper-${p.slug}">${esc(p.title)}</a></h3>
-      <div class="meta">${f?.pick ? `<span class="pick">Editor’s pick</span>` : ''}<span>${esc(p.au)}</span><span>${p.year}</span><span>${hn}</span>${read[p.id] ? '<span class="done">✓ read</span>' : ''}</div>
+    return `<li data-n="${nOf[p.id]}" data-i="${list.indexOf(p)}" data-id="${esc(p.id)}"${list.indexOf(p) === sel ? ' class="sel"' : ''}><div><h3 class="t"><a href="#paper-${p.slug}">${esc(p.title)}</a></h3>
+      <div class="meta">${f?.pick ? `<span class="bpick">Editor’s pick</span>` : ''}<span>${esc(p.au)}</span><span>${p.year}</span><span>${hn}</span>${read[p.id] ? '<span class="done">✓ read</span>' : ''}</div>
       ${why ? `<p class="tl">${esc(why)}</p>` : p.q ? `<p class="qline"><mark class="q">“${esc(p.q)}”</mark></p>` : ''}</div></li>`; };
   let body;
   if (t.stages) {
@@ -700,7 +727,7 @@ function pathPage(id) {
   const done = all.filter(p => read[p.id]).length;
   $('#main').innerHTML = `<div class="crumb"><a href="#paths">Reading paths</a></div>
     <div class="head"><div><h1>${esc(t.name)}</h1><p>${esc(t.blurb)}</p>${t.curated ? `<p class="muted" style="font-size:var(--s0)">A curated path${t.stages ? ` in ${t.stages.length} stages` : ''}: in each ${t.stages ? 'stage' : 'path'}, papers HN has discussed come first, oldest to newest, then editor's picks that HN hasn't linked yet.${t.updated ? ` Updated ${esc(t.updated)}.` : ''}${done ? ` You've read ${done} of ${all.length}.` : ''}</p>` : ''}</div></div>
-    ${hasCore ? `<div class="toolbar"><span>${full ? `All ${all.length} papers` : `The ${list.length} key papers: the seeds and the most discussed on HN`}</span><button class="pill" type="button" id="pathAll" aria-pressed="${!!full}">${full ? `Show the key ${all.filter(p => info[p.id]?.core).length}` : `Show all ${all.length}`}</button></div>` : ''}
+    ${hasCore ? `<div class="toolbar"><span>${full ? `All ${all.length} papers` : `The ${list.length} key papers: the seeds and the most discussed on HN`}</span><button class="tpill" type="button" id="pathAll" aria-pressed="${!!full}">${full ? `Show the key ${all.filter(p => info[p.id]?.core).length}` : `Show all ${all.length}`}</button></div>` : ''}
     ${body}${footer()}`;
   const b = $('#pathAll'); if (b) b.addEventListener('click', () => { pathAll[id] = !full; render(); });
 }
@@ -775,7 +802,7 @@ function askPage() {
     store.set('askq', q);
     const terms = tok(q).filter(w => !ASK_STOP.has(w)).join(' ');
     if (!terms) { $('#answers').innerHTML = '<p class="muted">Add a topic to your question, for example “long context” or “RLHF”.</p>'; return; }
-    await loadEmb();
+    await loadEmb(); await loadWords();
     REASON = {};
     const res = searchWithMeaning(terms).slice(0, 6);
     $('#answers').innerHTML = res.length ? `<p class="muted">Searching for “${esc(terms)}”. ${res.length} HN-backed pick${res.length === 1 ? '' : 's'}, best first:</p>` + res.map((p, i) => `<div class="answer">
@@ -852,14 +879,14 @@ document.addEventListener('click', e => {
 });
 
 function highlight(scroll = true) {
-  document.querySelectorAll('.entry.sel').forEach(el => el.classList.remove('sel'));
-  const el = document.querySelector(`.entry[data-i="${sel}"]`);
+  document.querySelectorAll('#main .sel[data-i]').forEach(el => el.classList.remove('sel'));
+  const el = document.querySelector(`#main [data-i="${sel}"]`);
   if (el) { el.classList.add('sel'); if (scroll) el.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }
 }
 function move(d) {
   if (view.name === 'paper' || !list.length) return;
   sel = Math.max(0, Math.min(list.length - 1, sel + d));
-  if (sel >= shown) { shown = sel + 25; render(); }
+  if (sel >= shown && view.name !== 'path') { shown = sel + 25; render(); }
   highlight();
 }
 const current = () => (view.name === 'paper' ? BYSLUG[view.slug] : list[sel]);
