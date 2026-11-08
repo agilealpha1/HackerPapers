@@ -65,6 +65,7 @@ We are turning the highest-signal papers on HackerPapers into concise visual bre
 
 - **Episode #1:** [*Attention Is All You Need* (Vaswani et al., 2017)](https://www.youtube.com/watch?v=C4qyRfgRFvA) · [View on HackerPapers](https://agilealpha1.github.io/HackerPapers/#paper-arxiv-1706-03762)
 - **Episode #2:** [*Language Models are Few-Shot Learners* (Brown et al., 2020)](https://www.youtube.com/watch?v=YB6aS_srUrA) · [View on HackerPapers](https://agilealpha1.github.io/HackerPapers/#paper-arxiv-2005-14165)
+- **Episode #3:** [*The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks* (Frankle & Carbin, 2018)](https://www.youtube.com/watch?v=7thRRnjNCUA) · [View on HackerPapers](https://agilealpha1.github.io/HackerPapers/#paper-arxiv-1803-03635)
 
 ---
 
