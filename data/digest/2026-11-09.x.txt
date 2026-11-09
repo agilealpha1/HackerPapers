@@ -1,0 +1,3 @@
+This week on HN: 2 AI papers people recommended 🧵 https://agilealpha1.github.io/HackerPapers/#trending
+1. AI Models Can Provably Hide Arbitrary Capabilities https://agilealpha1.github.io/HackerPapers/#paper-arxiv-2610-13928
+2. A Survey of Weight Space Learning: Understanding, Representation, and Generation https://agilealpha1.github.io/HackerPapers/#paper-arxiv-2603-10090
