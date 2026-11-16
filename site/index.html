@@ -118,6 +118,8 @@ mark.q { background: var(--mark); color: var(--mark-ink); padding: 1px 3px; bord
 .acts { display: flex; gap: 6px; margin-left: auto; }
 .ib { border: 1px solid var(--rule); background: var(--surface); border-radius: 6px; padding: 3px 8px; cursor: pointer; font-size: 12px; color: var(--ink-2); text-decoration: none; display: inline-flex; gap: 5px; align-items: center; }
 .ib:hover { border-color: var(--ink-3); color: var(--ink); }
+.ib.video { background: #c00; color: #fff; border-color: #c00; }
+.ib.video:hover { background: #a00; color: #fff; border-color: #a00; }
 .ib[aria-pressed="true"] { background: var(--accent); color: var(--surface); border-color: var(--accent); }
 .badge.lasting { color: var(--good); border-color: color-mix(in srgb, var(--good) 40%, transparent); }
 .badge.spike { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 40%, transparent); }
@@ -420,7 +422,7 @@ function entry(p, i) {
         ${p.deb ? '<span class="badge deb" title="Recommended and contested on HN">Debated</span>' : ''}
         ${p.level !== 'intermediate' ? `<span class="badge lvl-${p.level}">${p.level === 'beginner' ? 'Beginner' : 'Advanced'}</span>` : ''}
         <span class="acts">
-          ${ytUrl(p) ? `<a class="ib" href="${esc(ytUrl(p))}" target="_blank" rel="noopener">Video</a>` : ''}
+          ${ytUrl(p) ? `<a class="ib video" href="${esc(ytUrl(p))}" target="_blank" rel="noopener">Video</a>` : ''}
           ${L.pdf ? `<a class="ib" href="${esc(L.pdf)}" target="_blank" rel="noopener">PDF</a>` : ''}
           <button class="ib" type="button" data-act="save" aria-pressed="${isSaved}">${isSaved ? 'Saved' : 'Save'}</button>
           <button class="ib" type="button" data-act="read" aria-pressed="${isRead}">${isRead ? 'Read' : 'Mark read'}</button>
