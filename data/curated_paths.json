@@ -446,5 +446,34 @@
     "blurb": "Diffusion models, LLMs and hypernetworks that produce whole models or LoRAs on demand."
    }
   ]
+ },
+ {
+  "id": "attention-and-memory-efficiency",
+  "name": "Attention and memory efficiency",
+  "blurb": "From Transformer self-attention to exact attention algorithms designed around GPU memory movement.",
+  "updated": "2026-11-17",
+  "steps": [
+   {
+    "id": "arxiv:1706.03762",
+    "why": "Introduces the Transformer and its scaled dot-product self-attention.",
+    "stage": 0
+   },
+   {
+    "id": "arxiv:2205.14135",
+    "why": "Uses tiling to reduce data movement while preserving exact attention.",
+    "core": true,
+    "stage": 1
+   }
+  ],
+  "stages": [
+   {
+    "name": "Transformer attention",
+    "blurb": "The original Transformer attention architecture."
+   },
+   {
+    "name": "IO-aware attention",
+    "blurb": "Reducing GPU memory traffic without approximating attention."
+   }
+  ]
  }
 ]
