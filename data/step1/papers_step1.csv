@@ -1,5 +1,5 @@
 paper_id,source,n_mentions,n_users,n_submitters,n_comment_linkers,n_substantive_users,n_months,n_substantive_months,max_points,sum_points,n_thread_users,n_users_incl_threads,n_substantive_incl_threads,first_seen,last_seen,top_story_title
-arxiv:1706.03762,arxiv,126,116,15,99,79,56,48,173,228,0,116,79,2017-06,2026-09,The paper that made ChatGPT possible
+arxiv:1706.03762,arxiv,127,117,15,100,79,57,48,173,228,0,117,79,2017-06,2026-11,The paper that made ChatGPT possible
 arxiv:2005.14165,arxiv,98,80,3,77,71,41,37,431,434,0,80,71,2020-05,2026-11,GPT-3: Language Models Are Few-Shot Learners
 arxiv:2303.12712,arxiv,78,68,2,66,49,16,13,180,182,0,68,49,2023-03,2026-08,Sparks of Artificial General Intelligence: Early Experiments with GPT-4
 arxiv:1806.02404,arxiv,62,48,13,36,26,38,23,113,187,0,48,26,2018-06,2026-11,Dissolving the Fermi Paradox
@@ -31,10 +31,10 @@ arxiv:2106.09685,arxiv,31,27,2,25,21,13,11,42,43,0,27,21,2023-03,2026-10,LORA: L
 arxiv:1312.6199,arxiv,28,27,3,24,20,21,18,19,22,0,27,20,2014-04,2022-01,Intriguing Properties of Neural Networks [pdf]
 arxiv:1712.01208,arxiv,31,26,7,19,15,15,14,398,422,0,26,15,2017-12,2026-06,The Case for Learned Index Structures
 arxiv:2506.08872,arxiv,32,26,3,21,18,9,8,391,406,0,26,18,2025-06,2026-07,Accumulation of cognitive debt when using an AI assistant for essay writing task
+arxiv:2312.00752,arxiv,26,26,2,24,19,12,12,130,133,0,26,19,2023-12,2026-11,Mamba: Linear-Time Sequence Modeling with Selective State Spaces
 arxiv:2302.04761,arxiv,32,25,3,22,17,6,5,220,378,0,25,17,2023-02,2023-11,Toolformer: Language Models Can Teach Themselves to Use Tools
 arxiv:2101.00027,arxiv,31,25,3,22,20,20,17,184,199,0,25,20,2021-03,2026-04,The Pile: An 800GB dataset of diverse text for language modeling (2020)
 arxiv:2304.15004,arxiv,31,25,2,23,21,18,17,154,155,0,25,21,2023-05,2026-09,Are emergent abilities of large language models a mirage?
-arxiv:2312.00752,arxiv,25,25,2,23,18,11,11,130,133,0,25,18,2023-12,2026-02,Mamba: Linear-Time Sequence Modeling with Selective State Spaces
 arxiv:1802.07068,arxiv,29,25,10,15,13,19,15,100,154,0,25,13,2018-03,2026-07,Talent vs. Luck: the role of randomness in success and failure
 arxiv:1512.03385,arxiv,26,25,2,22,19,19,17,47,48,0,25,19,2015-12,2026-10,Deep Residual Learning for Image Recognition
 arxiv:2301.10226,arxiv,29,25,8,18,13,11,8,4,24,0,25,13,2023-01,2026-08,A Watermark for Large Language Models
@@ -49,11 +49,11 @@ arxiv:1701.06538,arxiv,24,22,8,14,12,15,11,200,335,0,22,12,2017-01,2026-07,Outra
 arxiv:1703.10987,arxiv,22,22,8,14,6,19,6,85,206,0,22,6,2017-04,2026-11,On the Impossibility of Supersized Machines (2017)
 arxiv:2307.09009,arxiv,23,21,1,19,15,9,9,289,289,0,21,15,2023-07,2026-09,How is ChatGPT's behavior changing over time?
 arxiv:1605.05274,arxiv,22,21,3,18,10,17,10,112,118,0,21,10,2016-05,2023-09,Java Generics Are Turing Complete
+arxiv:2601.02671,arxiv,31,21,3,19,15,8,8,75,81,0,21,15,2026-01,2026-11,Extracting books from production language models (2026)
 arxiv:2312.11514,arxiv,22,21,10,11,6,9,5,50,101,0,21,6,2023-12,2026-08,Efficient Large Language Model Inference with Limited Memory
 openreview:BZ5a1r-kVsf,openreview,26,21,7,15,14,17,14,3,12,0,21,14,2022-06,2026-09,A Path Towards Autonomous Machine Intelligence
 arxiv:1804.03748,arxiv,21,20,7,13,10,17,8,156,173,0,20,10,2018-04,2025-07,Would it be possible to detect an industrial civilization in geological record?
 arxiv:2504.17033,arxiv,20,20,11,8,5,5,3,99,135,0,20,5,2025-05,2026-02,Breaking the Sorting Barrier for Directed Single-Source Shortest Paths
-arxiv:2601.02671,arxiv,30,20,3,18,14,7,7,75,81,0,20,14,2026-01,2026-09,Extracting books from production language models (2026)
 arxiv:1606.06565,arxiv,21,20,5,15,13,16,13,17,24,0,20,13,2016-06,2026-11,Concrete Problems in AI Safety
 arxiv:2307.03172,arxiv,23,20,3,18,15,12,10,15,19,0,20,15,2023-07,2026-08,How language models use long contexts
 arxiv:2512.14982,arxiv,20,20,13,7,4,6,4,3,22,0,20,4,2025-12,2026-09,Prompt Repetition Improves Non-Reasoning LLMs
@@ -64,7 +64,9 @@ arxiv:2005.11710,arxiv,24,19,3,16,13,18,16,252,257,0,19,13,2020-05,2026-08,Feath
 arxiv:math/0411418,arxiv,20,19,7,13,10,17,10,218,405,0,19,10,2016-11,2026-07,How real are real numbers? (2004)
 arxiv:1412.1897,arxiv,19,19,2,17,12,12,9,183,184,0,19,12,2014-12,2019-06,Deep Neural Networks Are Easily Fooled
 arxiv:2301.00250,arxiv,19,19,3,16,7,9,5,176,181,0,19,7,2023-01,2026-02,DensePose from WiFi
+arxiv:2305.17493,arxiv,22,19,4,16,13,12,10,170,299,1,20,13,2023-06,2026-11,The Curse of Recursion: Training on Generated Data Makes Models Forget
 arxiv:2301.13188,arxiv,20,19,2,17,15,9,7,163,166,0,19,15,2023-01,2025-07,Extracting training data from diffusion models
+arxiv:2404.15758,arxiv,21,19,1,18,14,13,12,159,159,0,19,14,2024-04,2026-11,Let's Think Dot by Dot: Hidden Computation in Transformer Language Models
 arxiv:0903.0340,arxiv,23,19,9,12,9,21,10,146,401,0,19,9,2009-10,2026-10,"Physics, Topology, Logic and Computation: A Rosetta Stone (2009) [pdf]"
 arxiv:1611.03530,arxiv,22,19,3,16,15,19,14,131,141,0,19,15,2016-12,2025-03,Understanding deep learning requires rethinking generalization
 arxiv:2209.07663,arxiv,19,19,9,10,6,12,6,70,85,0,19,6,2022-11,2026-02,Monolith: Real time recommendation system with collisionless embedding table
@@ -72,11 +74,9 @@ arxiv:1406.2661,arxiv,24,19,2,17,13,20,14,21,22,0,19,13,2014-06,2024-09,Generati
 arxiv:2307.11760,arxiv,28,19,9,11,8,11,6,3,20,0,19,8,2023-08,2026-05,Large Language Models Understand and Can Be Enhanced by Emotional Stimuli
 arxiv:2005.11401,arxiv,20,19,2,16,13,13,10,2,3,0,19,13,2021-03,2026-07,RAG: Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks
 arxiv:2602.11988,arxiv,18,18,2,14,13,6,6,232,234,0,18,13,2026-02,2026-10,Evaluating AGENTS.md: are they helpful for coding agents?
-arxiv:2305.17493,arxiv,21,18,3,16,13,11,10,170,297,0,18,13,2023-06,2024-12,The Curse of Recursion: Training on Generated Data Makes Models Forget
 arxiv:1606.04474,arxiv,18,18,3,15,9,12,8,161,169,0,18,9,2016-06,2025-03,Learning to learn by gradient descent by gradient descent
 arxiv:1911.08265,arxiv,18,18,3,15,14,9,8,161,168,0,18,14,2019-11,2025-09,"Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model"
 arxiv:2501.00663,arxiv,18,18,3,15,9,6,6,161,281,0,18,9,2025-01,2026-04,Titans: Learning to Memorize at Test Time
-arxiv:2404.15758,arxiv,20,18,1,17,13,12,11,159,159,0,18,13,2024-04,2026-10,Let's Think Dot by Dot: Hidden Computation in Transformer Language Models
 arxiv:2503.23674,arxiv,24,18,1,17,15,13,11,91,91,0,18,15,2025-04,2026-10,UCSD: Large Language Models Pass the Turing Test
 arxiv:2305.10601,arxiv,19,18,3,15,11,7,6,34,43,0,18,11,2023-05,2026-03,Tree of Thoughts: Deliberate Problem Solving with Large Language Models
 arxiv:2201.02177,arxiv,19,18,3,15,12,12,10,13,18,0,18,12,2022-02,2026-06,Grokking: Generalization Beyond Overfitting on Small Algorithmic Datasets
@@ -302,6 +302,7 @@ arxiv:2211.04325,arxiv,11,10,6,4,4,8,4,3,9,0,10,4,2022-11,2026-09,Will we run ou
 arxiv:2205.11502,arxiv,11,10,4,6,6,8,6,3,8,0,10,6,2022-08,2024-10,On the Paradox of Learning to Reason from Data
 arxiv:2305.20050,arxiv,10,10,5,5,5,6,4,3,9,0,10,5,2023-06,2026-09,Let's Verify Step by Step
 arxiv:2502.05167,arxiv,19,10,7,4,3,7,5,3,16,0,10,3,2025-02,2026-04,NoLiMa: Long-Context Evaluation Beyond Literal Matching
+arxiv:2603.24755,arxiv,12,10,4,7,7,5,3,3,8,0,10,7,2026-03,2026-11,SlopCodeBench: Benchmarking How Coding Agents Degrade over Long-Horizon Tasks
 arxiv:1609.04802,arxiv,12,10,2,8,8,7,5,2,3,0,10,8,2016-09,2020-07,Photo-Realistic Single Image Super-Resolution Using a Adversarial Network
 arxiv:1607.06520,arxiv,13,10,3,7,6,10,8,2,5,0,10,6,2016-07,2020-09,Man Is to Computer Programmer as Woman Is to Homemaker? Debiasing Word Embedding
 arxiv:1512.02206,arxiv,10,10,4,6,3,3,2,2,6,0,10,3,2015-12,2016-09,What Is the Computational Value of Finite Range Tunneling?
@@ -393,7 +394,6 @@ arxiv:1912.02292,arxiv,9,9,1,7,7,8,7,2,2,0,9,7,2019-12,2026-11,Deep Double Desce
 arxiv:2211.17192,arxiv,9,9,1,8,7,6,5,2,2,0,9,7,2023-09,2026-06,Fast Inference from Transformers via Speculative Decoding
 arxiv:2403.07183,arxiv,9,9,3,5,5,4,4,2,4,0,9,5,2024-03,2026-06,A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews
 arxiv:1001.0785,arxiv,9,9,1,8,5,7,4,2,2,0,9,5,2010-02,2024-08,The Origin of Gravity and the Laws of Newton (2010)
-arxiv:2603.24755,arxiv,11,9,3,7,7,4,3,2,5,0,9,7,2026-03,2026-07,SlopCodeBench: Benchmarking How Coding Agents Degrade over Long-Horizon Tasks
 arxiv:1301.1069,arxiv,9,9,2,7,7,9,7,1,2,0,9,7,2013-01,2024-05,Poll on nature of reality
 arxiv:1412.6980,arxiv,9,9,1,8,7,9,7,1,1,0,9,7,2015-10,2025-10,Adam's method for stochastic optimization
 arxiv:1704.04299,arxiv,10,9,1,8,6,7,6,1,1,0,9,6,2018-03,2022-10,An Empirical Analysis of Traceability in the Monero Blockchain
@@ -452,13 +452,14 @@ arxiv:1910.10459,arxiv,9,8,5,3,1,3,1,18,47,0,8,1,2019-11,2020-01,New evidence su
 arxiv:2212.12372,arxiv,9,8,4,5,4,3,3,16,24,0,8,4,2023-01,2024-05,Factoring integers with sublinear resources on a quantum processor
 arxiv:2502.06807,arxiv,8,8,5,3,3,2,2,16,27,0,8,3,2025-02,2025-08,Competitive Programming with Large Reasoning Models
 arxiv:2603.20957,arxiv,8,8,3,5,4,4,4,16,20,0,8,4,2026-03,2026-07,Finetuning Activates Verbatim Recall of Copyrighted Books in LLMs
-arxiv:astro-ph/9912202,arxiv,8,8,2,6,3,8,3,11,12,0,8,3,2009-10,2026-01,The Effects of Moore’s Law and Slacking on Large Computations [1999] [pdf]
+arxiv:astro-ph/9912202,arxiv,9,8,2,6,3,9,4,11,12,0,8,3,2009-10,2026-11,The Effects of Moore’s Law and Slacking on Large Computations [1999] [pdf]
 arxiv:1204.0162,arxiv,8,8,4,4,2,5,2,8,14,0,8,2,2012-04,2023-10,Physicist challenges a traffic case about running a red light. He Won [pdf]
 arxiv:2305.07185,arxiv,8,8,3,5,5,4,4,7,14,0,8,5,2023-05,2025-10,Megabyte: Predicting Million-Byte Sequences with Multiscale Transformers
 arxiv:2605.22763,arxiv,8,8,5,3,2,4,2,7,15,0,8,2,2026-05,2026-10,Google DeepMind solves 9 Erdős problems
 arxiv:1504.00702,arxiv,10,8,2,6,6,7,6,6,11,0,8,6,2015-05,2017-05,End-To-End Training of Deep Visuomotor Policies
 arxiv:1502.05698,arxiv,10,8,2,6,3,7,5,6,8,0,8,3,2015-02,2025-10,"Towards AI-Complete Question Answering, Using Deep Learning"
 arxiv:1603.07285,arxiv,8,8,6,2,1,8,1,6,18,0,8,1,2016-03,2022-08,A guide to convolution arithmetic for deep learning
+arxiv:2409.01754,arxiv,13,8,2,6,3,10,5,6,9,0,8,3,2025-05,2026-11,Empirical evidence of LLM's influence on human spoken communication
 arxiv:2606.03811,arxiv,9,8,4,4,3,4,2,6,22,0,8,3,2026-06,2026-10,AI Agents Enable Adaptive Computer Worms
 arxiv:math/0702396,arxiv,9,8,7,1,0,7,0,5,15,0,8,0,2011-02,2026-08,Terence Tao: What is good mathematics?
 arxiv:2009.04374,arxiv,12,8,4,4,4,6,4,5,11,0,8,4,2020-09,2024-01,Assessing Game Balance with AlphaZero: Exploring Alternative Rule Sets in Chess
@@ -518,6 +519,7 @@ arxiv:2410.01201,arxiv,8,7,1,6,6,7,7,520,520,0,7,6,2024-10,2026-02,Were RNNs all
 arxiv:2401.04088,arxiv,7,7,1,6,4,5,3,359,359,0,7,4,2024-01,2026-07,Mixtral 8x7B: A sparse Mixture of Experts language model
 arxiv:1309.4838,arxiv,7,7,2,5,5,6,5,351,361,0,7,5,2017-01,2020-05,Mass Extinction and the Structure of the Milky Way (2013)
 arxiv:2211.00241,arxiv,7,7,2,5,4,5,3,306,501,0,7,4,2022-11,2024-12,Adversarial policies beat superhuman Go AIs (2023)
+arxiv:2409.05746,arxiv,9,7,2,5,5,5,5,291,295,0,7,5,2024-09,2026-11,"LLMs Will Always Hallucinate, and We Need to Live with This"
 arxiv:2402.05120,arxiv,9,7,3,5,4,6,4,288,293,0,7,4,2024-02,2025-01,More Agents Is All You Need: LLMs performance scales with the number of agents
 arxiv:2304.14717,arxiv,14,7,2,5,4,7,5,287,290,0,7,4,2023-05,2026-05,faulTPM: Exposing AMD fTPMs' Deepest Secrets
 arxiv:2204.06974,arxiv,8,7,1,7,4,5,4,275,275,0,7,4,2022-04,2025-12,Planting Undetectable Backdoors in Machine Learning Models
@@ -584,7 +586,6 @@ arxiv:2211.15661,arxiv,8,7,2,6,3,3,2,7,8,0,7,3,2023-02,2023-04,What Learning Alg
 arxiv:2407.01449,arxiv,7,7,3,3,4,4,4,7,11,0,7,4,2024-07,2025-03,ColPali: Efficient Document Retrieval with Vision Language Models
 arxiv:1905.11481,arxiv,7,7,4,3,2,7,2,6,15,0,7,2,2019-05,2026-04,AI Feynman: A Physics-Inspired Method for Symbolic Regression
 arxiv:2302.06590,arxiv,7,7,3,4,4,6,3,6,12,0,7,4,2023-03,2026-01,The Impact of AI on Developer Productivity: Evidence from GitHub Copilot (2023)
-arxiv:2409.01754,arxiv,12,7,2,5,3,9,5,6,9,0,7,3,2025-05,2026-07,Empirical evidence of LLM's influence on human spoken communication
 arxiv:1803.08823,arxiv,7,7,3,4,4,7,4,5,8,0,7,4,2018-03,2024-04,"A high-bias, low-variance introduction to Machine Learning for physicists"
 arxiv:1912.04958,arxiv,8,7,1,6,4,8,5,5,5,0,7,4,2019-12,2024-10,Analyzing and Improving the Image Quality of StyleGAN
 arxiv:2402.15391,arxiv,7,7,5,2,1,3,1,5,13,0,7,1,2024-02,2024-12,Genie: Generative Interactive Environments
@@ -661,7 +662,6 @@ arxiv:2207.08815,arxiv,6,6,3,3,2,4,2,315,530,0,6,2,2022-07,2024-03,Why do tree-b
 arxiv:2405.09818,arxiv,6,6,4,2,2,3,2,304,315,0,6,2,2024-05,2026-06,Chameleon: Meta’s New Multi-Modal LLM
 arxiv:2404.19737,arxiv,7,6,2,4,3,4,2,302,303,0,6,3,2024-05,2026-10,Better and Faster Large Language Models via Multi-Token Prediction
 arxiv:2012.06884,arxiv,6,6,3,3,2,4,2,294,304,0,6,2,2020-12,2026-09,Air-FI: Generating Covert Wi-Fi Signals from Air-Gapped Computers
-arxiv:2409.05746,arxiv,8,6,2,4,4,4,4,291,295,0,6,4,2024-09,2026-09,"LLMs Will Always Hallucinate, and We Need to Live with This"
 arxiv:2208.14755,arxiv,7,6,3,4,4,3,3,246,249,0,6,4,2022-09,2023-09,Python type hints are Turing complete
 arxiv:2601.20245,arxiv,7,6,1,4,4,4,3,236,236,0,6,4,2026-01,2026-06,How AI impacts skill formation
 arxiv:2106.10860,arxiv,7,6,2,4,3,5,2,235,239,0,6,3,2021-06,2024-05,Multiplying Matrices Without Multiplying
@@ -1253,6 +1253,7 @@ arxiv:2002.11054,arxiv,4,4,3,1,1,3,1,211,216,0,4,1,2020-02,2021-08,MLIR: A Compi
 arxiv:2105.05233,arxiv,5,4,1,3,3,5,4,209,209,0,4,3,2021-05,2025-06,Diffusion Models Beat GANs on Image Synthesis
 arxiv:2112.15594,arxiv,4,4,3,1,1,2,1,209,217,0,4,1,2022-01,2022-03,A neural network solves and generates mathematics problems by program synthesis
 arxiv:1701.03757,arxiv,5,4,3,1,1,4,1,206,212,0,4,1,2017-01,2018-03,Edward – A Turing-Complete Language for Deep Probabilistic Programming
+arxiv:2610.14162,arxiv,4,4,4,0,0,2,0,181,192,32,35,21,2026-10,2026-11,"Next-Concept Modeling: Fast, Parallel Coarse-to-Fine Text Generation"
 arxiv:2304.12210,arxiv,4,4,2,2,2,3,2,178,183,0,4,2,2023-04,2024-06,A Cookbook of Self-Supervised Learning
 arxiv:2609.37725,arxiv,5,4,2,3,3,3,3,178,184,0,4,3,2026-09,2026-11,Context Language Models
 arxiv:2511.07885,arxiv,6,4,3,2,2,4,3,169,175,0,4,2,2025-12,2026-09,Intelligence per Watt: Measuring Intelligence Efficiency of Local AI
@@ -1299,7 +1300,6 @@ arxiv:2412.02975,arxiv,6,4,1,3,3,4,2,107,107,0,4,3,2025-01,2025-05,Theoretical l
 arxiv:1512.08546,arxiv,4,4,2,2,2,4,2,103,107,0,4,2,2017-12,2022-08,De-anonymizing programmers from binaries (2017)
 arxiv:2112.14714,arxiv,4,4,2,2,2,2,2,102,103,0,4,2,2022-01,2022-05,Automated Code Optimization with E-Graphs
 arxiv:2309.06180,arxiv,6,4,2,3,3,6,4,102,104,0,4,3,2023-09,2026-02,Efficient Memory Management for Large Language Model Serving with PagedAttention
-arxiv:2610.14162,arxiv,4,4,4,0,0,2,0,102,112,14,17,5,2026-10,2026-11,"Next-Concept Modeling: Fast, Parallel Coarse-to-Fine Text Generation"
 arxiv:2406.07394,arxiv,4,4,1,2,3,3,3,100,100,0,4,3,2024-06,2024-09,Accessing Math Solutions via Monte Carlo Self-Refine with LLaMa-3 8B
 arxiv:2312.03858,arxiv,4,4,2,2,2,3,2,98,103,0,4,2,2023-12,2025-02,Stop Hiding the Sharp Knives: The WebAssembly Linux Interface
 arxiv:1304.5257,arxiv,4,4,3,1,1,3,1,97,101,0,4,1,2013-04,2014-07,What Makes Code Hard to Understand?
@@ -1395,6 +1395,7 @@ arxiv:1502.02766,arxiv,4,4,1,3,2,3,2,17,17,0,4,2,2015-02,2016-06,Multi-View Face
 arxiv:2507.16003,arxiv,4,4,4,0,0,1,0,17,21,0,4,0,2025-07,2025-07,Self-attention transforms a prompt into a low-rank weight-update
 arxiv:1503.07919,arxiv,4,4,3,1,0,4,0,16,21,0,4,0,2015-04,2026-10,BitWhisper: Signaling Between Air-Gapped Computers Using Thermal Manipulations [pdf]
 arxiv:1503.07804,arxiv,4,4,2,2,2,3,2,16,17,0,4,2,2015-04,2021-06,The Nature of Inhabited Planets and Their Inhabitants [pdf]
+arxiv:2101.09170,arxiv,5,4,2,2,2,5,3,16,21,1,5,3,2022-03,2026-11,Why are there Seven Sisters?
 arxiv:1601.03256,arxiv,4,4,2,2,2,1,1,15,19,0,4,2,2016-01,2016-01,KIC 8462852 Faded at an Average 0.165+-0.013 Magnitudes/Century from 1890-1989
 arxiv:1507.00604,arxiv,4,4,2,2,0,2,0,14,16,0,4,0,2015-07,2015-10,On the Popularity of GitHub Applications: A Preliminary Note
 arxiv:1902.06776,arxiv,4,4,4,0,0,2,0,14,23,0,4,0,2019-02,2019-03,A Generalised Solution to Distributed Consensus
@@ -1430,6 +1431,7 @@ arxiv:1603.01121,arxiv,4,4,1,3,3,4,3,7,7,0,4,3,2016-04,2021-12,The lead research
 arxiv:1709.06678,arxiv,4,4,2,2,1,3,1,7,8,0,4,1,2017-09,2018-05,A blueprint for demonstrating quantum supremacy with superconducting qubits
 arxiv:2108.02497,arxiv,5,4,4,0,0,3,0,7,18,0,4,0,2021-08,2024-04,How to avoid machine learning pitfalls
 arxiv:2411.02265,arxiv,4,4,2,2,2,1,1,7,12,0,4,2,2024-11,2024-11,Hunyuan-Large: An Open-Source Moe Model with 52B Activated Parameters
+arxiv:2608.27454,arxiv,4,4,3,1,1,2,1,7,9,0,4,1,2026-08,2026-11,Compiling Agent Experience into Persistent Knowledge for Skill Evolution
 arxiv:1309.4168,arxiv,4,4,1,3,3,4,3,6,6,0,4,3,2013-10,2017-03,Exploiting Similarities Among Languages for Machine Translation (2013)
 arxiv:1703.00522,arxiv,5,4,4,1,1,2,1,6,12,0,4,1,2017-03,2017-05,Deepmind – Understanding Synthetic Gradients and Decoupled Neural Interfaces
 arxiv:1709.02755,arxiv,4,4,3,1,1,2,1,6,9,0,4,1,2017-09,2024-10,Training RNNs as Fast as CNNs
@@ -1440,6 +1442,7 @@ arxiv:2406.07496,arxiv,4,4,3,1,1,3,1,6,10,0,4,1,2024-06,2025-06,"TextGrad: Autom
 arxiv:2409.14545,arxiv,6,4,3,2,2,5,2,6,14,0,4,2,2024-10,2026-05,Why Is Anything Conscious?
 arxiv:2001.00888,arxiv,8,4,1,3,3,8,6,6,6,0,4,3,2021-03,2026-03,Towards Scalable Dataframe Systems
 arxiv:2603.14133,arxiv,4,4,4,0,0,1,0,6,11,0,4,0,2026-09,2026-09,Computer Science Achievement and Writing Skills Predict Vibe Coding Proficiency
+arxiv:2609.19969,arxiv,4,4,1,3,3,2,2,6,6,0,4,3,2026-10,2026-11,DeepSeek-v4.1-Flash: Pushing the Limits of KV Cache Compression
 arxiv:1310.7935,arxiv,4,4,3,1,1,3,1,5,10,0,4,1,2013-11,2016-11,The Unreasonable Fundamental Incertitudes Behind Bitcoin Mining
 arxiv:1703.01253,arxiv,13,4,1,4,1,1,1,5,12,0,4,1,2017-03,2017-03,Recurrent Neural Networks with Deep Memory Access
 arxiv:1611.02167,arxiv,5,4,2,2,2,3,2,5,7,0,4,2,2016-12,2017-07,Designing Neural Network Architectures Using Reinforcement Learning
@@ -1450,7 +1453,7 @@ arxiv:2111.00210,arxiv,5,4,2,2,2,4,3,5,9,0,4,2,2021-11,2022-08,Mastering Atari G
 arxiv:2408.07892,arxiv,4,4,4,0,0,2,0,5,11,0,4,0,2024-08,2025-03,AI and the value of privacy-preserving tools to distinguish who is real online
 arxiv:2602.19141,arxiv,4,4,3,1,1,3,1,5,10,0,4,1,2026-04,2026-09,"Sycophantic Chatbots Cause Delusional Spiraling, Even in Ideal Bayesians"
 arxiv:2607.05391,arxiv,4,4,4,0,0,1,0,5,11,0,4,0,2026-07,2026-07,LLM-as-a-Verifier: A General-Purpose Verification Framework
-arxiv:2606.03979,arxiv,4,4,2,1,0,2,0,5,6,0,4,0,2026-06,2026-10,Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories
+arxiv:2606.03979,arxiv,4,4,2,1,0,2,0,5,6,1,5,1,2026-06,2026-10,Language Models Need Sleep: Learning to Self-Modify and Consolidate Memories
 arxiv:2607.27191,arxiv,4,4,3,1,0,3,0,5,12,0,4,0,2026-07,2026-09,Can AI agents conduct open-ended AI research?
 arxiv:1302.6109,arxiv,5,4,3,2,1,3,1,4,7,0,4,1,2013-02,2023-06,Social Resilience in Online Communities: The Autopsy of Friendster
 arxiv:1506.06726,arxiv,5,4,1,3,3,5,4,4,4,0,4,3,2015-06,2016-03,Skip-Thought Vectors
@@ -1664,6 +1667,7 @@ arxiv:2509.17765,arxiv,5,4,1,3,3,2,2,2,2,0,4,3,2025-09,2025-12,"Qwen3-Omni: firs
 arxiv:2509.18480,arxiv,4,4,1,2,1,1,1,2,2,0,4,1,2025-09,2025-09,SimpleFold: Folding Proteins Is Simpler Than You Think
 arxiv:2509.10147,arxiv,4,4,3,1,0,2,0,2,6,0,4,0,2025-09,2025-11,DeepMind Paper on Virtual Agent Economies
 arxiv:2511.05465,arxiv,4,4,3,1,1,2,1,2,5,0,4,1,2025-11,2026-04,Helios: A 98-qubit trapped-ion quantum computer
+arxiv:2510.26787,arxiv,4,4,3,1,1,3,1,2,6,0,4,1,2025-11,2026-11,Remote Labor Index: Measuring AI Automation of Remote Work
 arxiv:2510.06105,arxiv,4,4,3,1,1,1,1,2,5,0,4,1,2025-10,2025-10,Moloch's Bargain: Troubling emergent behavior in LLM
 arxiv:2507.07505,arxiv,4,4,3,1,1,2,1,2,4,0,4,1,2026-01,2026-02,Hallucination Stations: On Some Basic Limitations of Transformer-Based Language
 arxiv:2604.20329,arxiv,4,4,2,2,1,2,1,2,4,0,4,1,2026-04,2026-06,Image Generators Are Generalist Vision Learners
@@ -1797,6 +1801,7 @@ arxiv:2207.04859,arxiv,5,4,0,4,3,4,3,0,0,0,4,3,2022-11,2024-09,
 arxiv:2209.06833,arxiv,4,4,0,4,2,2,2,0,0,0,4,2,2022-11,2023-05,
 arxiv:1905.07830,arxiv,4,4,0,4,4,2,2,0,0,0,4,4,2023-03,2023-12,
 arxiv:2202.00666,arxiv,4,4,0,4,4,4,4,0,0,0,4,4,2023-03,2026-09,
+arxiv:2211.15533,arxiv,4,4,0,4,3,3,3,0,0,0,4,3,2023-03,2026-11,
 arxiv:2207.00729,arxiv,6,4,0,4,4,4,4,0,0,0,4,4,2023-05,2024-09,
 arxiv:2209.06794,arxiv,4,4,0,4,3,3,2,0,0,0,4,3,2023-05,2024-04,
 arxiv:2212.09410,arxiv,4,4,0,4,2,2,1,0,0,0,4,2,2023-07,2026-09,
@@ -1841,6 +1846,7 @@ arxiv:2309.04259,arxiv,3,3,2,1,1,2,1,389,392,0,3,1,2024-07,2025-11,C++ patterns 
 arxiv:2410.06992,arxiv,3,3,2,1,1,2,1,350,353,0,3,1,2024-12,2025-02,Some critical issues with the SWE-bench dataset
 arxiv:2304.02819,arxiv,3,3,2,1,1,3,1,338,340,0,3,1,2023-05,2026-06,GPT detectors are biased against non-native English writers
 arxiv:2402.14083,arxiv,3,3,1,2,2,3,2,313,313,0,3,2,2024-02,2024-10,Beyond A*: Better Planning with Transformers
+arxiv:2407.07909,arxiv,3,3,2,1,1,2,1,307,319,0,3,1,2024-07,2026-11,Fitting an elephant with four non-zero parameters
 arxiv:2103.16574,arxiv,3,3,3,0,0,1,0,306,311,0,3,0,2021-04,2021-04,“I’ll Finish It This Week” and Other Lies
 arxiv:2504.18412,arxiv,3,3,2,1,1,2,1,303,306,0,3,1,2025-06,2025-07,LLMs should not replace therapists
 arxiv:1802.05968,arxiv,3,3,1,2,1,3,1,297,297,0,3,1,2019-02,2025-04,Information Theory: A Tutorial Introduction
@@ -2026,6 +2032,7 @@ arxiv:1511.00083,arxiv,4,3,1,3,2,3,2,68,68,0,3,2,2015-11,2022-04,Why Neurons Hav
 arxiv:2105.12266,arxiv,3,3,3,0,0,1,0,68,75,0,3,0,2021-09,2021-09,Wireless Charging Power Side-Channel Attacks
 arxiv:2412.03556,arxiv,3,3,2,1,1,2,1,68,85,0,3,1,2024-12,2025-02,Best-of-N Jailbreaking
 arxiv:1401.6444,arxiv,3,3,2,1,0,1,0,67,70,0,3,0,2014-06,2014-06,Android Anti-forensics: Modifying CyanogenMod
+arxiv:1705.06947,arxiv,3,3,2,1,1,3,1,67,68,0,3,1,2017-05,2026-11,The Web Centipede: Understanding How Web Communities Influence Each Other
 arxiv:2012.07902,arxiv,4,3,2,1,0,3,0,66,69,0,3,0,2020-12,2025-11,A Statistical Estimate of Extraterrestrial Intelligence in the Milky Way Galaxy
 arxiv:2401.14953,arxiv,3,3,1,2,2,3,2,66,66,0,3,2,2024-01,2024-05,Learning Universal Predictors
 arxiv:2411.16085,arxiv,3,3,2,1,1,3,1,66,67,0,3,1,2024-11,2026-05,Cautious Optimizers: Improving Training with One Line of Code
@@ -2129,7 +2136,6 @@ arxiv:1502.04015,arxiv,3,3,1,2,1,3,1,17,17,0,3,1,2015-03,2018-01,Decentralized T
 arxiv:2302.08927,arxiv,4,3,3,0,0,3,0,17,22,0,3,0,2023-02,2024-01,Unique Identification of 50k VR Users from Head and Hand Motion Data
 arxiv:2405.18870,arxiv,3,3,3,0,0,3,0,17,20,0,3,0,2024-05,2024-07,Large language models have developed a higher-order theory of mind
 arxiv:1904.12210,arxiv,3,3,3,0,0,3,0,16,20,0,3,0,2019-04,2022-04,A Practical Analysis of Rust's Concurrency Story
-arxiv:2101.09170,arxiv,4,3,1,2,2,4,3,16,16,0,3,2,2022-03,2025-01,Why are there Seven Sisters?
 openreview:4tDNvQe2G0,openreview,3,3,2,1,1,1,1,16,17,0,3,1,2025-08,2025-08,Rain: Transiently Leaking Data from Public Clouds Using Old Vulnerabilities
 arxiv:1506.03767,arxiv,3,3,1,2,1,2,1,15,15,0,3,1,2015-06,2015-12,Spectral Representations for Convolutional Neural Networks [pdf]
 arxiv:1805.08318,arxiv,3,3,3,0,0,1,0,15,19,0,3,0,2018-05,2018-05,Self-Attention Generative Adversarial Networks [pdf]
@@ -2193,7 +2199,6 @@ arxiv:2404.06405,arxiv,4,3,2,1,1,2,1,7,16,0,3,1,2024-04,2024-09,Wu's Method Can 
 arxiv:2205.14334,arxiv,23,3,1,2,2,7,6,7,7,0,3,2,2022-05,2024-10,Teaching Models to Express Their Uncertainty in Words (2022)
 arxiv:2601.11432,arxiv,3,3,3,0,0,1,0,7,12,0,3,0,2026-01,2026-01,The unreasonable effectiveness of pattern matching
 arxiv:2605.19376,arxiv,3,3,2,1,1,1,1,7,10,0,3,1,2026-05,2026-05,Generative Recursive ReAsoning Models (Gram)
-arxiv:2608.27454,arxiv,3,3,2,1,1,1,1,7,8,0,3,1,2026-08,2026-08,Compiling Agent Experience into Persistent Knowledge for Skill Evolution
 arxiv:1608.00152,arxiv,4,3,3,1,0,3,0,6,9,0,3,0,2016-08,2017-04,A mathematical history of taffy pullers
 arxiv:physics/9902034,arxiv,3,3,1,2,2,2,2,6,6,0,3,2,2016-03,2016-09,Special Relativity Theory and Cellular Automata: Light as a CA Process
 arxiv:1601.06071,arxiv,3,3,1,2,1,3,1,6,6,0,3,1,2016-01,2024-08,Bitwise Neural Networks
@@ -2219,7 +2224,6 @@ arxiv:2508.20186,arxiv,3,3,3,0,0,3,0,6,13,0,3,0,2025-09,2026-05,AI Propaganda fa
 arxiv:2508.04701,arxiv,3,3,2,1,1,3,1,6,8,0,3,1,2025-08,2026-01,Rethinking Analytical Processing in the GPU Era
 arxiv:2511.13029,arxiv,3,3,2,1,1,2,1,6,8,0,3,1,2025-11,2026-04,AA-Omniscience: Evaluating Cross-Domain Knowledge Reliability in Language Models
 arxiv:2509.21039,arxiv,3,3,2,1,0,3,0,6,8,0,3,0,2025-10,2026-01,Mojo: MLIR-Based Performance-Portable HPC Science Kernels on GPUs
-arxiv:2609.19969,arxiv,3,3,1,2,2,1,1,6,6,0,3,2,2026-10,2026-10,DeepSeek-v4.1-Flash: Pushing the Limits of KV Cache Compression
 arxiv:1304.5485,arxiv,4,3,2,1,0,2,0,5,12,0,3,0,2013-04,2013-07,An Introduction to Quantum Programming in Quipper
 arxiv:1606.00484,arxiv,3,3,2,1,0,2,0,5,6,0,3,0,2016-06,2017-11,Fast Deterministic Selection
 arxiv:1702.06715,arxiv,3,3,1,2,1,3,1,5,5,0,3,1,2017-02,2022-07,Leaking (a Lot Of) Data from Air-Gapped Computers via the (small) Hard Drive LED
@@ -2422,6 +2426,7 @@ arxiv:2001.09707,arxiv,4,3,2,1,1,4,1,3,4,0,3,1,2020-02,2025-03,Design of the Our
 arxiv:1911.08356,arxiv,5,3,1,2,2,4,3,3,3,0,3,2,2019-12,2026-03,Stream Semantic Registers
 arxiv:2102.02202,arxiv,3,3,2,1,1,2,1,3,5,0,3,1,2021-02,2021-07,DERL: Computational Framework for Creating Embodied Agents
 arxiv:2011.06171,arxiv,3,3,3,0,0,2,0,3,7,0,3,0,2020-11,2021-09,The Usability of Ownership in Rust
+arxiv:2011.05608,arxiv,3,3,2,1,1,3,1,3,5,0,3,1,2020-11,2026-11,Efficient global register allocation (2020)
 arxiv:2010.15882,arxiv,3,3,1,2,2,2,1,3,3,0,3,2,2020-11,2025-02,Constant that Generates nth prime
 arxiv:2010.07763,arxiv,3,3,2,1,1,2,1,3,4,0,3,1,2020-10,2024-01,Refinement Types: A Tutorial
 arxiv:2008.07655,arxiv,3,3,3,0,0,3,0,3,6,0,3,0,2020-08,2020-10,Algebraic Number Starscapes
@@ -2731,7 +2736,6 @@ arxiv:2506.10922,arxiv,3,3,2,1,1,2,1,2,3,0,3,1,2025-06,2025-07,Robustly Improvin
 arxiv:2509.14233,arxiv,3,3,1,2,1,2,1,2,2,0,3,1,2025-09,2026-04,Apertus: Democratizing Open and Compliant LLMs for Global Language Environments
 arxiv:2509.07255,arxiv,3,3,2,1,1,2,1,2,4,0,3,1,2025-09,2025-10,Unconditional separation between quantum and classical information
 arxiv:2310.04368,arxiv,3,3,1,2,1,2,1,2,2,0,3,1,2023-10,2025-08,A Core Calculus for Documents
-arxiv:2510.26787,arxiv,3,3,2,1,1,2,1,2,4,0,3,1,2025-11,2026-02,Remote Labor Index: Measuring AI Automation of Remote Work
 arxiv:2510.20171,arxiv,3,3,3,0,0,1,0,2,4,0,3,0,2025-10,2025-10,Collective Communication for 100k+ GPUs
 arxiv:2510.13786,arxiv,3,3,2,1,1,2,1,2,3,0,3,1,2025-10,2026-09,The Art of Scaling Reinforcement Learning Compute for LLMs
 arxiv:2511.18538,arxiv,3,3,3,0,0,2,0,2,6,0,3,0,2025-12,2026-01,From Code Foundation Models to Agents and Applications
@@ -2740,6 +2744,7 @@ arxiv:2512.18552,arxiv,3,3,3,0,0,1,0,2,4,0,3,0,2025-12,2025-12,Toward Training S
 arxiv:2506.18403,arxiv,4,3,1,2,2,3,2,2,2,0,3,2,2025-12,2026-02,The Debugging Decay Index: Rethinking Debugging Strategies for Code LLMs
 arxiv:2602.14487,arxiv,3,3,3,0,0,3,0,2,6,0,3,0,2026-02,2026-04,Estimating $π$ with a Coin
 arxiv:2602.11865,arxiv,4,3,2,1,1,2,1,2,5,0,3,1,2026-02,2026-08,Intelligent AI Delegation
+arxiv:2503.11901,arxiv,3,3,1,2,1,3,1,2,2,0,3,1,2025-12,2026-11,Story of Two GPUs: Characterizing the Resilience of Hopper H100 and Ampere A100
 arxiv:2602.07900,arxiv,5,3,1,3,3,2,2,2,2,0,3,3,2026-06,2026-10,Rethinking the Value of Generated Tests for LLM Software Engineering Agents
 openreview:rJxd7vsWPS,openreview,3,3,1,2,1,2,1,2,2,0,3,1,2019-10,2021-04,Dex: Array Programming with Typed Indices
 neurips:n5872,neurips,3,3,1,2,2,3,2,2,2,0,3,2,2016-09,2019-12,Efficient and Robust Automated Machine Learning [Research Paper] [pdf]
@@ -2867,6 +2872,7 @@ arxiv:2410.09023,arxiv,3,3,1,2,1,2,1,1,1,0,3,1,2025-11,2025-12,Gyromorphs: A new
 arxiv:2505.06708,arxiv,3,3,1,2,1,3,1,1,1,0,3,1,2025-09,2025-12,Gated Attention for Large Language Models
 arxiv:2602.12176,arxiv,3,3,1,2,0,1,0,1,1,0,3,0,2026-02,2026-02,OpenAI model proposes and proves Physics result
 arxiv:2601.22401,arxiv,3,3,1,2,2,2,2,1,1,0,3,2,2026-02,2026-03,Semi-Autonomous Mathematics Discovery with Gemini: Erdős Problems Case Study
+arxiv:2504.11540,arxiv,3,3,1,2,2,3,2,1,1,0,3,2,2025-11,2026-11,"Pruning in Snowflake: Working Smarter, Not Harder"
 arxiv:2601.05280,arxiv,3,3,1,2,2,2,2,1,1,0,3,2,2026-04,2026-06,The Limits of Self-Improving in Large Language Models
 arxiv:2603.29640,arxiv,3,3,3,0,0,1,0,1,3,0,3,0,2026-04,2026-04,ASI-Evolve: AI Accelerates AI
 arxiv:2603.24477,arxiv,3,3,2,1,1,2,1,1,2,0,3,1,2026-04,2026-08,Composer 2 Technical Report
@@ -3072,7 +3078,6 @@ arxiv:2107.03006,arxiv,3,3,0,3,3,3,3,0,0,0,3,3,2022-12,2025-10,
 arxiv:2201.00652,arxiv,3,3,0,3,3,3,3,0,0,0,3,3,2022-11,2024-06,
 arxiv:2209.15162,arxiv,6,3,0,3,3,4,4,0,0,0,3,3,2022-10,2023-12,
 arxiv:2302.07211,arxiv,3,3,0,3,0,1,0,0,0,0,3,0,2023-03,2023-03,
-arxiv:2211.15533,arxiv,3,3,0,3,2,2,2,0,0,0,3,2,2023-03,2023-05,
 arxiv:2303.05511,arxiv,3,3,0,3,2,3,2,0,0,0,3,2,2023-03,2023-12,
 arxiv:2301.03728,arxiv,3,3,0,3,2,3,2,0,0,0,3,2,2023-02,2025-04,
 arxiv:2202.03629,arxiv,4,3,0,3,3,3,3,0,0,0,3,3,2023-02,2024-02,
@@ -3176,7 +3181,6 @@ arxiv:2609.22978,arxiv,2,2,2,0,0,1,0,324,329,0,2,0,2026-09,2026-09,DeepSeek Elas
 arxiv:2505.21411,arxiv,2,2,2,0,0,1,0,321,323,0,2,0,2025-07,2025-07,Huawei releases an open weight model trained on Huawei Ascend GPUs
 arxiv:2305.06161,arxiv,2,2,1,1,1,2,1,317,317,0,2,1,2023-05,2023-07,StarCoder and StarCoderBase: 15.5B parameter models with 8K context length
 arxiv:2312.00638,arxiv,2,2,1,1,0,2,0,309,309,0,2,0,2023-12,2025-09,What if an SQL statement returned a database?
-arxiv:2407.07909,arxiv,2,2,2,0,0,1,0,307,319,0,2,0,2024-07,2024-07,Fitting an elephant with four non-zero parameters
 arxiv:2509.12337,arxiv,2,2,1,1,1,1,1,288,288,0,2,1,2025-09,2025-09,Determination of the fifth Busy Beaver value
 arxiv:2308.09687,arxiv,2,2,2,0,0,1,0,283,287,0,2,0,2023-08,2023-08,Graph of Thoughts: Solving Elaborate Problems with Large Language Models
 arxiv:1510.00116,arxiv,2,2,2,0,0,2,0,281,284,0,2,0,2016-07,2022-11,A Wait-Free Stack
@@ -3477,7 +3481,6 @@ arxiv:1605.06022,arxiv,2,2,1,1,1,2,1,68,68,0,2,1,2016-05,2016-08,"Quantum Nonloc
 arxiv:1902.03098,arxiv,3,2,1,1,1,2,1,68,70,0,2,1,2019-02,2019-07,Measuring Long-Term Causal Impact of Ads on LinkedIn Users
 arxiv:2402.10013,arxiv,4,2,2,1,1,3,1,68,69,0,2,1,2024-02,2024-12,Bridging empirical-theoretical gap in neural network formal language learning
 arxiv:2605.05242,arxiv,2,2,1,1,1,2,1,68,68,0,2,1,2026-05,2026-06,Beyond Semantic Similarity
-arxiv:1705.06947,arxiv,2,2,1,1,1,2,1,67,67,0,2,1,2017-05,2017-10,The Web Centipede: Understanding How Web Communities Influence Each Other
 arxiv:1808.00811,arxiv,3,2,1,1,1,2,1,67,69,0,2,1,2018-08,2018-09,Digging into Browser-Based Crypto Mining
 arxiv:1812.03389,arxiv,2,2,2,0,0,2,0,67,71,0,2,0,2018-12,2021-05,Memristors for Curious Outsiders
 arxiv:2209.00588,arxiv,2,2,2,0,0,1,0,67,74,0,2,0,2022-09,2022-09,Transformers are sample-efficient world models
@@ -4309,7 +4312,6 @@ arxiv:2012.10086,arxiv,11,2,1,2,1,8,6,3,8,0,2,1,2021-01,2025-03,Program Analysis
 arxiv:2011.09294,arxiv,2,2,1,1,1,2,1,3,3,0,2,1,2020-11,2020-12,Using Unity to Help Solve Intelligence
 arxiv:2003.04761,arxiv,2,2,1,1,0,1,0,3,3,0,2,0,2020-12,2020-12,REST vs. GraphQL: A Controlled Experiment
 arxiv:2011.03052,arxiv,2,2,1,1,1,2,1,3,3,0,2,1,2020-11,2021-01,New Horizons Observations of the Cosmic Optical Background
-arxiv:2011.05608,arxiv,2,2,2,0,0,2,0,3,5,0,2,0,2020-11,2024-02,Efficient global register allocation (2020)
 arxiv:2009.00713,arxiv,3,2,1,1,1,2,1,3,5,0,2,1,2020-09,2026-01,WaveGrad: Estimating Gradients for Waveform Generation
 arxiv:2110.04259,arxiv,2,2,2,0,0,2,0,3,4,0,2,0,2021-10,2022-04,A Wireless Intrusion Detection System for 802.11 WPA3 Networks
 arxiv:2109.09707,arxiv,2,2,2,0,0,2,0,3,4,0,2,0,2021-09,2021-10,A Plug-and-Play Method for Controlled Text Generation
@@ -4550,6 +4552,7 @@ arxiv:2606.08893,arxiv,2,2,2,0,0,1,0,3,5,0,2,0,2026-06,2026-06,Cheap Reward Hack
 arxiv:2508.01491,arxiv,2,2,1,1,1,2,1,3,3,0,2,1,2026-01,2026-06,The Homogenizing Effect of LLMs on Human Expression and Thought
 arxiv:2602.24281,arxiv,2,2,2,0,0,1,0,3,5,0,2,0,2026-06,2026-06,Memory Caching: RNNs with Growing Memory
 arxiv:2604.09718,arxiv,2,2,2,0,0,2,0,3,6,0,2,0,2026-05,2026-06,Mitigating the LLM Rerun Crisis for Minimized-Inference-Cost Web Automation
+arxiv:2602.16987,arxiv,2,2,1,1,1,2,1,3,3,0,2,1,2026-06,2026-11,Simulation Theology: A Testable Framework for AI Alignment
 arxiv:2606.00131,arxiv,2,2,1,1,1,1,1,3,3,0,2,1,2026-06,2026-06,Warehouse-Scale Interprocedural Code Layout Optimization with AlphaEvolve [pdf]
 arxiv:2604.17843,arxiv,3,2,1,2,1,3,1,3,3,0,2,1,2026-05,2026-09,Learning from Ava:Lessons from Trustworthy AI for Policy and Dev Research
 arxiv:2603.00991,arxiv,2,2,2,0,0,2,0,3,5,0,2,0,2026-05,2026-09,Tracking Capabilities for Safer Agents
@@ -4569,6 +4572,8 @@ arxiv:2609.16299,arxiv,2,2,2,0,0,2,0,3,4,0,2,0,2026-09,2026-10,"Revisiting Sound
 arxiv:2010.10088,arxiv,2,2,1,1,1,2,1,3,3,0,2,1,2021-09,2026-10,How Did That Get in My Phone? Unwanted App Distribution on Android Devices(2020)
 arxiv:2609.38147,arxiv,2,2,2,0,0,2,0,3,6,0,2,0,2026-09,2026-10,Thinking Before Thinking: Scaling Agentic Inference Through Meta-Reasoning
 arxiv:2609.36800,arxiv,2,2,2,0,0,1,0,3,5,0,2,0,2026-09,2026-09,Compiling Triton kernels without the Triton compiler
+arxiv:2604.10288,arxiv,2,2,1,1,1,2,1,3,3,0,2,1,2026-09,2026-11,Dead Cognitions: A Census of Misattributed Insights
+arxiv:2609.20408,arxiv,2,2,2,0,0,2,0,3,4,0,2,0,2026-09,2026-11,Xeno-Interpretability: Investigating the Alien Minds of LLMs
 arxiv:2609.20909,arxiv,2,2,1,1,1,1,1,3,3,0,2,1,2026-09,2026-09,TPM-Attest: Hardware-Rooted Anti-Cheat Alternative for Linux
 openreview:YicbFdNTTy,openreview,2,2,1,1,0,1,0,3,3,0,2,0,2020-10,2020-10,An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale
 openreview:rJlPdcY38B,openreview,2,2,1,1,0,1,0,3,3,0,2,0,2019-10,2019-10,Sparsity Programming: Automated Sparsity-Aware Differentiable Programming
@@ -4576,6 +4581,7 @@ acl:P11-1032,acl,2,2,1,1,0,2,0,3,3,0,2,0,2011-08,2012-08,"Research paper on ""op
 neurips:47e288629a6996a17ce50b90a056a0e1,neurips,2,2,1,1,1,1,1,3,3,0,2,1,2023-04,2023-04,Recurrent Memory Transformer [pdf]
 neurips:ccf8111910291ba472b385e9c5f59099,neurips,2,2,1,1,0,2,0,3,3,0,2,0,2022-02,2022-12,Detecting Individual Decision-Making Style in Chess
 neurips:aab085461de182608ee9f607f3f7d18f,neurips,2,2,1,1,0,2,0,3,3,0,2,0,2020-11,2020-12,A neural network learns when it should not be trusted [pdf]
+arxiv:2610.22192,arxiv,2,2,2,0,0,1,0,3,5,1,3,1,2026-11,2026-11,Terminal-RSI: Recursive Self-Improving Terminal Agents
 arxiv:2610.36449,arxiv,2,2,1,1,0,1,0,3,3,0,2,0,2026-11,2026-11,A Heart Means Recursion: Exploring Visual Meaning and Communication in VLMs
 arxiv:2611.05306,arxiv,2,2,1,1,1,1,1,3,3,0,2,1,2026-11,2026-11,You don't need long context
 arxiv:1109.5542,arxiv,2,2,1,1,0,2,0,2,2,0,2,0,2011-10,2022-04,Gaming Security by Obscurity
@@ -5177,7 +5183,6 @@ arxiv:2605.15034,arxiv,2,2,1,1,1,1,1,2,2,0,2,1,2026-05,2026-05,AI Agents Modulat
 arxiv:2605.03190,arxiv,2,2,1,0,1,2,1,2,2,0,2,1,2026-05,2026-06,VDCores: Resource Decoupled Programming and Execution for Asynchronous GPU
 arxiv:2604.08525,arxiv,2,2,2,0,0,2,0,2,3,0,2,0,2026-04,2026-05,Ads in AI Chatbots? An Analysis of How LLMs Navigate Conflicts of Interest
 arxiv:2602.01031,arxiv,2,2,2,0,0,2,0,2,4,0,2,0,2026-05,2026-06,Models hallucinate more than you think
-arxiv:2503.11901,arxiv,2,2,1,1,1,2,1,2,2,0,2,1,2025-12,2026-05,Story of Two GPUs: Characterizing the Resilience of Hopper H100 and Ampere A100
 arxiv:2604.18555,arxiv,4,2,1,2,2,2,2,2,2,0,2,2,2026-04,2026-05,A Note on TurboQuant and the Earlier Eden Work
 arxiv:2604.16529,arxiv,2,2,2,0,0,1,0,2,4,0,2,0,2026-04,2026-04,Scaling Test-Time Compute for Agentic Coding
 arxiv:math/0212377,arxiv,2,2,1,1,1,2,1,2,2,0,2,1,2013-02,2026-04,Objects of Categories as Complex Numbers (2002)
@@ -5212,6 +5217,7 @@ arxiv:1909.08410,arxiv,2,2,1,1,1,1,1,2,2,0,2,1,2026-07,2026-07,Learnability Can 
 arxiv:2503.17181,arxiv,2,2,1,1,0,2,0,2,2,0,2,0,2026-07,2026-10,LLMs Love Python: A Study of LLMs' Bias
 arxiv:2609.24559,arxiv,2,2,1,0,1,1,1,2,2,0,2,1,2026-10,2026-10,T0: A Time-Series Foundation Model for Forecasting with Context
 arxiv:2608.02757,arxiv,2,2,2,0,0,2,0,2,3,0,2,0,2026-10,2026-11,Orbital Data Centres and Potential Impacts to Astronomy and the Sky
+arxiv:2610.20563,arxiv,3,2,1,0,1,2,1,2,2,0,2,1,2026-10,2026-11,Scaling Discovery Requires Forgetting
 arxiv:2610.08699,arxiv,2,2,2,0,0,1,0,2,3,0,2,0,2026-10,2026-10,NanoMuse: An Open-Source Personal Agent for Every Device You Own
 arxiv:2609.00006,arxiv,2,2,2,0,0,1,0,2,4,0,2,0,2026-10,2026-10,"Harness Engineering: Anatomy, Architecture, and Evolution of Coding Agents"
 arxiv:2609.29808,arxiv,2,2,2,0,0,1,0,2,3,0,2,0,2026-09,2026-09,Show HN: Hard Stop: Kernel-level preemption for autonomous AI agents
@@ -5228,6 +5234,7 @@ neurips:n8768,neurips,2,2,2,0,0,2,0,2,4,0,2,0,2019-12,2020-10,Face Reconstructio
 neurips:n6228,neurips,2,2,1,1,1,2,1,2,2,0,2,1,2018-06,2018-08,Man Is to Computer Programmer as Woman Is to Homemaker [pdf]
 neurips:n5539,neurips,2,2,1,1,1,2,1,2,2,0,2,1,2018-02,2018-12,Depth Map Prediction from a Single Image Using a Multi-Scale Deep Network [pdf]
 arxiv:2101.11408,arxiv,3,2,1,1,1,2,1,2,4,0,2,1,2021-02,2026-11,Number Parsing at a Gigabyte per Second
+arxiv:2611.09501,arxiv,3,2,1,1,1,1,1,2,2,0,2,1,2026-11,2026-11,E-means: outperforming k-means (in one-tenth the epochs)
 arxiv:1101.5476,arxiv,2,2,1,1,1,2,1,1,1,0,2,1,2011-05,2020-08,Bayesian model averaging of the curvature and size of the Universe
 arxiv:1002.4482,arxiv,2,2,1,1,1,2,1,1,1,0,2,1,2010-02,2013-12,Exploring the Limits of GPUs With Parallel Graph Algorithms [pdf]
 arxiv:1002.0651,arxiv,2,2,1,1,0,1,0,1,1,0,2,0,2010-02,2010-02,The One and Only True Monty Hall Paradox
@@ -5659,7 +5666,6 @@ arxiv:2601.04480,arxiv,2,2,1,1,0,2,0,1,1,0,2,0,2026-01,2026-02,When Models Manip
 arxiv:2602.11632,arxiv,2,2,1,1,1,2,1,1,1,0,2,1,2026-02,2026-05,An API for Biological Neural Networks
 arxiv:2601.23265,arxiv,2,2,1,0,1,1,1,1,1,0,2,1,2026-02,2026-02,PaperBanana: Automating Academic Illustration for AI Scientists
 arxiv:2601.12538,arxiv,3,2,2,0,0,2,0,1,3,0,2,0,2026-01,2026-08,Agentic Reasoning for Large Language Models
-arxiv:2504.11540,arxiv,2,2,1,1,1,2,1,1,1,0,2,1,2025-11,2026-01,"Pruning in Snowflake: Working Smarter, Not Harder"
 arxiv:2605.08633,arxiv,3,2,1,1,1,2,1,1,1,0,2,1,2026-05,2026-06,Exascale Training of Generative Model with Historical Priors for Data Reduction
 arxiv:2604.04604,arxiv,2,2,2,0,0,2,0,1,2,0,2,0,2026-04,2026-05,AI Agents Under EU Law
 arxiv:2110.06870,arxiv,2,2,1,1,0,2,0,1,1,0,2,0,2026-05,2026-06,Junkyard Computing: Repurposing Discarded Smartphones to Minimize Carbon
@@ -6328,6 +6334,7 @@ arxiv:2205.04596,arxiv,2,2,0,2,2,2,2,0,0,0,2,2,2022-05,2024-10,
 arxiv:2112.06749,arxiv,4,2,0,2,2,3,3,0,0,0,2,2,2022-05,2023-12,
 pmlr:v37/sohl-dickstein15,pmlr,2,2,0,2,1,2,1,0,0,0,2,1,2022-05,2024-09,
 arxiv:1903.07227,arxiv,2,2,0,2,2,2,2,0,0,0,2,2,2022-05,2025-10,
+arxiv:1609.01220,arxiv,2,2,0,2,1,2,1,0,0,0,2,1,2022-05,2026-11,
 arxiv:2006.12057,arxiv,2,2,0,2,2,2,2,0,0,0,2,2,2022-05,2022-11,
 arxiv:gr-qc/9706055,arxiv,4,2,0,2,2,2,2,0,0,0,2,2,2022-04,2022-05,
 arxiv:2101.01719,arxiv,2,2,0,2,1,2,1,0,0,0,2,1,2022-05,2026-02,
@@ -6761,8 +6768,8 @@ arxiv:2512.04047,arxiv,1,1,1,0,0,1,0,704,704,0,1,0,2025-12,2025-12,How elites co
 arxiv:2502.18394,arxiv,1,1,1,0,0,1,0,456,456,0,1,0,2025-02,2025-02,The FFT Strikes Back: An Efficient Alternative to Self-Attention
 arxiv:2412.20512,arxiv,1,1,1,0,0,1,0,446,446,0,1,0,2025-01,2025-01,Time-Series Anomaly Detection: A Decade Review
 arxiv:2504.11651,arxiv,1,1,1,0,0,1,0,411,411,0,1,0,2025-04,2025-04,Lossless LLM compression for efficient GPU inference via dynamic-length float
+arxiv:2605.29713,arxiv,1,1,1,0,0,1,0,399,399,43,44,26,2026-11,2026-11,The Little Book of Generative AI Foundations: An Intuitive Mathematical Primer
 arxiv:2609.03344,arxiv,1,1,1,0,0,1,0,398,398,0,1,0,2026-09,2026-09,LLMs as a Cognitive Virus
-arxiv:2605.29713,arxiv,1,1,1,0,0,1,0,394,394,43,44,26,2026-11,2026-11,The Little Book of Generative AI Foundations: An Intuitive Mathematical Primer
 arxiv:2401.16212,arxiv,1,1,1,0,0,1,0,389,389,0,1,0,2024-02,2024-02,Better Call GPT: Comparing large language models against lawyers [pdf]
 arxiv:2410.21333,arxiv,1,1,1,0,0,1,0,371,371,0,1,0,2024-10,2024-10,Chain-of-thought can hurt performance on tasks where thinking makes humans worse
 arxiv:2503.00735,arxiv,1,1,1,0,0,1,0,370,370,0,1,0,2025-03,2025-03,Ladder: Self-improving LLMs through recursive problem decomposition
@@ -6985,12 +6992,12 @@ arxiv:1712.07816,arxiv,1,1,1,0,0,1,0,125,125,0,1,0,2017-12,2017-12,Acoustic Deni
 arxiv:2108.12290,arxiv,1,1,1,0,0,1,0,125,125,0,1,0,2021-08,2021-08,Music Composition with Deep Learning: A Review
 arxiv:2105.13500,arxiv,1,1,1,0,0,1,0,125,125,0,1,0,2021-08,2021-08,An analysis of Amazon Echo's network behavior
 arxiv:2507.01903,arxiv,1,1,1,0,0,1,0,125,125,0,1,0,2025-07,2025-07,AI for Scientific Search
+arxiv:2610.21375,arxiv,1,1,1,0,0,1,0,125,125,11,12,10,2026-11,2026-11,Memorilla: Latent Semantic Memory for LLMs
 arxiv:2312.13401,arxiv,1,1,1,0,0,1,0,124,124,0,1,0,2023-12,2023-12,Time is encoded in the weights of finetuned language models
 arxiv:2404.07738,arxiv,1,1,1,0,0,1,0,124,124,0,1,0,2024-04,2024-04,ResearchAgent: Iterative Research Idea Generation Using LLMs
 arxiv:2409.11424,arxiv,1,1,1,0,0,1,0,124,124,0,1,0,2024-09,2024-09,LlamaF: An Efficient Llama2 Architecture Accelerator on Embedded FPGAs
 arxiv:2504.19394,arxiv,1,1,1,0,0,1,0,124,124,0,1,0,2025-04,2025-04,LLMs for Engineering: Teaching Models to Design High Powered Rockets
 arxiv:2511.19936,arxiv,1,1,1,0,0,1,0,124,124,0,1,0,2025-11,2025-11,Image Diffusion Models Exhibit Emergent Temporal Propagation in Videos
-arxiv:2610.21375,arxiv,1,1,1,0,0,1,0,124,124,11,12,10,2026-11,2026-11,Memorilla: Latent Semantic Memory for LLMs
 arxiv:2012.06774,arxiv,2,1,1,0,0,1,0,123,124,0,1,0,2021-01,2021-01,"A network analysis on cloud gaming: Stadia, GeForce Now and PSNow"
 arxiv:2305.01056,arxiv,1,1,1,0,0,1,0,123,123,0,1,0,2023-05,2023-05,Psychoactive substance use by professional programmers
 arxiv:2402.02622,arxiv,1,1,1,0,0,1,0,123,123,0,1,0,2024-03,2024-03,DenseFormer: Enhancing Information Flow in Transformers
@@ -7863,6 +7870,7 @@ arxiv:2504.08340,arxiv,1,1,1,0,0,1,0,30,30,0,1,0,2025-04,2025-04,All-in-Memory S
 arxiv:1203.5426,arxiv,1,1,1,0,0,1,0,30,30,0,1,0,2026-07,2026-07,The Energetic Costs of Cellular Computation (2012)
 arxiv:2607.28545,arxiv,1,1,1,0,0,1,0,30,30,0,1,0,2026-07,2026-07,Orca-Bench: How Ready Are Language Model Agents for Oncall?
 arxiv:2607.20386,arxiv,1,1,1,0,0,1,0,30,30,0,1,0,2026-07,2026-07,"Honey Bee Colony Monitoring via Audio IoT Sensors, Tensorgrams and RNNs"
+arxiv:2611.10866,arxiv,1,1,1,0,0,1,0,30,30,0,1,0,2026-11,2026-11,The Surprising Effectiveness of Deleting Weights in LLM Post-Training
 arxiv:math/0701089,arxiv,3,1,1,1,1,2,2,29,29,0,1,1,2016-07,2020-03,Isaac Newton as a Probabilist (2007)
 arxiv:1611.02370,arxiv,1,1,1,0,0,1,0,29,29,0,1,0,2017-05,2017-05,Fingerprinting SDN controllers
 arxiv:1805.11506,arxiv,1,1,1,0,0,1,0,29,29,0,1,0,2018-05,2018-05,"A Long Way to the Top: Significance, Structure, Stability of Internet Top Lists"
@@ -8685,10 +8693,12 @@ arxiv:2607.25816,arxiv,1,1,1,0,0,1,0,6,6,0,1,0,2026-07,2026-07,Teaching agents t
 arxiv:2606.22608,arxiv,1,1,1,0,0,1,0,6,6,0,1,0,2026-07,2026-07,Automated sign detection across the Electronic Babylonian Library
 arxiv:2607.18433,arxiv,1,1,1,0,0,1,0,6,6,0,1,0,2026-07,2026-07,Intelligence from Learnable Novelty
 arxiv:2607.10252,arxiv,1,1,1,0,0,1,0,6,6,0,1,0,2026-07,2026-07,One token is enough: fingerprinting LLMs from one token output distributions
+arxiv:2601.05943,arxiv,2,1,1,0,0,2,0,6,8,0,1,0,2026-10,2026-11,Global Optimization for Combinatorial Geometry Problems Revisited in Era of LLMs
 arxiv:2610.02525,arxiv,1,1,1,0,0,1,0,6,6,0,1,0,2026-10,2026-10,Learning What to Investigate Next: Meta-Reasoning for Long-Horizon Agents
 arxiv:2610.09051,arxiv,1,1,1,0,0,1,0,6,6,0,1,0,2026-10,2026-10,A Self-Pruning Transformer: Extreme KV-Cache Compression w/Universal Attention
 arxiv:2609.17877,arxiv,1,1,1,0,0,1,0,6,6,0,1,0,2026-09,2026-09,AI proof of the Erdős–Sós conjecture
 openreview:roNqYL0_XP,openreview,1,1,1,0,0,1,0,6,6,0,1,0,2021-04,2021-04,Learning Mesh-Based Simulation with Graph Networks – OpenReview
+arxiv:2611.09286,arxiv,1,1,1,0,0,1,0,6,6,0,1,0,2026-11,2026-11,Do the day's losing stocks still bounce in the last half hour? A registered test
 arxiv:0907.1182,arxiv,1,1,1,0,0,1,0,5,5,0,1,0,2010-04,2010-04,Catastrophic cascade of failures in interdependent networks  
 arxiv:0903.2224,arxiv,1,1,1,0,0,1,0,5,5,0,1,0,2009-04,2009-04,Black/White hole radiation from dispersive theories [hep-th/0903.2224]
 arxiv:0809.4221,arxiv,1,1,1,0,0,1,0,5,5,0,1,0,2013-08,2013-08,An elementary illustrated introduction to simplicial sets
@@ -8932,6 +8942,7 @@ openreview:0wSlFpMsGb,openreview,1,1,1,0,0,1,0,5,5,0,1,0,2026-06,2026-06,Common 
 openreview:TOkf0AIV51,openreview,1,1,1,0,0,1,0,5,5,0,1,0,2025-05,2025-05,How much can language models memorize?
 acl:2025.coling-main.468,acl,1,1,1,0,0,1,0,5,5,0,1,0,2026-09,2026-09,NüshuRescue: Reviving the Endangered Nüshu Language with AI
 acl:2023.findings-acl.112,acl,1,1,1,0,0,1,0,5,5,0,1,0,2023-09,2023-09,Large language models with controllable working memory
+arxiv:2611.00230,arxiv,1,1,1,0,0,1,0,5,5,0,1,0,2026-11,2026-11,"LHCb finds evidence for the decay B0 to mu+ mu-, with improved B0s measurement"
 arxiv:1103.1717,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2011-03,2011-03,Efficient and Playful Tools to Teach Unix to New Students 
 arxiv:1101.4103,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2011-01,2011-01,Evolutionary Mechanics: engineering principles for flexibility given uncertainty
 arxiv:cs/0611108,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2010-09,2010-09,"On the Complexity of Processing Massive, Unordered, Distributed Data"
@@ -9523,6 +9534,7 @@ arxiv:2512.11484,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2026-07,2026-07,Remotely Scan Tou
 arxiv:2605.14633,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2026-07,2026-07,Touchscreens at Risk: A Practical Side-Channel Phone Attack via EM Emanations
 arxiv:2607.09564,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2026-07,2026-07,Bidirectional Elaborators à la Carte
 arxiv:2603.27130,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2026-07,2026-07,A Large-Scale Empirical Study of AI-Generated Code in Real-World Repositories
+arxiv:2608.19611,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2026-11,2026-11,Forking Fast: Efficiently Estimating Uncertainty Dynamics in Text Generation
 arxiv:2610.09559,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2026-10,2026-10,A Universal Wi-Fi CSI Encoder for Ubiquitous Human Sensing
 arxiv:2609.39344,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2026-10,2026-10,"Solving ""who said what"" across conversations (IEEE SLT 2026)"
 arxiv:2610.10845,arxiv,1,1,1,0,0,1,0,4,4,0,1,0,2026-10,2026-10,"Long-Term Memory for AI:50M-Token Window,Is Faster,Cheaper Than Recompute"
@@ -11222,7 +11234,6 @@ arxiv:2605.18431,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-06,2026-06,Multi-Robot Coope
 arxiv:2604.18739,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-06,2026-06,Discrete Tilt Matching
 arxiv:2510.00612,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-06,2026-06,The polarization transition in a double-random field model of elections
 arxiv:2510.01902,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-06,2026-06,Constrained Adaptive Rejection Sampling
-arxiv:2602.16987,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-06,2026-06,Simulation Theology: A Testable Framework for AI Alignment
 arxiv:2606.04906,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-06,2026-06,Your AI Text is not Mine
 arxiv:2606.02775,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-06,2026-06,Aura: Action-Gated Memory for Robot Policies at Constant VRAM
 arxiv:2606.02332,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-06,2026-06,Forget Attention: Importance-Aware Attention Is All You Need
@@ -11341,7 +11352,6 @@ arxiv:2606.26470,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-07,2026-07,The Growing Self-
 arxiv:2607.07801,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-07,2026-07,Topology from Decoherence
 arxiv:2611.01143,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,GSLM2 MultiStream Speech Rep Learning and Gen Spoken Language Modeling
 arxiv:2609.22743,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,TEMPO: A Tag-Based Framework for Efficient Memory Ordering
-arxiv:2608.19611,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,Forking Fast: Efficiently Estimating Uncertainty Dynamics in Text Generation
 arxiv:2610.41172,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,Context as Infrastructure: Knowledge Compilation for Retrieval in Agent Harness
 arxiv:2610.29820,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-10,2026-10,UlaCache: Unified Logical Addressing for Sparse LLM Serving
 arxiv:2610.40589,arxiv,1,1,1,0,0,1,0,3,3,1,2,0,2026-10,2026-10,Collaborative AI agents for autonomous experimental research
@@ -11369,14 +11379,12 @@ arxiv:2609.40359,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-10,2026-10,Removing Timing S
 arxiv:2609.38149,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-10,2026-10,Pretraining Latent Information Feedback Transformers with Teacher Supervision
 arxiv:2609.36954,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,Purlin: Separating Orchestration from the Datapath of Collectives
 arxiv:2607.09900,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,AfterVibe: What Remains When the Conversation Ends
-arxiv:2604.10288,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,Dead Cognitions: A Census of Misattributed Insights
 arxiv:2609.28615,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,All Quiet on the AI Front: The Future of Undergraduate Math Research
 arxiv:2609.29845,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,Transformer Can Hold Two Thoughts at Once: Evidence of Linear
 arxiv:2609.24931,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,A Proof of the Most Informative Boolean Function Conjecture
 arxiv:2609.27100,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,Cryptographic Security Is Not Enough: Privacy Gaps in the Renegade
 arxiv:2509.06934,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,"""It Was Tragic"": Exploring the Impact of a Robot's Shutdown"
 arxiv:2609.25050,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,"Testing AIs on 68 of the hardest open Erdos problems, verified in Lean"
-arxiv:2609.20408,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,Xeno-Interpretability: Investigating the Alien Minds of LLMs
 arxiv:2609.20824,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,Do small language models know what they don't know?
 arxiv:2609.13359,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,AI proves Medvedev logic is undecidable
 arxiv:2609.15818,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-09,2026-09,Atria Dawn: The Dawn of Agentic Superintelligence
@@ -11443,6 +11451,8 @@ arxiv:2610.23257,arxiv,1,1,1,0,0,1,0,3,3,1,2,0,2026-11,2026-11,Reasoning Models 
 arxiv:2610.18651,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,Does Pretraining Teach Chemical Language Models Chemistry?
 arxiv:2611.04169,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,"Length Is Cheap, Competition Is Not: Attention Predicts Context Rot in Retrieval"
 arxiv:2610.40700,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,Automatic Construction of Strong Simple Baselines
+arxiv:2502.12314,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,Searching for exotic scalars at fusion reactors (2025)
+arxiv:2610.36669,arxiv,1,1,1,0,0,1,0,3,3,0,1,0,2026-11,2026-11,Proof Repair and (Co)algebra Equivalences
 arxiv:1110.0239,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2011-10,2011-10,Neutrino Pulse Shape Could Explain OPERA Results
 arxiv:1109.6160,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2011-09,2011-09,Possible clock sync issue as explanation of the neutrino velocity anomaly
 arxiv:1109.6221,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2011-09,2011-09,The Ten Thousand Kims  
@@ -15657,13 +15667,13 @@ arxiv:2607.09349,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-07,2026-07,Deceptive Groundi
 arxiv:2607.09520,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-07,2026-07,"Seeing Is Free, Speaking Is Not: Uncovering the True Energy Bottleneck in Edge"
 arxiv:2508.11990,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-07,2026-07,Universal Learning of Nonlinear Dynamics
 arxiv:2607.05861,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-07,2026-07,Mitigating Factual Hallucination in LRMs via Mixed-Mode Advantage Regularization
-arxiv:2611.00512,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Practical Preimages for 19 and 20-Step SHA-256 with Standard Padding
+arxiv:2611.00512,arxiv,2,1,1,1,1,1,1,2,2,0,1,1,2026-11,2026-11,Practical Preimages for 19 and 20-Step SHA-256 with Standard Padding
 arxiv:2610.35671,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Evaluating DeepSeek v4.1 Flash-1017 for loss of control and harmful manipulation
 arxiv:2610.35962,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,h1: A Taste of the Bitter Lesson in Automated Theorem Proving
 arxiv:2610.40564,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Training Foundation Models with a Single Algorithm
 arxiv:2610.34722,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,CEPO: General Framework for Improving Prompt Optimization in Multi-Agent Systems
 arxiv:2610.15267,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Symplectic Latent Dynamics for World Models
-arxiv:2610.38210,arxiv,1,1,1,0,0,1,0,2,2,2,2,0,2026-10,2026-10,GAAC: Lossless KV Cache Compression for Faster LLM Inference
+arxiv:2610.38210,arxiv,1,1,1,0,0,1,0,2,2,3,3,0,2026-10,2026-10,GAAC: Lossless KV Cache Compression for Faster LLM Inference
 arxiv:2610.40447,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,Towards a virtual embryo that can predict what happens when genes change
 arxiv:2610.33775,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,The Hitchhiker's Guide to System One Models
 arxiv:2610.30114,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,The End of Consensus Research?
@@ -15698,8 +15708,6 @@ arxiv:2609.17320,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,Adversarial stres
 arxiv:2604.16477,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,A Constructive Proof of Rice's Theorem and the Halting Problem
 arxiv:2609.31902,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,Quantum Encoding Agents
 arxiv:2610.19159,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,Into the Unknown: Benchmarking AI agents on open scientific research problems
-arxiv:2610.20563,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,Scaling Discovery Requires Forgetting
-arxiv:2601.05943,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,Global Optimization for Combinatorial Geometry Problems Revisited in Era of LLMs
 arxiv:2610.19498,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,The Verifiability Gap in Quantized LLM Supply Chains
 arxiv:2610.09411,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,Cross-Modal Alignment Without Paired Data
 arxiv:2610.03938,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-10,2026-10,Tools make LLMs less likely to refuse requests
@@ -15883,13 +15891,28 @@ pmlr:v80/mirman18b,pmlr,1,1,1,0,0,1,0,2,2,0,1,0,2020-02,2020-02,Abstract Interpr
 pmlr:v80/hashemi18a,pmlr,1,1,1,0,0,1,0,2,2,0,1,0,2018-08,2018-08,Learning Memory Access Patterns [pdf]
 pmlr:v80/rosenfeld18a,pmlr,1,1,1,0,0,1,0,2,2,0,1,0,2018-07,2018-07,DOPS Learning to Optimize Combinatorial Functions [pdf]
 pmlr:v70/shi17a,pmlr,1,1,1,0,0,1,0,2,2,0,1,0,2017-08,2017-08,World of Bits: An Open-Domain Platform for Web-Based Agents
+arxiv:2611.08516,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Aegis OS: a transactional multi-tenant OS runtime for autonomous coding agents
 arxiv:2610.37407,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Constraining the Commit Boundary: DIO/ODI Authorization Guardrail for Agentic ER
 arxiv:2611.02599,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,A wearable identifies tagged objects by pointing a narrow infrared beam at them
+arxiv:2609.30137,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Paper: Nubank cuts AI agent update cycles from 3 weeks to under 5 days
 arxiv:2611.00463,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Exo: An Architecture for Self-Improving Systems at Runtime
 arxiv:2610.21711,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,LLM pricing agents can converge to different price regimes
 arxiv:2609.32778,arxiv,1,1,1,0,0,1,0,2,2,1,1,1,2026-11,2026-11,Agentic Network Traffic Monitoring
 arxiv:2611.02270,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Hinted Scaling Laws
 arxiv:2611.02155,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Decision Models as Policy Gates for Coding Agents
+arxiv:2605.26298,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Sandlock: Confining AI Agent Code with Unprivileged Linux Primitives
+arxiv:2609.14306,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Flattening Every Memory Peak in Long-Context Mixture-of-Experts Training
+arxiv:2611.14881,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,MLIRBench – A Benchmark and Dataset for Compiler and Hardware-Aware Reasoning
+arxiv:2611.13176,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,ShadowPrefill: Keeping Your Next Model Warm for Model Routing in Agentic Serving
+arxiv:2508.05276,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,An Overview of 7726 User Reports:Uncovering SMS Scams and Scammer Strategies
+arxiv:2611.01463,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,DIMWIT: Directly Invoking Models Without Intensive Tuning
+arxiv:2611.05173,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Correctness Firewalls for Synthesized Database Components
+arxiv:2610.20666,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,ArXiv: Schelling-Point Arbitration as a Composable Solana Primitive
+arxiv:2611.07672,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Non-axisymmetric MHD equilibria with an arbitrary number of field periods
+arxiv:2610.20344,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Doc2Harness: Benchmarking how well AI builds agent harnesses
+arxiv:2611.08290,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,AutoCompress: Automated Hardware-Guided Model Compression
+arxiv:2611.08811,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,"I Think, Therefore I Attack"
+arxiv:2608.00325,arxiv,1,1,1,0,0,1,0,2,2,0,1,0,2026-11,2026-11,Triton for MTIA: Bridging the Programming Model Gaps for Custom AI Accelerators
 arxiv:1109.1530,arxiv,2,1,1,1,0,2,0,1,1,0,1,0,2011-09,2011-10,"Daily Deals: Prediction, Social Diffusion, and Reputational Ramifications"
 arxiv:0909.4516,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2011-09,2011-09,A hybrid SQL/JavaScript self-replicating two-stage quine worm prototype
 arxiv:1008.4593,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2011-06,2011-06,Hacking commercial quantum cryptography systems
@@ -20836,11 +20859,8 @@ pmlr:v81/binns18a,pmlr,1,1,1,0,0,1,0,1,1,0,1,0,2023-06,2023-06,Fairness in Machi
 pmlr:v125/kidger20a,pmlr,1,1,1,0,0,1,0,1,1,0,1,0,2022-02,2022-02,Universal Approximation with Deep Narrow Networks (2020)
 pmlr:v76/ensign17a,pmlr,2,1,1,1,1,1,1,1,1,0,1,1,2021-06,2021-06,The Complexity of Explaining Neural Networks Through (Group) Invariants [pdf]
 pmlr:v64/mendoza_towards_2016,pmlr,1,1,1,0,0,1,0,1,1,0,1,0,2017-05,2017-05,Towards Automatically-Tuned Neural Networks [pdf]
-arxiv:2611.08516,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Aegis OS: a transactional multi-tenant OS runtime for autonomous coding agents
-arxiv:2610.22192,arxiv,1,1,1,0,0,1,0,1,1,1,2,1,2026-11,2026-11,Terminal-RSI: Recursive Self-Improving Terminal Agents
 arxiv:2610.24328,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,SigmaTrace: Library-Agnostic Observability for CPU/GPU-Initiated RDMA Comms
 arxiv:2608.20433,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Humanoid Musical Robots as Experimental Interfaces for Music-Evoked Emotion
-arxiv:2609.30137,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Paper: Nubank cuts AI agent update cycles from 3 weeks to under 5 days
 arxiv:2610.30858,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Joules-to-GDP: How Much Economic Value Do AI Systems Produce per Unit of Energy?
 arxiv:2611.04213,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,It is time for a New Deal for Mathematics
 arxiv:2610.00311,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,EdgeDAE: Acceleration of Diffusion Action Experts for Real-Time Physical AI
@@ -20850,6 +20870,21 @@ arxiv:2611.02501,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,SpecPilot: Autono
 arxiv:2611.02849,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,TLAPS-Bench: Formally Proving Correctness with TLA+ Proof System
 arxiv:2611.01904,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Superscalar Loop Processors
 arxiv:2611.00624,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,XLA from the Trenches: Correctness on TPU Workloads at Scale
+arxiv:2611.10719,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,No Second Run: Does RSI Stop at Frontier Pre-Training?
+arxiv:2609.32028,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,What Math Means to Me
+arxiv:2608.21555,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Tensor Seeks Layout: Formalizing Layout Selection for ML Compilers
+arxiv:2611.14769,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Leaderboard Hacking: Preference-Based Model Evals Vulnerable to Manipulation
+arxiv:2611.16272,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,A Binary Search Tree with the Unified Bound
+arxiv:2610.28259,arxiv,1,1,1,0,0,1,0,1,1,1,1,1,2026-11,2026-11,Use LLM for direct robot control
+arxiv:2611.07289,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Patch-Based Generalized Neural Texture Upscaling
+arxiv:2610.00465,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Air-LLM: Broadcasting AI Weights for Edge LLM Inference via RF Computing
+arxiv:2609.04043,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Extending concurrent separation logic to the hardware level to verify the xv6 OS
+arxiv:2611.01226,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,Learning about Markets from Models: Evidence from an AI Hiring Platform
+arxiv:2611.13560,arxiv,1,1,1,0,0,1,0,1,1,1,2,0,2026-11,2026-11,Are Dense Rewards Worth Their Tokens in GRPO?
+arxiv:2611.08151,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,AI Cracks a Quantum Computing Bottleneck
+arxiv:2611.07554,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,The Memory Trap: Language Agents Overgeneralize from Benign Interactions
+arxiv:2606.24218,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,The 2D Ray Tracing Problem Using ABCD Lenses and Mirrors Is Turing Complete
+arxiv:2611.09721,arxiv,1,1,1,0,0,1,0,1,1,0,1,0,2026-11,2026-11,MemoryDojo: Benchmarking Poisoning Through LLM Agent Memory
 arxiv:0901.1392,arxiv,2,1,0,1,1,1,1,0,0,0,1,1,2009-01,2009-01,
 arxiv:2610.32285,arxiv,1,1,0,0,1,1,1,0,0,0,1,1,2026-11,2026-11,
 arxiv:2610.02001,arxiv,1,1,0,0,1,1,1,0,0,0,1,1,2026-11,2026-11,
@@ -24781,7 +24816,6 @@ arxiv:2204.09144,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2022-05,2022-05,
 openreview:Lm8T39vLDTE,openreview,1,1,0,1,1,1,1,0,0,0,1,1,2022-05,2022-05,
 arxiv:2105.05887,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2022-05,2022-05,
 arxiv:1705.03307,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2022-05,2022-05,
-arxiv:1609.01220,arxiv,1,1,0,1,0,1,0,0,0,0,1,0,2022-05,2022-05,
 arxiv:2106.10934,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2022-05,2022-05,
 arxiv:2008.06091,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2022-05,2022-05,
 arxiv:1907.07032,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2022-05,2022-05,
@@ -28896,7 +28930,7 @@ arxiv:2106.00958,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
 arxiv:2505.12470,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
 arxiv:2607.03949,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
 arxiv:2409.19310,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
-arxiv:2606.01770,arxiv,2,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2606.01770,arxiv,3,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
 arxiv:2607.13562,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-10,2026-10,
 arxiv:2610.24092,arxiv,1,1,0,1,0,1,0,0,0,0,1,0,2026-10,2026-10,
 arxiv:2410.21136,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-10,2026-10,
@@ -29607,3 +29641,16 @@ arxiv:2503.22048,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
 arxiv:2506.18167,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
 arxiv:2610.37842,arxiv,1,1,0,1,0,1,0,0,0,0,1,0,2026-11,2026-11,
 acl:2025.babylm-main.28,acl,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2610.04407,arxiv,1,1,0,0,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2406.14972,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2609.26781,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2605.08301,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2309.02338,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2508.08238,arxiv,1,1,0,1,0,1,0,0,0,0,1,0,2026-11,2026-11,
+arxiv:1910.13800,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2101.09143,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2308.06773,arxiv,1,1,0,1,0,1,0,0,0,0,1,0,2026-11,2026-11,
+arxiv:2103.06927,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+arxiv:2602.06036,arxiv,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+acl:2026.emnlp-main.2113,acl,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,
+neurips:26d4b4313a7e5828856bc0791fca39a2,neurips,1,1,0,1,1,1,1,0,0,0,1,1,2026-11,2026-11,

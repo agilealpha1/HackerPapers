@@ -2,43 +2,43 @@
 
 ```json
 {
-  "hits_stories": 26801,
-  "hits_comments": 34960,
-  "hits_thread_comments": 820,
-  "mentions": 51402,
+  "hits_stories": 26849,
+  "hits_comments": 35003,
+  "hits_thread_comments": 858,
+  "mentions": 51480,
   "mentions_by_kind": {
-    "submission": 24411,
-    "story_text": 454,
-    "comment": 26537
+    "submission": 24454,
+    "story_text": 457,
+    "comment": 26569
   },
-  "substantive_comment_mentions": 21440,
-  "unique_papers": 29608,
+  "substantive_comment_mentions": 21470,
+  "unique_papers": 29655,
   "unique_papers_by_source": {
-    "arxiv": 28570,
+    "arxiv": 28615,
     "openreview": 382,
-    "acl": 309,
-    "neurips": 223,
+    "acl": 310,
+    "neurips": 224,
     "pmlr": 124
   },
-  "papers_ge2_users": 6758,
+  "papers_ge2_users": 6765,
   "papers_ge2_users_by_source": {
-    "arxiv": 6625,
+    "arxiv": 6632,
     "openreview": 57,
     "neurips": 35,
     "acl": 28,
     "pmlr": 13
   },
-  "papers_ge2_substantive_users": 2634,
+  "papers_ge2_substantive_users": 2635,
   "papers_ge2_substantive_users_by_source": {
-    "arxiv": 2558,
+    "arxiv": 2559,
     "openreview": 29,
     "neurips": 25,
     "acl": 15,
     "pmlr": 7
   },
-  "papers_hackertube_bar_3users_3months": 968,
-  "papers_ge2_users_incl_threads": 6777,
-  "papers_ge2_substantive_incl_threads": 2651
+  "papers_hackertube_bar_3users_3months": 969,
+  "papers_ge2_users_incl_threads": 6784,
+  "papers_ge2_substantive_incl_threads": 2652
 }
 ```
 
@@ -46,7 +46,7 @@
 
 | paper | users | substantive users | months | max points | title |
 |---|---|---|---|---|---|
-| arxiv:1706.03762 | 116 | 79 | 56 | 173 | The paper that made ChatGPT possible |
+| arxiv:1706.03762 | 117 | 79 | 57 | 173 | The paper that made ChatGPT possible |
 | arxiv:2005.14165 | 80 | 71 | 41 | 431 | GPT-3: Language Models Are Few-Shot Learners |
 | arxiv:2303.12712 | 68 | 49 | 16 | 180 | Sparks of Artificial General Intelligence: Early Experiments with GPT-4 |
 | arxiv:1806.02404 | 48 | 26 | 38 | 113 | Dissolving the Fermi Paradox |
