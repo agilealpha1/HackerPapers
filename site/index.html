@@ -363,6 +363,7 @@ const ytUrl = p => p?.yt && /^[\w-]{11}$/.test(p.yt) ? `https://www.youtube.com/
 // ---------- routing (#name only)
 const TABS = [
   ['top', 'Top papers', 'Ranked by how many HN people recommended each paper, across how many months, how strongly, and how recently.'],
+  ['recent', 'Recently discussed', 'Papers with the latest Hacker News activity, ranked by their last HN mention.'],
   ['classics', 'All-time classics', 'Papers from three or more years ago that HN still recommends month after month.'],
   ['trending', 'Trending this year', 'Papers HN has recommended in the last twelve months, ranked by recent recommendations.'],
   ['code', 'Has code', 'Papers with a code repository linked from the paper itself or posted alongside it on HN.'],
@@ -393,7 +394,7 @@ const go = name => { if (location.hash.slice(1) === name) route(); else location
 function shelf() {
   const cur = view.name === 'topic' ? 'topic-' + view.id : view.name === 'path' ? 'paths' : view.name;
   const a = (h, label, n) => `<a href="#${h}" ${cur === h ? 'aria-current="page"' : ''}>${esc(label)}${n != null ? `<span class="n">${fmt(n)}</span>` : ''}</a>`;
-  const counts = { top: P.length, classics: P.filter(p => p.classic).length, trending: P.filter(p => p.trending).length, code: P.filter(p => p.code).length, beginner: P.filter(p => p.level === 'beginner').length, lasting: P.filter(p => p.lasting === 'lasting').length, debated: P.filter(p => p.deb).length, authors: P.filter(p => p.auth).length };
+  const counts = { top: P.length, recent: P.length, classics: P.filter(p => p.classic).length, trending: P.filter(p => p.trending).length, code: P.filter(p => p.code).length, beginner: P.filter(p => p.level === 'beginner').length, lasting: P.filter(p => p.lasting === 'lasting').length, debated: P.filter(p => p.deb).length, authors: P.filter(p => p.auth).length };
   const tops = TAX.areas.flatMap(ar => ar.topics).sort((x, y) => y.n - x.n).slice(0, 10);
   $('#shelf').innerHTML = `
     <section><h4>Feeds</h4>${TABS.map(t => a(t[0], t[1], counts[t[0]])).join('')}</section>
@@ -412,6 +413,7 @@ function entry(p, i) {
     <div>
       <h3 class="t"><a href="#paper-${p.slug}">${esc(p.title)}</a></h3>
       <div class="meta"><span>${esc(p.au)}</span><span>${p.year}</span><span class="id">${esc(L.label)}</span>
+        ${view.name === 'recent' && p.last ? `<span>Last HN mention ${esc(p.last)}</span>` : ''}
         <span>${p.users} HN people · ${p.months} month${p.months === 1 ? '' : 's'}${p.points ? ` · top post ${fmt(p.points)} pts` : ''}${p.cites ? ` · ${short(p.cites)} citations` : ''}</span></div>
       ${p.q ? `<p class="qline"><mark class="q">“${esc(p.q)}”</mark></p>` : (p.tl ? `<p class="tl">${esc(p.tl)}${p.tl.length >= 220 ? '…' : ''}</p>` : '')}
       ${REASON[p.id] ? `<p class="reason">${esc(REASON[p.id])}</p>` : ''}
@@ -856,6 +858,10 @@ function render() {
     default: {
       const t = TABS.find(x => x[0] === view.name) || TABS[0];
       let items = P;
+      if (t[0] === 'recent') {
+        items = P.slice().sort((a, b) => (b.last || '').localeCompare(a.last || '') || (b.score - a.score));
+        return renderList(items, { title: t[1], intro: t[2], tabs: true, opts: false });
+      }
       if (t[0] === 'classics') items = P.filter(p => p.classic).sort((a, b) => b.base - a.base);
       if (t[0] === 'trending') items = P.filter(p => p.trending).sort((a, b) => b.trend - a.trend);
       if (t[0] === 'code') items = P.filter(p => p.code);

@@ -31,11 +31,12 @@ Citation counts tell you what academia cites; social feeds tell you what went vi
 
 ## Key Features
 
-### 1. Eight Signal-Driven Feeds
+### 1. Nine Signal-Driven Feeds
 
 | Feed | What It Surfaces |
 | :--- | :--- |
 | [**Top papers**](https://agilealpha1.github.io/HackerPapers/#top) | Ranked by distinct HN recommenders, recurrence across months, post points, citations, and recency |
+| [**Recently discussed**](https://agilealpha1.github.io/HackerPapers/#recent) | Eligible papers with the latest HN activity, ordered by the last mention |
 | [**All-time classics**](https://agilealpha1.github.io/HackerPapers/#classics) | Foundational papers (3+ years old) that HN continues recommending month after month |
 | [**Trending this year**](https://agilealpha1.github.io/HackerPapers/#trending) | Papers gaining sustained HN recommendations over the past 12 months |
 | [**Has code**](https://agilealpha1.github.io/HackerPapers/#code) | Papers paired with verified GitHub/GitLab repositories (from the paper, the author, Hugging Face, or HN) |
