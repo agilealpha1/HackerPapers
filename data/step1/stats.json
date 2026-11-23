@@ -1,39 +1,39 @@
 {
-  "hits_stories": 26849,
-  "hits_comments": 35003,
-  "hits_thread_comments": 858,
-  "mentions": 51480,
+  "hits_stories": 26934,
+  "hits_comments": 35083,
+  "hits_thread_comments": 1236,
+  "mentions": 51634,
   "mentions_by_kind": {
-    "submission": 24454,
+    "submission": 24538,
     "story_text": 457,
-    "comment": 26569
+    "comment": 26639
   },
-  "substantive_comment_mentions": 21470,
-  "unique_papers": 29655,
+  "substantive_comment_mentions": 21531,
+  "unique_papers": 29764,
   "unique_papers_by_source": {
-    "arxiv": 28615,
-    "openreview": 382,
+    "arxiv": 28722,
+    "openreview": 384,
     "acl": 310,
     "neurips": 224,
     "pmlr": 124
   },
-  "papers_ge2_users": 6765,
+  "papers_ge2_users": 6783,
   "papers_ge2_users_by_source": {
-    "arxiv": 6632,
-    "openreview": 57,
+    "arxiv": 6649,
+    "openreview": 58,
     "neurips": 35,
     "acl": 28,
     "pmlr": 13
   },
-  "papers_ge2_substantive_users": 2635,
+  "papers_ge2_substantive_users": 2640,
   "papers_ge2_substantive_users_by_source": {
-    "arxiv": 2559,
+    "arxiv": 2564,
     "openreview": 29,
     "neurips": 25,
     "acl": 15,
     "pmlr": 7
   },
-  "papers_hackertube_bar_3users_3months": 969,
-  "papers_ge2_users_incl_threads": 6784,
-  "papers_ge2_substantive_incl_threads": 2652
+  "papers_hackertube_bar_3users_3months": 970,
+  "papers_ge2_users_incl_threads": 6815,
+  "papers_ge2_substantive_incl_threads": 2667
 }

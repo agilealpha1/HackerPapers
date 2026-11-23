@@ -2,43 +2,43 @@
 
 ```json
 {
-  "hits_stories": 26849,
-  "hits_comments": 35003,
-  "hits_thread_comments": 858,
-  "mentions": 51480,
+  "hits_stories": 26934,
+  "hits_comments": 35083,
+  "hits_thread_comments": 1236,
+  "mentions": 51634,
   "mentions_by_kind": {
-    "submission": 24454,
+    "submission": 24538,
     "story_text": 457,
-    "comment": 26569
+    "comment": 26639
   },
-  "substantive_comment_mentions": 21470,
-  "unique_papers": 29655,
+  "substantive_comment_mentions": 21531,
+  "unique_papers": 29764,
   "unique_papers_by_source": {
-    "arxiv": 28615,
-    "openreview": 382,
+    "arxiv": 28722,
+    "openreview": 384,
     "acl": 310,
     "neurips": 224,
     "pmlr": 124
   },
-  "papers_ge2_users": 6765,
+  "papers_ge2_users": 6783,
   "papers_ge2_users_by_source": {
-    "arxiv": 6632,
-    "openreview": 57,
+    "arxiv": 6649,
+    "openreview": 58,
     "neurips": 35,
     "acl": 28,
     "pmlr": 13
   },
-  "papers_ge2_substantive_users": 2635,
+  "papers_ge2_substantive_users": 2640,
   "papers_ge2_substantive_users_by_source": {
-    "arxiv": 2559,
+    "arxiv": 2564,
     "openreview": 29,
     "neurips": 25,
     "acl": 15,
     "pmlr": 7
   },
-  "papers_hackertube_bar_3users_3months": 969,
-  "papers_ge2_users_incl_threads": 6784,
-  "papers_ge2_substantive_incl_threads": 2652
+  "papers_hackertube_bar_3users_3months": 970,
+  "papers_ge2_users_incl_threads": 6815,
+  "papers_ge2_substantive_incl_threads": 2667
 }
 ```
 
@@ -49,7 +49,7 @@
 | arxiv:1706.03762 | 117 | 79 | 57 | 173 | The paper that made ChatGPT possible |
 | arxiv:2005.14165 | 80 | 71 | 41 | 431 | GPT-3: Language Models Are Few-Shot Learners |
 | arxiv:2303.12712 | 68 | 49 | 16 | 180 | Sparks of Artificial General Intelligence: Early Experiments with GPT-4 |
-| arxiv:1806.02404 | 48 | 26 | 38 | 113 | Dissolving the Fermi Paradox |
+| arxiv:1806.02404 | 49 | 26 | 38 | 113 | Dissolving the Fermi Paradox |
 | arxiv:math/9404236 | 45 | 34 | 32 | 25 | On proof and progress in mathematics (1994) |
 | arxiv:2201.11903 | 44 | 37 | 27 | 2 | Chain of Thought Prompting Elicits Reasoning in Large Language Models |
 | arxiv:2001.08361 | 42 | 32 | 37 | 3 | Scaling Laws for Neural Language Models |
@@ -64,8 +64,8 @@
 | arxiv:1410.5401 | 34 | 22 | 27 | 75 | Neural Turing Machines [pdf] |
 | arxiv:2501.12948 | 33 | 24 | 12 | 1351 | DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL |
 | arxiv:quant-ph/9908043 | 32 | 14 | 31 | 40 | Physical Limits to Computation (2000) [pdf] |
+| arxiv:2309.10668 | 32 | 25 | 20 | 5 | Language Modeling Is Compression |
 | arxiv:2302.13971 | 32 | 27 | 10 | 2 | LLaMA: Open and Efficient Foundation Language Models (2023) |
-| arxiv:2309.10668 | 31 | 24 | 20 | 5 | Language Modeling Is Compression |
 | arxiv:2507.09089 | 31 | 21 | 9 | 4 | Measuring the Impact of Early-2025 AI on Experienced Developer Productivity |
 | arxiv:2306.11644 | 30 | 23 | 13 | 256 | Textbooks are all you need |
 | arxiv:1810.04805 | 30 | 24 | 22 | 78 | BERT: Pre-Training of Deep Bidirectional Transformers for Language Understanding |

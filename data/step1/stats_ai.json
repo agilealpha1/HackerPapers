@@ -1,12 +1,12 @@
 {
-  "arxiv_papers_checked": 15929,
+  "arxiv_papers_checked": 15942,
   "arxiv_ids_not_found": 0,
-  "ai_papers_ge2_users": 3988,
-  "ai_papers_ge2_substantive_users": 1620,
-  "ai_papers_hackertube_bar_3users_3months": 673,
-  "ai_primary_ge2_users": 3368,
+  "ai_papers_ge2_users": 4000,
+  "ai_papers_ge2_substantive_users": 1621,
+  "ai_papers_hackertube_bar_3users_3months": 674,
+  "ai_primary_ge2_users": 3379,
   "ai_adjacent_only_ge2_users": 114,
-  "non_ai_ge2_users": 2777,
+  "non_ai_ge2_users": 2783,
   "invalid_ids_this_run": [],
   "ai_cats": [
     "cs.AI",
